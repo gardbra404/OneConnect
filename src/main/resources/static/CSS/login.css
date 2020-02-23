@@ -1,0 +1,17 @@
+.info {
+    width: 200px;
+    height: 150px;
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    margin-left: -50px;
+    border-radius: 25px;
+    background-color: rgb(207, 207, 207);
+    font-family: 'Roboto', sans-serif;
+    box-shadow: 5px 10px;
+    text-align: center;
+}
+body {
+    background-color:rgb(72, 71,82);
+    margin: 0;
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <link rel="stylesheet" th:href="@{/CSS/login.css}" />
+        <link rel="stylesheet" th:href="@{/CSS/common.css}" />
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Roboto|Source+Sans+Pro&display=swap" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	</head>
+    <body>
+    <script>
+            console.log("Man, this website sure is secure...");
+            function send() {
+                $.ajax({
+                    url:"/hello",
+                    data:{hello:"Good bye cruel world!", i:"Hello"},
+                    success:function(r) {
+                        console.log(r)
+                    }
+                });
+            }
+        </script>
+        <div id ="top"><strong id="title">One Connect</strong></div>
+        <div class = "background">
+            <div class = "info">
+                <br/>
+                <div>
+                    <label for = "user">Username:</label>
+                    <input type = "text" id ="user"/>
+                </div>
+                <br/>
+                <div>
+                    <label for = "pass">Password:  </label>
+                    <input type = "password" id ="pass"/>
+                </div>
+                <a href="landing.html">Login</a>
+            </div>
+		</div>
+        <button onclick="send()">Click Me</button>
+
+    </body>
+</html>
