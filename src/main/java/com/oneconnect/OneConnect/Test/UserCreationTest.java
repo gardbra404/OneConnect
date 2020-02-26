@@ -9,12 +9,12 @@ public class UserCreationTest{
 		String fullName = "Austin Guilbault";
 		String role = "admin";
 		String password = "123ABCqwe?!";
-		
+		/*
 		UserService userService = new userService();
 		
 		if (userService.createUser(userId, userEmail, fullName, role, password) != null)
 			return true;
-		
+		*/
 		return false;
 	}
 	
@@ -25,12 +25,12 @@ public class UserCreationTest{
 		String fullName = "Austin Guilbault";
 		String role = "admin";
 		String password = "bob";
-		
+		/*
 		UserService userService = new userService();
 		
 		if (userService.createUser(userId, userEmail, fullName, role, password) == null)
 			return true;
-		
+		*/
 		return false;
 	}
 	
@@ -40,15 +40,15 @@ public class UserCreationTest{
 		String fullName = "Austin Guilbault";
 		String role = "admin";
 		String password = "123ABCqwe?!";
-		
+		/*
 		UserService userService = new userService();
 		
 		userService.createUser(userId, userEmail, fullName, role, password) //create the user
-		
+
 		//try to create the user again
 		if (userService.createUser(userId, userEmail, fullName, role, password) == null)
 			return true;
-		
+		*/
 		return false;		
 	}
 	
@@ -58,12 +58,12 @@ public class UserCreationTest{
 		String fullName = "Austin Guilbault";
 		String role = ":^)";
 		String password = "123ABCqwe?!";
-		
+		/*
 		UserService userService = new userService();
 		
 		if (userService.createUser(userId, userEmail, fullName, role, password) == null)
 			return true;
-		
+		*/
 		return false;
 	}
 	
@@ -73,12 +73,12 @@ public class UserCreationTest{
 		String fullName = "Austin Guilbault";
 		String role = ":^)";
 		String password = "123ABCqwe?!";
-		
+		/*
 		UserService userService = new userService();
 		
 		if (userService.createUser(userId, userEmail, fullName, role, password) == null)
 			return true;
-		
+		*/
 		return false;
 		
 	}
@@ -89,12 +89,12 @@ public class UserCreationTest{
 		String fullName = "Austin Guilbault";
 		String role = "student";
 		String password = "123ABCqwe?!";
-		
+		/*
 		UserService userService = new userService();
 		
 		if (userService.createUser(userId, userEmail, fullName, role, password) == null)
 			return true;
-		
+		*/
 		return false;
 		
 	}
@@ -106,12 +106,12 @@ public class UserCreationTest{
 		String fullName = "onlyoneword";
 		String role = "admin";
 		String password = "123ABCqwe?!";
-		
+		/*
 		UserService userService = new userService();
 		
 		if (userService.createUser(userId, userEmail, fullName, role, password) == null)
 			return true;
-		
+		*/
 		return false;
 	}
 	
@@ -123,7 +123,7 @@ public class UserCreationTest{
 	                +"<br/>InvalidRole: " + (InvalidRole() ? "Passed" : "Failed")
 					+"<br/>nullUserId: " + (nullUserId() ? "Passed" : "Failed")
 					+"<br/>InvalidEmail: " + (InvalidEmail() ? "Passed" : "Failed")
-					+"<br/>InvalidFullName: " + (InvalidFullName() ? "Passed" : "Failed")
+					+"<br/>InvalidFullName: " + (InvalidFullName() ? "Passed" : "Failed");
 
 	}
 	
