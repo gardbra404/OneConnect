@@ -1,0 +1,34 @@
+[
+  {
+      "class": "5252",
+      "students": [
+        {
+          "student" : "123",
+          "assignment" : "10052",
+          "score" : "50"
+        },
+        {
+          "student" : "124",
+          "assignment" : "10052",
+          "score" : "50"
+        }
+      ]
+
+  },
+
+  {
+      "class": "5253",
+      "students": [
+        {
+          "student" : "123",
+          "assignment" : "10053",
+          "score" : "50"
+        },
+        {
+          "student" : "124",
+          "assignment" : "10053",
+          "score" : "50"
+        }
+      ]
+  }
+]

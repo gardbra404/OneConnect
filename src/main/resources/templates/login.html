@@ -11,20 +11,38 @@
 	</head>
     <body>
     <script>
-            console.log("Man, this website sure is secure...");
             function send() {
                 $.ajax({
-                    url:"/hello",
-                    data:{hello:"Good bye cruel world!", i:"Hello"},
+                    url:"/login",
+                    data:{user:$("#user").val(), pass:$("#pass").val()},
                     success:function(r) {
-                        console.log(r)
+                        if(r.id==="-1") {
+                            alert("Invalid Login Provided!")
+                        } else {
+                            $("#id").val(r.id);
+                            if (r.roles.length > 1) {
+                                $("#info").empty();
+                                var selectRole = "<label for='roleSelect'>Select Role: </label><br/><select id='roleSelect'>";
+                                for(var i = 0; i< r.roles.length; i++) {
+                                    selectRole+="<option value = '"+r.roles[i]+"'>"+r.roles[i]+"</option>";
+                                }
+                                selectRole+="</select><br/><button onclick = 'submit()'>Submit</button>";
+                                $("#info").append(selectRole);
+                            } else {
+                                $("#form").submit();
+                            }
+                        }
                     }
                 });
+            }
+            function submit() {
+                $("#role").val($("#roleSelect").val());
+                $("#form").submit();
             }
         </script>
         <div id ="top"><strong id="title">One Connect</strong></div>
         <div class = "background">
-            <div class = "info">
+            <div id = "info" class = "info">
                 <br/>
                 <div>
                     <label for = "user">Username:</label>
@@ -35,10 +53,13 @@
                     <label for = "pass">Password:  </label>
                     <input type = "password" id ="pass"/>
                 </div>
-                <a href="landing.html">Login</a>
+                <button id ="login" onclick="send()">Login</button>
             </div>
 		</div>
-        <button onclick="send()">Click Me</button>
 
+    <form action="/landing" method="POST" id="form">
+        <input type="hidden" id="id" name="id" value=""/>
+        <input type="hidden" id="role" name="role" value="default"/>
+    </form>
     </body>
 </html>

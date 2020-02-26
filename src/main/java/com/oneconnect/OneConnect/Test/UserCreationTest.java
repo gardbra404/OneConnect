@@ -44,7 +44,7 @@ public class UserCreationTest{
 		UserService userService = new userService();
 		
 		userService.createUser(userId, userEmail, fullName, role, password) //create the user
-		
+
 		//try to create the user again
 		if (userService.createUser(userId, userEmail, fullName, role, password) == null)
 			return true;

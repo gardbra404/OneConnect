@@ -1,0 +1,19 @@
+[
+  {
+
+      "name" : "Brad Gardner",
+      "role": ["student", "admin"],
+      "id": "123",
+      "classes" : ["5252", "5253"],
+      "children" : []
+
+  },
+  {
+      "name" : "Jorge Gardner",
+      "role": ["student"],
+      "id": "124",
+      "classes" : ["5252", "5253"],
+      "children" : []
+
+  }
+]
