@@ -19,7 +19,7 @@ public class LoginService {
         JSONArray jsonArray = utility.jsonArrayGenerator("Login.json");
         if(user != null && user.length() > 0 && pass != null && pass.length() > 0 && jsonArray != null) {
             for(int i = 0; i < jsonArray.size(); i++) {
-                JSONObject jsonObject = (JSONObject) ((JSONObject) jsonArray.get(i)).get("user");
+                JSONObject jsonObject = (JSONObject) jsonArray.get(i);
                 if(jsonObject.get("user").equals(user) && jsonObject.get("pass").equals(pass)) {
                     id = (String)jsonObject.get("id");
                     List<String> role = retrieveRole(id);
@@ -40,10 +40,10 @@ public class LoginService {
         List<String> roles = null;
         File file = null;
         JSONArray jsonArray = utility.jsonArrayGenerator("Users.json");
-        if(id != null && id.length() > 0 && jsonArray != null) {
+        if(utility.numberChecker(id) && jsonArray != null) {
             roles = new ArrayList<>();
             for (int i = 0; i < jsonArray.size(); i++) {
-                JSONObject jsonObject = (JSONObject) ((JSONObject)jsonArray.get(i)).get("user");
+                JSONObject jsonObject = (JSONObject)jsonArray.get(i);
                 if(jsonObject.get("id").equals(id)) {
                     JSONArray role = (JSONArray)jsonObject.get("role");
                     for(int j = 0; j < role.size(); j++) {

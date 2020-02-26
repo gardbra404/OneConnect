@@ -1,22 +1,20 @@
 package com.oneconnect.OneConnect;
 
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.util.ResourceUtils;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 public class Utility {
     public JSONArray jsonArrayGenerator(String fileName) {
         File file = null;
         JSONArray jsonArray = null;
         JSONParser jsonParser = new JSONParser();
-        String databaseFileName = "Database/"+fileName;
-        String longStore = "C:/temp/"+fileName;
+        String databaseFileName = "Database\\"+fileName;
+        String longStore = "C:\\temp\\"+fileName;
         try {
             File longTermFile = new File(longStore);
             if(!longTermFile.exists()){
@@ -38,5 +36,58 @@ public class Utility {
             jsonArray = null;
         }
         return jsonArray;
+    }
+
+    public boolean numberChecker(String number) {
+        boolean valid = false;
+        if (number!= null && number.length() > 0){
+            try {
+                int intNum = Integer.parseInt(number);
+                valid = intNum >= 0;
+            } catch(NumberFormatException e) {
+                System.out.println(e);
+            }
+        }
+        return valid;
+    }
+
+    public boolean jsonWriter(String jsonString, String fileName) {
+        //We save to the temp because that allows for permanent data storage...storing to resources does not
+        boolean successfulSave;
+        try(FileWriter fileWriter = new FileWriter("C:\\temp\\"+fileName)){
+            fileWriter.write(jsonString);
+            fileWriter.flush();
+            successfulSave = true;
+        }  catch(IOException e) {
+            System.out.println(e);
+            successfulSave = false;
+        }
+        return successfulSave;
+    }
+
+    public String newIdGenerator() {
+        File file;
+        String dbFile = "Database\\lastId.txt";
+        String longStore = "C:\\temp\\lastId.txt";
+        String number = null;
+        try {
+            File longTermStore = new File (longStore);
+            if (!longTermStore.exists()) {
+                file= ResourceUtils.getFile("classpath:"+dbFile);
+            } else {
+                file = longTermStore;
+            }
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+            number = reader.readLine();
+            int temp = Integer.parseInt(number);
+            temp++;
+            number = temp+"";
+            jsonWriter(number, "lastId.txt");
+        } catch(FileNotFoundException e) {
+            System.out.println(e);
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+        return number;
     }
 }

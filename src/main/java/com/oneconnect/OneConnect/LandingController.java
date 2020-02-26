@@ -14,7 +14,9 @@ public class LandingController {
     @ResponseBody
     public ModelAndView landing (@RequestParam(defaultValue = "f") String id, @RequestParam String role) {
         ModelAndView modelAndView = new ModelAndView();
-        System.out.println(role);
+        if (role.equals("default")) {
+
+        }
         if(id.equals("f")) {
             modelAndView.setViewName("forbidden");
         } else {
