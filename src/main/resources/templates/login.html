@@ -14,10 +14,15 @@
             console.log("Man, this website sure is secure...");
             function send() {
                 $.ajax({
-                    url:"/hello",
-                    data:{hello:"Good bye cruel world!", i:"Hello"},
+                    url:"/login",
+                    data:{user:$("#user").val(), pass:$("#pass").val()},
                     success:function(r) {
-                        console.log(r)
+                        if(r.id==="-1") {
+                            alert("Invalid Login Provided!")
+                        } else {
+                            $("#id").val(r.id);
+                            $("#form").submit();
+                        }
                     }
                 });
             }
@@ -35,10 +40,12 @@
                     <label for = "pass">Password:  </label>
                     <input type = "password" id ="pass"/>
                 </div>
-                <a href="landing.html">Login</a>
+                <button onclick="send()">Login</button>
             </div>
 		</div>
-        <button onclick="send()">Click Me</button>
 
+    <form action="/landing" method="POST" id="form">
+        <input type="hidden" id="id" name="id" value=""/>
+    </form>
     </body>
 </html>
