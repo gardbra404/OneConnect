@@ -2,7 +2,7 @@
   {
     "user": {
       "name" : "Brad Gardner",
-      "role": ["student"],
+      "role": ["student", "admin"],
       "id": "123",
       "classes" : ["567", "789", "1011"],
       "children" : []

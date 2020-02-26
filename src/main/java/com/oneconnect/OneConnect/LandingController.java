@@ -12,8 +12,9 @@ public class LandingController {
 
     @PostMapping("/landing")
     @ResponseBody
-    public ModelAndView landing (@RequestParam(defaultValue = "f") String id) {
+    public ModelAndView landing (@RequestParam(defaultValue = "f") String id, @RequestParam String role) {
         ModelAndView modelAndView = new ModelAndView();
+        System.out.println(role);
         if(id.equals("f")) {
             modelAndView.setViewName("forbidden");
         } else {
