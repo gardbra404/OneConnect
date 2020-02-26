@@ -17,6 +17,7 @@ public class LoginService {
         String id = null;
         List<String> roles = new ArrayList<>();
         JSONArray jsonArray = utility.jsonArrayGenerator("Login.json");
+        System.out.println(jsonArray);
         if(user != null && user.length() > 0 && pass != null && pass.length() > 0 && jsonArray != null) {
             for(int i = 0; i < jsonArray.size(); i++) {
                 JSONObject jsonObject = (JSONObject) jsonArray.get(i);

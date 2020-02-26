@@ -4,6 +4,7 @@ public class Grade {
 
     private String assignment;
     private String score;
+    private String className;
 
     public String getAssignment() {
         return assignment;
@@ -19,5 +20,13 @@ public class Grade {
 
     public void setScore(String score) {
         this.score = score;
+    }
+
+    public String getClassName() {
+        return className;
+    }
+
+    public void setClassName(String className) {
+        this.className = className;
     }
 }

@@ -9,6 +9,35 @@ import java.util.List;
 
 public class GradesService {
 
+    public boolean roleCheck (String role) {
+        return role.equals("teacher");
+    }
+
+    public List<Grade> parentGrades(String id) {
+        List<Grade> grades = new ArrayList<>();
+        Utility utility = new Utility();
+        if(utility.numberChecker(id)) {
+            JSONArray jsonArray = utility.jsonArrayGenerator("Users.json");
+            for (int i = 0; i < jsonArray.size(); i++) {
+                JSONObject user = (JSONObject) jsonArray.get(i);
+                if (id.equals(user.get("id"))) {
+                    JSONArray kids = (JSONArray) user.get("children");
+                    for(int j = 0; j < kids.size(); j++) {
+                        JSONObject kid = (JSONObject) kids.get(j);
+                        if((kid.get("allowed")).equals("true")){
+                            grades.addAll(retrieveGrades((String)kid.get("id")));
+                        }
+                    }
+                }
+            }
+        }
+        return grades;
+    }
+
+    public List<Grade> studentGrades(String id) {
+        return retrieveGrades(id);
+    }
+
     public List<Grade> retrieveGrades(String studentId) {
         Utility utility = new Utility();
         List<Grade> grades = new ArrayList<>();
@@ -20,9 +49,10 @@ public class GradesService {
                 JSONArray gradeStudents = (JSONArray) gradeInfo.get("students");
                 for (int j = 0; j < gradeStudents.size(); j++) {
                     JSONObject gradeStudent = (JSONObject) gradeStudents.get(j);
-                    if (studentId.equals(gradeStudent.get("id"))) {
+                    if (studentId.equals(gradeStudent.get("student"))) {
                         Grade grade = new Grade();
                         grade.setScore((String) gradeStudent.get("score"));
+                        grade.setClassName((String) gradeInfo.get("className"));
                         String assignment = (String) gradeStudent.get("assignment");
                         for (int k = 0; k < assignments.size(); k++) {
                             JSONObject assignObj = (JSONObject) assignments.get(i);

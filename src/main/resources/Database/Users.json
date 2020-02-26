@@ -15,5 +15,37 @@
       "classes" : ["5252", "5253"],
       "children" : []
 
+  },
+  {
+    "name" : "Jane Gardner",
+    "role": ["parent"],
+    "id": "125",
+    "classes" : [],
+    "children" : [
+      {
+        "id": "123",
+        "allowed": "false"
+      },
+      {
+        "id": "124",
+        "allowed": "true"
+      }
+    ]
+
+  },
+
+  {
+    "name" : "Jane Gardner",
+    "role": ["parent"],
+    "id": "126",
+    "classes" : [],
+    "children" : [
+      {
+        "id": "124",
+        "allowed": "true"
+      }
+    ]
+
   }
+
 ]

@@ -1,45 +1,40 @@
 package com.oneconnect.OneConnect.Test;
 
+import com.oneconnect.OneConnect.Grades.GradesService;
+
 public class GradesTest {
 
     //All commented out sections of code are due to the fact that these pieces of code do not yet exist
     //and as such will cause compilation to fail immediately. Data passed subject to change following creation of
     //actual test data
 
+    //forewarning, grades contains tests for unimplemented features (got ahead of myself)
+
     private boolean roleCheckTeacher() {
         String role = "teacher";
-        /*
-        * GradesService gradesService = new GradesService();
-        *  return gradesService.roleCheck(role);
-        * */
-        return true;
+         GradesService gradesService = new GradesService();
+         return gradesService.roleCheck(role);
     }
 
     private boolean roleCheckAdmin() {
         String role = "admin";
-        /*
-         * GradesService gradesService = new GradesService();
-         *  return !gradesService.roleCheck(role);
-         * */
-        return true;
+          GradesService gradesService = new GradesService();
+           return !gradesService.roleCheck(role);
     }
 
     private boolean roleCheckStudent() {
         String role = "student";
-        /*
-         * GradesService gradesService = new GradesService();
-         *  return !gradesService.roleCheck(role);
-         * */
-        return true;
+
+          GradesService gradesService = new GradesService();
+           return !gradesService.roleCheck(role);
     }
 
     private boolean roleCheckParent() {
         String role = "parent";
-        /*
-         * GradesService gradesService = new GradesService();
-         *  return !gradesService.roleCheck(role);
-         * */
-        return true;
+
+         GradesService gradesService = new GradesService();
+          return !gradesService.roleCheck(role);
+
     }
 
     private boolean createValidAssignValidStudentValidGrade () {

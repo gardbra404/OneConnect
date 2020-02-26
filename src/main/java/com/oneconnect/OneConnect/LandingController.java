@@ -16,6 +16,8 @@ public class LandingController {
     public ModelAndView landing (@RequestParam(defaultValue = "f") String id, @RequestParam String role) {
         LoginService loginService = new LoginService();
         ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("userId", id);
+        modelAndView.addObject("role", role);
         if (role.equals("default")) {
             role = loginService.retrieveRole(id).get(1);
         }
