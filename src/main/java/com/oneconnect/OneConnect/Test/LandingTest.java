@@ -99,10 +99,10 @@ public class LandingTest {
 		
 		ModelAndView modelAndView = landingService.getModelAndViewByRoleAndUserId(role, studentId);
 
-		if(modelAndView.getViewName().equals("STUDENT_LANDING")) {
-			return false;
-		} else {
+		if(modelAndView.getViewName().equals("forbidden")) {
 			return true;
+		} else {
+			return false;
 		}
 		
 	}
@@ -142,38 +142,36 @@ public class LandingTest {
 	
 	public boolean nullUserId() {
 		
-	String userId = null;
+		String userId = null;
+		String role = "student";
+	
+		LandingService landingService = new LandingService();
 		
-//		LandingService landingService = newLandingService();
-//		LandingPageDto landingPageDto = landingService.retrieveLandingPageData(userId);
-//		
-//		if(landingPageDto == null) {
-//			return true;
-//		} else {
-//			return false;
-//		}
-//		
-		
-		return false;
+		ModelAndView modelAndView = landingService.getModelAndViewByRoleAndUserId(role, userId);
+	
+		if(modelAndView.getViewName().equals("forbidden")) {
+			return true;
+		} else {
+			return false;
+		}
+	
 	}
 	
 	public boolean emptyUserId() {
 		
-	String userId = "";
+		String userId = "";
+		String role = "student";
 		
-//		LandingService landingService = newLandingService();
-//		LandingPageDto landingPageDto = landingService.retrieveLandingPageData(userId);
-//		
-//		if(landingPageDto == null) {
-//			return true;
-//		} else {
-//			return false;
-//		}
-//		
+		LandingService landingService = new LandingService();
 		
-		return false;
-	}
+		ModelAndView modelAndView = landingService.getModelAndViewByRoleAndUserId(role, userId);
 	
+		if(modelAndView.getViewName().equals("forbidden")) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 	 public String runTests() {
 	        return "<br/><br/>Landing Test:"
