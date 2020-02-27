@@ -1,12 +1,15 @@
 package com.oneconnect.OneConnect;
 
-import com.oneconnect.OneConnect.Login.LoginService;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.oneconnect.OneConnect.Landing.LandingService;
 
 @Controller
 public class LandingController {
@@ -14,32 +17,25 @@ public class LandingController {
     @PostMapping("/landing")
     @ResponseBody
     public ModelAndView landing (@RequestParam(defaultValue = "f") String id, @RequestParam String role) {
-        LoginService loginService = new LoginService();
-        ModelAndView modelAndView = new ModelAndView();
-        if (role.equals("default")) {
-            role = loginService.retrieveRole(id).get(1);
+    	
+    	LandingService landingService = new LandingService();
+        
+        return landingService.getModelAndViewByRoleAndUserId(role, id); //Switch logic moved into service so it can used by unit tests
+    }
+    
+    @PostMapping("/getLandingCourses")
+    @ResponseBody
+    public List<String> getLandingCourses (@RequestParam String userId) {
+        LandingService landingService = new LandingService();
+        List<String> courseIds = landingService.retrieveCourses(userId);
+        List<String> courseNames = new ArrayList<String>();
+        for(String courseId : courseIds) {
+        	courseNames.add(landingService.retrieveCourseName(courseId));
+        	
         }
-        if(id.equals("f")) {
-            modelAndView.setViewName("forbidden");
-        } else {
-            switch(role) {
-                case "admin":
-                    modelAndView.setViewName("TEMP4");
-                    break;
-                case "parent" :
-                    modelAndView.setViewName("TEMP3");
-                    break;
-                case "teacher" :
-                    modelAndView.setViewName("TEMP2");
-                    break;
-                case "student" :
-                    modelAndView.setViewName("TEMP");
-                    break;
-                default:
-                    modelAndView.setViewName("forbidden");
-                    break;
-            }
-        }
-        return modelAndView;
+        
+        return courseNames;
+        
+
     }
 }

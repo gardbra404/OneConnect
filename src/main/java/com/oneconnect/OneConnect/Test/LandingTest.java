@@ -1,5 +1,9 @@
 package com.oneconnect.OneConnect.Test;
 
+import org.springframework.web.servlet.ModelAndView;
+
+import com.oneconnect.OneConnect.Landing.LandingService;
+
 public class LandingTest {
 
 	public boolean validAdmin() {
@@ -71,35 +75,36 @@ public class LandingTest {
 	
 	public boolean validStudent() {
 		
-		String studentId = "882";
+		String studentId = "123";
+		String role = "student";
 		
-//		LandingService landingService = newLandingService();
-//		LandingPageDto landingPageDto = landingService.retrieveLandingPageData(studentId);
-//		
-//		if(landingPageDto.type = PageType.STUDENT) {
-//			return true;
-//		} else {
-//			return false;
-//		}
 		
-		return false;
+		LandingService landingService = new LandingService();
+		
+		ModelAndView modelAndView = landingService.getModelAndViewByRoleAndUserId(role, studentId);
+
+		if(modelAndView.getViewName().equals("STUDENT_LANDING")) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	public boolean invalidStudent() {
 		
 		String studentId = "thisstudentdoesnotexist";
+		String role = "student";
+
+		LandingService landingService = new LandingService();
 		
-//		LandingService landingService = newLandingService();
-//		LandingPageDto landingPageDto = landingService.retrieveLandingPageData(studedntId);
-//		
-//		if(landingPageDto == null) {
-//			return true;
-//		} else {
-//			return false;
-//		}
-//		
+		ModelAndView modelAndView = landingService.getModelAndViewByRoleAndUserId(role, studentId);
+
+		if(modelAndView.getViewName().equals("STUDENT_LANDING")) {
+			return false;
+		} else {
+			return true;
+		}
 		
-		return false;
 	}
 	
 	public boolean validParent() {
