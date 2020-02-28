@@ -3,10 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        function studentGrades(){
+            $("#form").submit();
+        }
+    </script>
 </head>
 <body>
-    <input type="hidden" id="id" th:value="${userId}"/>
     <p>Teacher</p>
-    <a>Grades</a>
+    <a href="#" onclick="studentGrades()">Grades</a>
+    <form action="/viewGrades" method="POST" id="form">
+        <input type='hidden' id='id' name='id' th:value='${userId}'/>
+        <input type='hidden' id='role' name='role' th:value='${role}'/>
+    </form>
 </body>
 </html>

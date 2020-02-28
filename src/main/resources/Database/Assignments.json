@@ -2,13 +2,20 @@
   {
       "id" : "10052",
       "class": "5252",
-      "title": "Make a Prototype...and Cry"
-
+      "title": "Make a Prototype...and Cry",
+      "maxScore" : "100"
   },
   {
       "id" : "10053",
       "class": "5253",
-      "title": "Watch a Movie and Pretend to be Happy"
+      "title": "Watch a Movie and Pretend to be Happy",
+      "maxScore" : "80"
 
+  },
+  {
+    "id" : "10054",
+    "class": "5252",
+    "title": "Implement Features and Panic",
+    "maxScore" : "100"
   }
 ]

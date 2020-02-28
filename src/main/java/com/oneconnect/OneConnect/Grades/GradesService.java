@@ -4,6 +4,7 @@ import com.oneconnect.OneConnect.Utility;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import javax.rmi.CORBA.Util;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,8 +14,8 @@ public class GradesService {
         return role.equals("teacher");
     }
 
-    public List<Grade> parentGrades(String id) {
-        List<Grade> grades = new ArrayList<>();
+    public List<List<Grade>> parentGrades(String id) {
+        List<List<Grade>> grades = new ArrayList<>();
         Utility utility = new Utility();
         if(utility.numberChecker(id)) {
             JSONArray jsonArray = utility.jsonArrayGenerator("Users.json");
@@ -25,7 +26,12 @@ public class GradesService {
                     for(int j = 0; j < kids.size(); j++) {
                         JSONObject kid = (JSONObject) kids.get(j);
                         if((kid.get("allowed")).equals("true")){
-                            grades.addAll(retrieveGrades((String)kid.get("id")));
+                            List<Grade> childGrades = retrieveGrades((String)kid.get("id"));
+                            String name = findName((String)kid.get("id"));
+                            for (Grade grade: childGrades) {
+                                grade.setStudentName(name);
+                            }
+                            grades.add(childGrades);
                         }
                     }
                 }
@@ -43,6 +49,7 @@ public class GradesService {
         List<Grade> grades = new ArrayList<>();
         JSONArray gradesArray = utility.jsonArrayGenerator("Grades.json");
         JSONArray assignments = utility.jsonArrayGenerator("Assignments.json");
+        System.out.println(assignments);
         if(utility.numberChecker(studentId)) {
             for (int i = 0; i < gradesArray.size(); i++) {
                 JSONObject gradeInfo = (JSONObject) gradesArray.get(i);
@@ -50,15 +57,21 @@ public class GradesService {
                 for (int j = 0; j < gradeStudents.size(); j++) {
                     JSONObject gradeStudent = (JSONObject) gradeStudents.get(j);
                     if (studentId.equals(gradeStudent.get("student"))) {
+
                         Grade grade = new Grade();
                         grade.setScore((String) gradeStudent.get("score"));
                         grade.setClassName((String) gradeInfo.get("className"));
                         String assignment = (String) gradeStudent.get("assignment");
+
                         for (int k = 0; k < assignments.size(); k++) {
-                            JSONObject assignObj = (JSONObject) assignments.get(i);
+
+                            JSONObject assignObj = (JSONObject) assignments.get(k);
                             if (assignment.equals(assignObj.get("id"))) {
+
                                 grade.setAssignment((String) assignObj.get("title"));
-                                break;
+                                grade.setClassId((String) assignObj.get("class"));
+                                grade.setAssignmentTotal((String) assignObj.get("maxScore"));
+
                             }
                         }
                         grades.add(grade);
@@ -87,6 +100,7 @@ public class GradesService {
                 if (classId.equals(grade.get("class"))) {
                     JSONObject replaceGrades = new JSONObject();
                     replaceGrades.put("class", grade.get("class"));
+                    replaceGrades.put("className", grade.get("className"));
                     JSONArray students = (JSONArray) grade.get("students");
                     JSONObject newGrade = new JSONObject();
                     newGrade.put("student",student);
@@ -124,6 +138,7 @@ public class GradesService {
                 if (classId.equals(grade.get("class"))) {
                     JSONObject replaceGrades = new JSONObject();
                     replaceGrades.put("class", grade.get("class"));
+                    replaceGrades.put("className", grade.get("className"));
                     JSONArray students = (JSONArray) grade.get("students");
                     JSONArray copyStudents = new JSONArray();
                     for (int j = 0; j < students.size(); j++) {
@@ -175,6 +190,120 @@ public class GradesService {
             }
         }
         return exists;
+    }
+
+    private String findName (String id) {
+        Utility utility = new Utility();
+        JSONArray users = utility.jsonArrayGenerator("Users.json");
+        String name = "Not Found";
+        for (int i = 0; i < users.size(); i++) {
+            JSONObject jsonObject = (JSONObject) users.get(i);
+            if (id.equals(jsonObject.get("id"))) {
+                name = (String)jsonObject.get("name");
+                break;
+            }
+        }
+        return name;
+    }
+
+    public List<Course> getCourses(String id){
+        Utility utility = new Utility();
+        List<Course> courseList = new ArrayList<>();
+        JSONArray courses = utility.jsonArrayGenerator("Class.json");
+        for (int i = 0; i < courses.size(); i++) {
+            JSONObject course = (JSONObject) courses.get(i);
+            if (id.equals(course.get("teacher"))){
+                courseList.add(new Course( (String)course.get("name"),(String) course.get("id")));
+            }
+        }
+        return courseList;
+    }
+
+    public CourseInfo getCourseInfo(String courseId) {
+        Utility utility = new Utility();
+        JSONArray classes = utility.jsonArrayGenerator("Class.json");
+        JSONArray assignments = utility.jsonArrayGenerator("Assignments.json");
+        JSONArray students = utility.jsonArrayGenerator("Users.json");
+        JSONArray classStudents = new JSONArray();
+        JSONArray classAssignments = new JSONArray();
+        for (int i = 0; i < classes.size(); i++) {
+            JSONObject classy = (JSONObject) classes.get(i);
+            if (courseId.equals(classy.get("id"))){
+                classAssignments = (JSONArray) classy.get("assignments");
+                classStudents = (JSONArray) classy.get("students");
+                break;
+            }
+        }
+        List<Student> studentList = new ArrayList<>();
+        for (int i = 0; i < classStudents.size(); i++) {
+            String id = (String) classStudents.get(i);
+            for (int j = 0; j < students.size(); j++) {
+                JSONObject student = (JSONObject) students.get(j);
+                if (id.equals(student.get("id"))) {
+                    studentList.add(new Student((String)student.get("id"), (String)student.get("name")));
+                }
+            }
+        }
+        List<Assignment> assignmentList = new ArrayList<>();
+        for (int i = 0; i < classAssignments.size(); i++) {
+            String id = (String) classAssignments.get(i);
+            for(int j = 0; j < assignments.size(); j++) {
+                JSONObject assignment = (JSONObject) assignments.get(j);
+                if(id.equals(assignment.get("id"))) {
+                    assignmentList.add(new Assignment((String)assignment.get("id"), (String)assignment.get("title")));
+                }
+            }
+        }
+        return new CourseInfo(studentList, assignmentList);
+    }
+
+    public List<Grade> teacherGrades (String teacher) {
+        Utility utility = new Utility();
+        List<Course> courses = new ArrayList<>();
+        List<Grade> gradeList = new ArrayList<>();
+        if (utility.numberChecker(teacher)) {
+            courses = getCourses(teacher);
+            JSONArray classes = utility.jsonArrayGenerator("Class.json");
+
+            for (int i = 0; i < courses.size(); i++) {
+                for (int j = 0; j < classes.size(); j++) {
+                    JSONObject classy = (JSONObject) classes.get(j);
+                    if(courses.get(i).getCourseId().equals(classy.get("id"))) {
+                        JSONArray students = (JSONArray) classy.get("students");
+                        for (int k = 0; k < students.size(); k++) {
+                            List<Grade> studentGrades = studentGrades((String)students.get(i));
+                            for (Grade grade: studentGrades) {
+                                grade.setStudentName(findName((String)students.get(i)));
+                            }
+                            gradeList.addAll(studentGrades);
+                        }
+                    }
+                }
+            }
+        }
+        return filterGrades(courses, gradeList);
+    }
+
+    private List<Grade> filterGrades(List<Course> courses, List<Grade> grades) {
+        List<Grade> newGradesList = new ArrayList<>();
+        for(Grade grade: grades) {
+            for(Course course: courses) {
+                if(course.getCourseId().equals(grade.getClassId()) && existsIn(newGradesList, grade)) {
+                    newGradesList.add(grade);
+                }
+            }
+        }
+        return newGradesList;
+    }
+
+
+    private boolean existsIn (List<Grade> grades, Grade grade) {
+        for(Grade checkGrade : grades) {
+            if (checkGrade.equals(grade)) {
+                return false;
+            }
+        }
+        return true;
     }
 
 }

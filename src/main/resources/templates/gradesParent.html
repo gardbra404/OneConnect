@@ -16,16 +16,23 @@
     <script>
         $(function(){
             $.ajax({
-                url:"/retrieveGrades",
+                url:"/parentGradeView",
                 data:{user:$("#id").val(), role:$("#role").val()},
                 success: updateTable
             })
-        })
+        });
         function updateTable(grades){
+
+
             $("#gradesRows").empty();
             var gradesTable = "";
             for(var i = 0; i < grades.length; i++){
-               gradesTable += "<tr><td>"+grades[i].className+"</td><td>"+grades[i].assignment+"</td><td>" + grades[i].score + "/"+grades[i].assignmentTotal+"</td></tr>"
+                var student = grades[i];
+                for(var j = 0; j < student.length; j++){
+                    gradesTable += "<tr><td>"+student[j].studentName+"</td><td>"+student[j].className+"</td><td>"+student[j].assignment+"</td><td>" + student[j].score
+                        + "/"+student[j].assignmentTotal+"</td></tr>"
+                }
+
             }
             $("#gradesRows").append(gradesTable);
         }
@@ -62,6 +69,7 @@
                     <table id = "gradesTable">
                         <thead>
                             <tr>
+                                <th align=left>Child</th>
                                 <th align=left>Class</th>
                                 <th align=left>Assignment</th>
                                 <th aligh=left>Grade</th>

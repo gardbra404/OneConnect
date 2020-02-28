@@ -19,7 +19,7 @@ public class LandingController {
         modelAndView.addObject("userId", id);
         modelAndView.addObject("role", role);
         if (role.equals("default")) {
-            role = loginService.retrieveRole(id).get(1);
+            role = loginService.retrieveRole(id).get(0);
         }
         if(id.equals("f")) {
             modelAndView.setViewName("forbidden");

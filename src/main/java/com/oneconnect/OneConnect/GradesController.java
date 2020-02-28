@@ -1,8 +1,11 @@
 package com.oneconnect.OneConnect;
 
+import com.oneconnect.OneConnect.Grades.Course;
+import com.oneconnect.OneConnect.Grades.CourseInfo;
 import com.oneconnect.OneConnect.Grades.Grade;
 import com.oneconnect.OneConnect.Grades.GradesService;
 import com.oneconnect.OneConnect.Login.LoginService;
+import org.json.simple.JSONArray;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,11 +33,13 @@ public class GradesController {
         } else {
             modelAndView.addObject("userId", id);
             modelAndView.addObject("role", role);
-            if(role.equals("teacher")) {
-                modelAndView.setViewName("teacherGrades");
-            } else if (role.equals("student") || role.equals("parent")){
+            if (role.equals("teacher")) {
+                modelAndView.setViewName("gradesTeacher");
+            } else if (role.equals("student")) {
                 modelAndView.setViewName("gradesStudent");
-            } else {
+            } else if (role.equals("parent")){
+                modelAndView.setViewName("gradesParent");
+            }else{
                 modelAndView.setViewName("forbidden");
             }
         }
@@ -54,21 +59,89 @@ public class GradesController {
         }
         if(!roles.contains(role)) {
             grades = new ArrayList<>();
+        } else if(role.equals("student")) {
+            grades = gradesService.studentGrades(user);
         } else {
-            switch(role) {
-                case "parent":
-                    break;
-                case "teacher":
-                    break;
-                case "student":
-                    grades = gradesService.studentGrades(user);
-                    break;
-                default:
-                    grades = new ArrayList<>();
-                    break;
-
-            }
+            grades = new ArrayList<>();
         }
        return grades;
+    }
+
+    @RequestMapping("/parentGradeView")
+    @ResponseBody
+    public List<List<Grade>> retrieveParentGrades(String user, String role) {
+        List<List<Grade>> grades = new ArrayList<>();
+        GradesService gradesService = new GradesService();
+        LoginService loginService = new LoginService();
+        List<String> roles = loginService.retrieveRole(user);
+        if(role.equals("default")) {
+            role = roles.get(0);
+        }
+        if(!roles.contains(role)) {
+            grades = new ArrayList<>();
+        } else if(role.equals("parent")) {
+            grades = gradesService.parentGrades(user);
+        } else {
+            grades = new ArrayList<>();
+        }
+        return grades;
+    }
+
+
+    @RequestMapping("/getCourses")
+    @ResponseBody
+    public List<Course> retrieveCourses(String user) {
+        GradesService gradesService = new GradesService();
+        return gradesService.getCourses(user);
+    }
+
+    @RequestMapping("/getCourseInfo")
+    @ResponseBody
+    public CourseInfo retrieveCourseInfo(String course) {
+        GradesService gradesService = new GradesService();
+        return gradesService.getCourseInfo(course);
+    }
+
+    @RequestMapping("/updateGrades")
+    @ResponseBody
+    public boolean updateGrades (String classId, String studentId, String assignmentId,String grade, String user, String role) {
+        GradesService gradesService = new GradesService();
+        boolean update = false;
+        LoginService loginService = new LoginService();
+        List<String> roles = loginService.retrieveRole(user);
+        if(role.equals("default")) {
+            role = roles.get(0);
+        }
+        if(!roles.contains(role)) {
+            update = false;
+        } else if (gradesService.roleCheck(role)) {
+            if(gradesService.doesGradeExist(studentId, assignmentId, classId)) {
+                update = gradesService.updateGrade(studentId, assignmentId, classId, grade);
+            } else {
+                update = gradesService.createGrades(studentId, assignmentId, classId, grade);
+            }
+        }
+
+        return update;
+    }
+
+    @RequestMapping("/teacherGradeView")
+    @ResponseBody
+    public List<Grade> retrieveTeacherGrades(String user, String role) {
+        List<Grade> grades;
+        GradesService gradesService = new GradesService();
+        LoginService loginService = new LoginService();
+        List<String> roles = loginService.retrieveRole(user);
+        if(role.equals("default")) {
+            role = roles.get(0);
+        }
+        if(!roles.contains(role)) {
+            grades = new ArrayList<>();
+        } else if(role.equals("teacher")) {
+            grades = gradesService.teacherGrades(user);
+        } else {
+            grades = new ArrayList<>();
+        }
+        return grades;
     }
 }

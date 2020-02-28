@@ -35,7 +35,7 @@
   },
 
   {
-    "name" : "Jane Gardner",
+    "name" : "Jane Gardner 2.0",
     "role": ["parent"],
     "id": "126",
     "classes" : [],
@@ -45,6 +45,15 @@
         "allowed": "true"
       }
     ]
+
+  },
+
+  {
+    "name" : "Jane Gardner 3.0",
+    "role": ["teacher"],
+    "id": "127",
+    "classes" : [],
+    "children" : []
 
   }
 
