@@ -38,265 +38,217 @@ public class GradesTest {
     }
 
     private boolean createValidAssignValidStudentValidGrade () {
-        String assign = "1234";
-        String student = "4567";
+        String assign = "10052";
+        String student = "123";
+        String classId = "5252";
         String grade = "99";
-        /*
-        * GradesService gradesService = new GradesService();
-        * return gradesService.createGrade(assign, student, grade);
-        * */
-        return true;
+        GradesService gradesService = new GradesService();
+        return gradesService.createGrades(student, assign, classId, grade, true);
     }
 
     private boolean createNullAssignValidStudentValidGrade () {
         String assign = null;
-        String student = "4567";
+        String student = "123";
+        String classId = "5252";
         String grade = "99";
-        /*
-         * GradesService gradesService = new GradesService();
-         * return !gradesService.createGrade(assign, student, grade);
-         * */
-        return true;
+        GradesService gradesService = new GradesService();
+        return !gradesService.createGrades(student, assign, classId, grade, true);
     }
 
     private boolean createNanAssignValidStudentValidGrade () {
         String assign = "potato";
-        String student = "4567";
+        String student = "123";
+        String classId = "5252";
         String grade = "99";
-        /*
-         * GradesService gradesService = new GradesService();
-         * return !gradesService.createGrade(assign, student, grade);
-         * */
-        return true;
+        GradesService gradesService = new GradesService();
+        return !gradesService.createGrades(student, assign, classId, grade, true);
     }
 
     private boolean createNotFoundAssignValidStudentValidGrade () {
         String assign = "-1";
-        String student = "4567";
+        String student = "123";
+        String classId = "5252";
         String grade = "99";
-        /*
-         * GradesService gradesService = new GradesService();
-         * return !gradesService.createGrade(assign, student, grade);
-         * */
-        return true;
+        GradesService gradesService = new GradesService();
+        return !gradesService.createGrades(student, assign, classId, grade, true);
     }
 
     private boolean createValidAssignNotFoundStudentValidGrade () {
-        String assign = "1234";
+        String assign = "10052";
         String student = "-1";
+        String classId = "5252";
         String grade = "99";
-        /*
-         * GradesService gradesService = new GradesService();
-         * return !gradesService.createGrade(assign, student, grade);
-         * */
-        return true;
+        GradesService gradesService = new GradesService();
+        return !gradesService.createGrades(student, assign, classId, grade, true);
     }
 
     private boolean createValidAssignNullStudentValidGrade () {
-        String assign = "1234";
+        String assign = "10052";
         String student = null;
+        String classId = "5252";
         String grade = "99";
-        /*
-         * GradesService gradesService = new GradesService();
-         * return !gradesService.createGrade(assign, student, grade);
-         * */
-        return true;
+        GradesService gradesService = new GradesService();
+        return !gradesService.createGrades(student, assign, classId, grade, true);
     }
 
     private boolean createValidAssignNanStudentValidGrade () {
-        String assign = "1234";
+        String assign = "10052";
         String student = "potato";
+        String classId = "5252";
         String grade = "99";
-        /*
-         * GradesService gradesService = new GradesService();
-         * return !gradesService.createGrade(assign, student, grade);
-         * */
-        return true;
+        GradesService gradesService = new GradesService();
+        return !gradesService.createGrades(student, assign, classId, grade, true);
     }
 
     private boolean createValidAssignValidStudentNullGrade () {
-        String assign = "1234";
-        String student = "4567";
+        String assign = "10052";
+        String student = "123";
+        String classId = "5252";
         String grade = null;
-        /*
-         * GradesService gradesService = new GradesService();
-         * return !gradesService.createGrade(assign, student, grade);
-         * */
-        return true;
+        GradesService gradesService = new GradesService();
+        return !gradesService.createGrades(student, assign, classId, grade, true);
     }
 
     private boolean createValidAssignValidStudentEmptyGrade () {
-        String assign = "1234";
-        String student = "4567";
+        String assign = "10052";
+        String student = "123";
+        String classId = "5252";
         String grade = "";
-        /*
-         * GradesService gradesService = new GradesService();
-         * return !gradesService.createGrade(assign, student, grade);
-         * */
-        return true;
+        GradesService gradesService = new GradesService();
+        return !gradesService.createGrades(student, assign, classId, grade, true);
     }
 
     private boolean createValidAssignValidStudentNanGrade () {
-        String assign = "1234";
-        String student = "4567";
+        String assign = "10052";
+        String student = "123";
+        String classId = "5252";
         String grade = "potato";
-        /*
-         * GradesService gradesService = new GradesService();
-         * return !gradesService.createGrade(assign, student, grade);
-         * */
-        return true;
+        GradesService gradesService = new GradesService();
+        return !gradesService.createGrades(student, assign, classId, grade, true);
     }
 
     private boolean createValidAssignValidStudentNegativeGrade () {
-        String assign = "1234";
-        String student = "4567";
+        String assign = "10052";
+        String student = "123";
+        String classId = "5252";
         String grade = "-1";
-        /*
-         * GradesService gradesService = new GradesService();
-         * return !gradesService.createGrade(assign, student, grade);
-         * */
-        return true;
+        GradesService gradesService = new GradesService();
+        return !gradesService.createGrades(student, assign, classId, grade, true);
     }
 
     private boolean updateValidAssignValidStudentValidGrade () {
-        String assign = "1234";
-        String student = "4567";
+        String assign = "10052";
+        String student = "123";
+        String classId = "5252";
         String grade = "99";
-        /*
-         * GradesService gradesService = new GradesService();
-         * return gradesService.updateGrade(assign, student, grade);
-         * */
-        return true;
+        GradesService gradesService = new GradesService();
+        return gradesService.updateGrade(student, assign, classId, grade, true);
     }
 
     private boolean updateNullAssignValidStudentValidGrade () {
         String assign = null;
-        String student = "4567";
+        String student = "123";
+        String classId = "5252";
         String grade = "99";
-        /*
-         * GradesService gradesService = new GradesService();
-         * return !gradesService.updateGrade(assign, student, grade);
-         * */
-        return true;
+        GradesService gradesService = new GradesService();
+        return !gradesService.updateGrade(student, assign, classId, grade, true);
     }
 
     private boolean updateNanAssignValidStudentValidGrade () {
         String assign = "potato";
-        String student = "4567";
+        String student = "123";
+        String classId = "5252";
         String grade = "99";
-        /*
-         * GradesService gradesService = new GradesService();
-         * return !gradesService.updateGrade(assign, student, grade);
-         * */
-        return true;
+        GradesService gradesService = new GradesService();
+        return !gradesService.updateGrade(student, assign, classId, grade, true);
     }
 
     private boolean updateNotFoundAssignValidStudentValidGrade () {
         String assign = "-1";
-        String student = "4567";
+        String student = "123";
+        String classId = "5252";
         String grade = "99";
-        /*
-         * GradesService gradesService = new GradesService();
-         * return !gradesService.updateGrade(assign, student, grade);
-         * */
-        return true;
+        GradesService gradesService = new GradesService();
+        return !gradesService.updateGrade(student, assign, classId, grade, true);
     }
 
     private boolean updateValidAssignNotFoundStudentValidGrade () {
-        String assign = "1234";
+        String assign = "10052";
         String student = "-1";
+        String classId = "5252";
         String grade = "99";
-        /*
-         * GradesService gradesService = new GradesService();
-         * return !gradesService.updateGrade(assign, student, grade);
-         * */
-        return true;
+        GradesService gradesService = new GradesService();
+        return !gradesService.updateGrade(student, assign, classId, grade, true);
     }
 
     private boolean updateValidAssignNullStudentValidGrade () {
-        String assign = "1234";
+        String assign = "10052";
         String student = null;
+        String classId = "5252";
         String grade = "99";
-        /*
-         * GradesService gradesService = new GradesService();
-         * return !gradesService.updateGrade(assign, student, grade);
-         * */
-        return true;
+        GradesService gradesService = new GradesService();
+        return !gradesService.updateGrade(student, assign, classId, grade, true);
     }
 
     private boolean updateValidAssignNanStudentValidGrade () {
-        String assign = "1234";
+        String assign = "10052";
         String student = "potato";
+        String classId = "5252";
         String grade = "99";
-        /*
-         * GradesService gradesService = new GradesService();
-         * return !gradesService.updateGrade(assign, student, grade);
-         * */
-        return true;
+        GradesService gradesService = new GradesService();
+        return !gradesService.updateGrade(student, assign, classId, grade, true);
     }
 
     private boolean updateValidAssignValidStudentNullGrade () {
-        String assign = "1234";
-        String student = "4567";
+        String assign = "10052";
+        String student = "123";
+        String classId = "5252";
         String grade = null;
-        /*
-         * GradesService gradesService = new GradesService();
-         * return !gradesService.updateGrade(assign, student, grade);
-         * */
-        return true;
+        GradesService gradesService = new GradesService();
+        return !gradesService.updateGrade(student, assign, classId, grade, true);
     }
 
     private boolean updateValidAssignValidStudentEmptyGrade () {
-        String assign = "1234";
-        String student = "4567";
+        String assign = "10052";
+        String student = "123";
+        String classId = "5252";
         String grade = "";
-        /*
-         * GradesService gradesService = new GradesService();
-         * return !gradesService.updateGrade(assign, student, grade);
-         * */
-        return true;
+        GradesService gradesService = new GradesService();
+        return !gradesService.updateGrade(student, assign, classId, grade, true);
     }
 
     private boolean updateValidAssignValidStudentNanGrade () {
-        String assign = "1234";
-        String student = "4567";
+        String assign = "10052";
+        String student = "123";
+        String classId = "5252";
         String grade = "potato";
-        /*
-         * GradesService gradesService = new GradesService();
-         * return !gradesService.updateGrade(assign, student, grade);
-         * */
-        return true;
+        GradesService gradesService = new GradesService();
+        return !gradesService.updateGrade(student, assign, classId, grade, true);
     }
 
     private boolean updateValidAssignValidStudentNegativeGrade () {
-        String assign = "1234";
-        String student = "4567";
+        String assign = "10052";
+        String student = "123";
+        String classId = "5252";
         String grade = "-1";
-        /*
-         * GradesService gradesService = new GradesService();
-         * return !gradesService.updateGrade(assign, student, grade);
-         * */
-        return true;
+        GradesService gradesService = new GradesService();
+        return !gradesService.updateGrade(student, assign, classId, grade, true);
     }
 
+    //for the following tests, please note, their results are best reflected when using the initial test data files
+    //included in this application.
     private boolean viewStudentValidAllGrades () {
-        String id = "4567";
-        /*
-        * GradesService gradesService = new GradesService();
-        *
-        * return gradesService.getStudentGrades(id).size() == 3;
-        * */
-        return true;
+        String id = "123";
+         GradesService gradesService = new GradesService();
+         return gradesService.studentGrades(id).size() >=2;
     }
 
     private boolean viewTeacherValidAllGrades () {
-        String id = "5874";
-        /*
-         * GradesService gradesService = new GradesService();
-         *
-         * return gradesService.getTeacherGrades(id).size() == 15;
-         * */
-        return true;
+        String id = "127";
+
+        GradesService gradesService = new GradesService();
+        return gradesService.teacherGrades(id).size() == 4;
+
     }
 
     private boolean viewStudentValidClass() {
@@ -323,12 +275,8 @@ public class GradesTest {
 
     private boolean viewInvalidStudentAllGrades () {
         String id = "-1";
-        /*
-         * GradesService gradesService = new GradesService();
-         *
-         * return gradesService.getStudentGrades(id) == null;
-         * */
-        return true;
+        GradesService gradesService = new GradesService();
+        return gradesService.studentGrades(id).size() == 0;
     }
 
     private boolean viewInvalidStudentValidClass() {
@@ -344,12 +292,8 @@ public class GradesTest {
 
     private boolean viewInvalidTeacherAllGrades () {
         String id = "-1";
-        /*
-         * GradesService gradesService = new GradesService();
-         *
-         * return gradesService.getTeacherGrades(id) == null;
-         * */
-        return true;
+        GradesService gradesService = new GradesService();
+        return gradesService.teacherGrades(id).size() == 0;
     }
 
     private boolean viewInvalidTeacherValidClass() {
@@ -398,12 +342,8 @@ public class GradesTest {
 
     private boolean viewNanTeacherAllGrades () {
         String id = "potato";
-        /*
-         * GradesService gradesService = new GradesService();
-         *
-         * return gradesService.getTeacherGrades(id) == null;
-         * */
-        return true;
+        GradesService gradesService = new GradesService();
+        return gradesService.teacherGrades(id).size() == 0;
     }
 
     private boolean viewNanTeacherValidClass() {
@@ -452,12 +392,10 @@ public class GradesTest {
 
     private boolean viewNullTeacherAllGrades () {
         String id = null;
-        /*
-         * GradesService gradesService = new GradesService();
-         *
-         * return gradesService.getTeacherGrades(id) == null;
-         * */
-        return true;
+
+        GradesService gradesService = new GradesService();
+
+        return gradesService.teacherGrades(id).size() == 0;
     }
 
     private boolean viewNullTeacherValidClass() {
@@ -494,52 +432,39 @@ public class GradesTest {
     }
 
     private boolean viewValidParentAllowed() {
-        String id = "7852";
-        boolean allowed = true;
-        /*
-        * GradesService gradesService = new GradesService();
-        *
-        * return gradesService.parentGrades (id, allowed).size() == 3;
-        * */
-        return true;
+        String id = "126";
+
+        GradesService gradesService = new GradesService();
+
+        return gradesService.parentGrades (id).size() == 1;
     }
 
     private boolean viewValidParentNotAllowed() {
-        String id = "7852";
-        boolean allowed = false;
-        /*
-         * GradesService gradesService = new GradesService();
-         *
-         * return gradesService.parentGrades (id, allowed) == null;
-         * */
-        return true;
+        String id = "125";
+        GradesService gradesService = new GradesService();
+        return gradesService.parentGrades (id).size() == 1;
     }
 
     private boolean viewNanParent() {
         String id = "potato";
-        boolean allowed = true;
-        /*
-         * GradesService gradesService = new GradesService();
-         *
-         * return gradesService.parentGrades (id, allowed) == null;
-         * */
-        return true;
+
+        GradesService gradesService = new GradesService();
+
+        return gradesService.parentGrades (id).size() == 0;
     }
 
     private boolean viewNullParent() {
         String id = null;
-        boolean allowed = true;
-        /*
-         * GradesService gradesService = new GradesService();
-         *
-         * return gradesService.parentGrades (id, allowed) == null;
-         * */
-        return true;
+
+        GradesService gradesService = new GradesService();
+
+        return gradesService.parentGrades (id).size() == 0;
     }
 
 
-
-
+    //Note, as stated previously, some test had been written prematurely and require the use of other features to be
+    //implemented, such as class grades requiring a class feature to be first implemented for it to be accessible
+    //As such, these tests are not run.
     public String runTests() {
         return "<br/><br/>Grades Test:"
                 +"<br/>roleCheckTeacher: " + (roleCheckTeacher() ? "Passed" : "Failed")
@@ -570,24 +495,24 @@ public class GradesTest {
                 +"<br/>updateValidAssignValidStudentNegativeGrade: " + (updateValidAssignValidStudentNegativeGrade() ? "Passed" : "Failed")
                 +"<br/>viewStudentValidAllGrades: " + (viewStudentValidAllGrades() ? "Passed" : "Failed")
                 +"<br/>viewTeacherValidAllGrades: " + (viewTeacherValidAllGrades() ? "Passed" : "Failed")
-                +"<br/>viewStudentValidClass: " + (viewStudentValidClass() ? "Passed" : "Failed")
-                +"<br/>viewTeacherValidClass: " + (viewTeacherValidClass() ? "Passed" : "Failed")
+//                +"<br/>viewStudentValidClass: " + (viewStudentValidClass() ? "Passed" : "Failed")
+//                +"<br/>viewTeacherValidClass: " + (viewTeacherValidClass() ? "Passed" : "Failed")
                 +"<br/>viewInvalidStudentAllGrades: " + (viewInvalidStudentAllGrades() ? "Passed" : "Failed")
-                +"<br/>viewInvalidStudentValidClass: " + (viewInvalidStudentValidClass() ? "Passed" : "Failed")
+//                +"<br/>viewInvalidStudentValidClass: " + (viewInvalidStudentValidClass() ? "Passed" : "Failed")
                 +"<br/>viewInvalidTeacherAllGrades: " + (viewInvalidTeacherAllGrades() ? "Passed" : "Failed")
-                +"<br/>viewInvalidTeacherValidClass: " + (viewInvalidTeacherValidClass() ? "Passed" : "Failed")
-                +"<br/>viewStudentInvalidClass: " + (viewStudentInvalidClass() ? "Passed" : "Failed")
-                +"<br/>viewTeacherInvalidClass: " + (viewTeacherInvalidClass() ? "Passed" : "Failed")
-                +"<br/>viewNanStudentValidClass: " + (viewNanStudentValidClass() ? "Passed" : "Failed")
+//                +"<br/>viewInvalidTeacherValidClass: " + (viewInvalidTeacherValidClass() ? "Passed" : "Failed")
+//                +"<br/>viewStudentInvalidClass: " + (viewStudentInvalidClass() ? "Passed" : "Failed")
+//                +"<br/>viewTeacherInvalidClass: " + (viewTeacherInvalidClass() ? "Passed" : "Failed")
+//                +"<br/>viewNanStudentValidClass: " + (viewNanStudentValidClass() ? "Passed" : "Failed")
                 +"<br/>viewNanTeacherAllGrades: " + (viewNanTeacherAllGrades() ? "Passed" : "Failed")
-                +"<br/>viewNanTeacherValidClass: " + (viewNanTeacherValidClass() ? "Passed" : "Failed")
-                +"<br/>viewStudentNanClass: " + (viewStudentNanClass() ? "Passed" : "Failed")
-                +"<br/>viewTeacherNanClass: " + (viewTeacherNanClass() ? "Passed" : "Failed")
-                +"<br/>viewNullStudentValidClass: " + (viewNullStudentValidClass() ? "Passed" : "Failed")
+//                +"<br/>viewNanTeacherValidClass: " + (viewNanTeacherValidClass() ? "Passed" : "Failed")
+//                +"<br/>viewStudentNanClass: " + (viewStudentNanClass() ? "Passed" : "Failed")
+//                +"<br/>viewTeacherNanClass: " + (viewTeacherNanClass() ? "Passed" : "Failed")
+//                +"<br/>viewNullStudentValidClass: " + (viewNullStudentValidClass() ? "Passed" : "Failed")
                 +"<br/>viewNullTeacherAllGrades: " + (viewNullTeacherAllGrades() ? "Passed" : "Failed")
-                +"<br/>viewNullTeacherValidClass: " + (viewNullTeacherValidClass() ? "Passed" : "Failed")
-                +"<br/>viewStudentNullClass: " + (viewStudentNullClass() ? "Passed" : "Failed")
-                +"<br/>viewTeacherNullClass: " + (viewTeacherNullClass() ? "Passed" : "Failed")
+//                +"<br/>viewNullTeacherValidClass: " + (viewNullTeacherValidClass() ? "Passed" : "Failed")
+//                +"<br/>viewStudentNullClass: " + (viewStudentNullClass() ? "Passed" : "Failed")
+//                +"<br/>viewTeacherNullClass: " + (viewTeacherNullClass() ? "Passed" : "Failed")
                 +"<br/>viewValidParentAllowed: " + (viewValidParentAllowed() ? "Passed" : "Failed")
                 +"<br/>viewValidParentNotAllowed: " + (viewValidParentNotAllowed() ? "Passed" : "Failed")
                 +"<br/>viewNanParent: " + (viewNanParent() ? "Passed" : "Failed")

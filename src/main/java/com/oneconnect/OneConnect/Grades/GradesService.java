@@ -143,9 +143,9 @@ public class GradesService {
                     JSONArray copyStudents = new JSONArray();
                     for (int j = 0; j < students.size(); j++) {
                         JSONObject studentGrade = (JSONObject) students.get(j);
-                        if(student.equals(studentGrade.get("student")) && assignment.equals(studentGrade.get("assignment"))) {
+                        if (student.equals(studentGrade.get("student")) && assignment.equals(studentGrade.get("assignment"))) {
                             JSONObject newGrade = new JSONObject();
-                            newGrade.put("student",studentGrade.get("student"));
+                            newGrade.put("student", studentGrade.get("student"));
                             newGrade.put("assignment", studentGrade.get("assignment"));
                             newGrade.put("score", score);
                             copyStudents.add(newGrade);
@@ -159,13 +159,12 @@ public class GradesService {
                     copyGrades.add(grade);
                 }
             }
+            if (!test) {
+                gradeUpdated = utility.jsonWriter(copyGrades.toJSONString(), "Grades.json");
+            } else {
+                gradeUpdated = true;
+            }
         }
-        if(!test) {
-            gradeUpdated = utility.jsonWriter(copyGrades.toJSONString(), "Grades.json");
-        } else {
-            gradeUpdated = true;
-        }
-
         return gradeUpdated;
     }
 

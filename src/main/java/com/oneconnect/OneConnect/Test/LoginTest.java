@@ -1,5 +1,9 @@
 package com.oneconnect.OneConnect.Test;
 
+import com.oneconnect.OneConnect.Login.LoginService;
+
+import java.util.List;
+
 public class LoginTest {
 
     //All commented out sections of code are due to the fact that these pieces of code do not yet exist
@@ -7,75 +11,65 @@ public class LoginTest {
     //actual test data
 
     private boolean loginValidUserValidPass() {
-        //LoginService login = new LoginService();
+        LoginService login = new LoginService();
         String user = "gard6748";
         String password = "Hello123"; //No, that is not my actual password...
-        //return login.validLogin(user, password).size() == 1;
-        return true;
+        return login.login(user, password).getId().equals("123");
     }
 
     private boolean loginValidUserValidPassMultiple() {
-        //LoginService login = new LoginService();
-        String user = "frer2134";
+        LoginService login = new LoginService();
+        String user = "gard6748";
         String password = "Hello123"; //No, that is not my actual password...
-        //return login.validLogin(user, password).size() == 2;
-        return true;
+
+        return login.login(user, password).getRoles().size() == 2;
     }
 
     private boolean loginValidUserInvalidPass() {
-        //LoginService login = new LoginService();
+        LoginService login = new LoginService();
         String user = "gard6748";
         String password = "GoodBye123"; //No, that is not my actual password...
-        //return login.validLogin(user, password)==null;
-        return true;
+        return login.login(user, password).getId().equals("-1");
     }
 
 
     private boolean loginValidUserNullPass() {
-        //LoginService login = new LoginService();
+        LoginService login = new LoginService();
         String user = "gard6748";
         String password = null;
-        //return login.validLogin(user, password)==null;
-        return true;
+        return login.login(user, password).getId().equals("-1");
     }
 
     private boolean loginNullUserValidPass() {
-        //LoginService login = new LoginService();
+        LoginService login = new LoginService();
         String user = null;
         String password = "Hello123";
-        //return login.validLogin(user, password)==null;
-        return true;
+        return login.login(user, password).getId().equals("-1");
     }
 
 
     private boolean retrieveRoleValidUser() {
-        //LoginService login = new LoginService();
-        String user = "1234567890";
-        /*
-        * String role = login.retrieveUserRole(user);
-        * return role.equals("student");
-        * */
-        return true;
+        LoginService login = new LoginService();
+        String user = "126";
+
+         List<String> role = login.retrieveRole(user);
+         return role.get(0).equals("parent");
     }
 
     private boolean retrieveRoleInvalidUser() {
-        //LoginService login = new LoginService();
+        LoginService login = new LoginService();
         String user = "Begone";
-        /*
-         * String role = login.retrieveUserRole(user);
-         * return role==null;
-         * */
-        return true;
+
+         List<String> role = login.retrieveRole(user);
+         return role==null;
     }
 
     private boolean retrieveRoleNullUser() {
-        //LoginService login = new LoginService();
+        LoginService login = new LoginService();
         String user = null;
-        /*
-         * String role = login.retrieveUserRole(user);
-         * return role==null;
-         * */
-        return true;
+
+          List<String> role = login.retrieveRole(user);
+          return role==null;
     }
 
     public String runTests() {
