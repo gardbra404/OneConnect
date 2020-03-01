@@ -16,27 +16,55 @@ public class LandingService {
 	public ModelAndView getModelAndViewByRoleAndUserId(String role, String userId) {
 		ModelAndView modelAndView = new ModelAndView();
         LoginService loginService = new LoginService();
-        
+        Utility utility  = new Utility();
         try {
 	        if (role.equals("default")) {
 	        	role = loginService.retrieveRole(userId).get(1);
 		    }
 		        
 	        System.out.println("Role: " + role + " userId: " + userId);
-	        if(userId.equals("f")) {
+	        
+	        if(userId.equals("f") || !utility.numberChecker(userId)) {
 	            modelAndView.setViewName("forbidden");
 	        } else {
+	        	String userName = retrieveUserName(userId);
+	        	if(userName == null) {
+	        		modelAndView.setViewName("forbidden");
+	        		return modelAndView;
+	        	}
 	            switch(role) {
 	                case "admin":
-	                    modelAndView.setViewName("TEMP4");
+	                {
+	                    modelAndView.setViewName("ADMIN_LANDING");
+	                    modelAndView.addObject("userId", userId);
+	                    modelAndView.addObject("userName", userName);
 	                    break;
+	                }
+	                    
 	                case "parent" :
-	                    modelAndView.setViewName("TEMP3");
+	                {
+	                    modelAndView.setViewName("PARENT_LANDING");
+	                    modelAndView.addObject("userId", userId);
+	                    modelAndView.addObject("userName", userName);
 	                    break;
+	                }
 	                case "teacher" :
-	                    modelAndView.setViewName("TEMP2");
+	                {
+	                    modelAndView.setViewName("TEACHER_LANDING");
+	                    List<String> courseIds = retrieveCourses(userId);
+	                    List<String> courseNames = new ArrayList<String>();
+	                    for(String courseId : courseIds) {
+	                    	courseNames.add(retrieveCourseName(courseId));
+	                    }
+	                    
+	                    modelAndView.addObject("courseNames", courseNames);
+	                    modelAndView.addObject("userId", userId);
+	                    modelAndView.addObject("userName", userName);
+	                    
 	                    break;
+	                }
 	                case "student" :
+	                {
 	                    modelAndView.setViewName("STUDENT_LANDING");
 	                    
 	                    List<String> courseIds = retrieveCourses(userId);
@@ -44,13 +72,12 @@ public class LandingService {
 	                    for(String courseId : courseIds) {
 	                    	courseNames.add(retrieveCourseName(courseId));
 	                    }
-	                    String userName = retrieveUserName(userId);
 	                    
 	                    modelAndView.addObject("courseNames", courseNames);
 	                    modelAndView.addObject("userId", userId);
 	                    modelAndView.addObject("userName", userName);
-	                    
 	                    break;
+	                }
 	                default:
 	                    modelAndView.setViewName("forbidden");
 	                    break;
@@ -69,7 +96,6 @@ public class LandingService {
 	 public List<String> retrieveCourses(String id) {
 	        Utility utility = new Utility();
 	        List<String> courses = null;
-	        File file = null;
 	        JSONArray jsonArray = utility.jsonArrayGenerator("Users.json");
 	        if(utility.numberChecker(id) && jsonArray != null) {
 	        	courses = new ArrayList<>();
@@ -89,7 +115,7 @@ public class LandingService {
 
 	public String retrieveCourseName(String courseId) {
 		 Utility utility = new Utility();
-	        String courseName = "Course Not Found";
+	        String courseName = null;
 	        JSONArray jsonArray = utility.jsonArrayGenerator("Class.json");
 	        if(utility.numberChecker(courseId) && jsonArray != null) {
 	            for (int i = 0; i < jsonArray.size(); i++) {
@@ -106,7 +132,7 @@ public class LandingService {
 	
 	public String retrieveUserName(String userId) {
 		 Utility utility = new Utility();
-	        String userName = "No name found";
+	        String userName = null;
 	        JSONArray jsonArray = utility.jsonArrayGenerator("Users.json");
 	        if(utility.numberChecker(userId) && jsonArray != null) {
 	            for (int i = 0; i < jsonArray.size(); i++) {

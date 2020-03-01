@@ -23,19 +23,4 @@ public class LandingController {
         return landingService.getModelAndViewByRoleAndUserId(role, id); //Switch logic moved into service so it can used by unit tests
     }
     
-    @PostMapping("/getLandingCourses")
-    @ResponseBody
-    public List<String> getLandingCourses (@RequestParam String userId) {
-        LandingService landingService = new LandingService();
-        List<String> courseIds = landingService.retrieveCourses(userId);
-        List<String> courseNames = new ArrayList<String>();
-        for(String courseId : courseIds) {
-        	courseNames.add(landingService.retrieveCourseName(courseId));
-        	
-        }
-        
-        return courseNames;
-        
-
-    }
 }
