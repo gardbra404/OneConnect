@@ -49,7 +49,6 @@ public class GradesService {
         List<Grade> grades = new ArrayList<>();
         JSONArray gradesArray = utility.jsonArrayGenerator("Grades.json");
         JSONArray assignments = utility.jsonArrayGenerator("Assignments.json");
-        System.out.println(assignments);
         if(utility.numberChecker(studentId)) {
             for (int i = 0; i < gradesArray.size(); i++) {
                 JSONObject gradeInfo = (JSONObject) gradesArray.get(i);
@@ -305,4 +304,63 @@ public class GradesService {
         return true;
     }
 
+    //The following belong to features that have not yet been implemented, but I wrote tests for them so I figured might
+    //as well
+    public List<Grade> getStudentClassGrades(String studentId, String classId) {
+        Utility utility = new Utility();
+        List<Grade> grades = new ArrayList<>();
+        if(utility.numberChecker(studentId) && utility.numberChecker(classId)) {
+            JSONArray gradesJSON = utility.jsonArrayGenerator("Grades.json");
+            JSONArray assignments = utility.jsonArrayGenerator("Assignments.json");
+            for (int i = 0; i < gradesJSON.size(); i++) {
+                JSONObject gradeObj = (JSONObject) gradesJSON.get(i);
+                if(classId.equals(gradeObj.get("class"))) {
+                    JSONArray studentList = (JSONArray) gradeObj.get("students");
+                    for (int j = 0; j < studentList.size(); j++) {
+                        JSONObject studentGradeObj = (JSONObject) studentList.get(j);
+                        if(studentId.equals(studentGradeObj.get("student"))){
+                            Grade studentGrade = new Grade();
+                            studentGrade.setClassId(classId);
+                            studentGrade.setClassName((String)gradeObj.get("className"));
+                            studentGrade.setScore((String)studentGradeObj.get("score"));
+                            for (int k = 0; k < assignments.size(); k++) {
+                                JSONObject assignment = (JSONObject) assignments.get(k);
+                                if (studentGradeObj.get("assignment").equals(assignment.get("id"))) {
+                                    studentGrade.setAssignmentTotal((String)assignment.get("maxScore"));
+                                    studentGrade.setAssignment((String)assignment.get("title"));
+                                    break;
+                                }
+                            }
+                            grades.add(studentGrade);
+                        }
+                    }
+                }
+            }
+        }
+        return grades;
+    }
+
+    public List<Grade> getTeacherGradesForClass(String classId) {
+        Utility utility = new Utility();
+        List<Grade> teacherGrades = new ArrayList<>();
+        if (utility.numberChecker(classId)) {
+            JSONArray grades = utility.jsonArrayGenerator("Grades.json");
+            for (int i = 0; i < grades.size(); i++) {
+                JSONObject gradeObj = (JSONObject) grades.get(i);
+                if (classId.equals(gradeObj.get("class"))){
+                    JSONArray students = (JSONArray) gradeObj.get("students");
+                    for (int j = 0; j < students.size(); j++) {
+                        JSONObject student = (JSONObject) students.get(j);
+                        List<Grade> studentGrades = getStudentClassGrades((String)student.get("student"), classId);
+                        for(Grade grade: studentGrades) {
+                            grade.setStudentName(findName((String)student.get("student")));
+                        }
+                        teacherGrades.addAll(studentGrades);
+                    }
+                    break;
+                }
+            }
+        }
+        return teacherGrades;
+    }
 }

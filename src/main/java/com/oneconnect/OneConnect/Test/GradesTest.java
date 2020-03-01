@@ -252,25 +252,16 @@ public class GradesTest {
     }
 
     private boolean viewStudentValidClass() {
-        String id = "4567";
-        String classId = "2050";
-        /*
-         * GradesService gradesService = new GradesService();
-         *
-         * return gradesService.getStudentClassGrades(id, classId).size() == 1;
-         * */
-        return true;
+        String id = "123";
+        String classId = "5253";
+        GradesService gradesService = new GradesService();
+        return gradesService.getStudentClassGrades(id, classId).size() == 1;
     }
 
     private boolean viewTeacherValidClass() {
-        String id = "5874";
-        String classId = "2050";
-        /*
-         * GradesService gradesService = new GradesService();
-         *
-         * return gradesService.getTeacherClassGrades(id, classId).size() == 3;
-         * */
-        return true;
+        String classId = "5253";
+        GradesService gradesService = new GradesService();
+        return gradesService.getTeacherGradesForClass(classId).size() == 2;
     }
 
     private boolean viewInvalidStudentAllGrades () {
@@ -281,13 +272,9 @@ public class GradesTest {
 
     private boolean viewInvalidStudentValidClass() {
         String id = "-1";
-        String classId = "2050";
-        /*
-         * GradesService gradesService = new GradesService();
-         *
-         * return gradesService.getStudentClassGrades(id, classId) == null;
-         * */
-        return true;
+        String classId = "5253";
+        GradesService gradesService = new GradesService();
+        return gradesService.getStudentClassGrades(id, classId).size() == 0;
     }
 
     private boolean viewInvalidTeacherAllGrades () {
@@ -296,48 +283,25 @@ public class GradesTest {
         return gradesService.teacherGrades(id).size() == 0;
     }
 
-    private boolean viewInvalidTeacherValidClass() {
-        String id = "-1";
-        String classId = "2050";
-        /*
-         * GradesService gradesService = new GradesService();
-         *
-         * return gradesService.getTeacherClassGrades(id, classId) == null;
-         * */
-        return true;
-    }
 
     private boolean viewStudentInvalidClass() {
-        String id = "4567";
+        String id = "123";
         String classId = "-1";
-        /*
-         * GradesService gradesService = new GradesService();
-         *
-         * return gradesService.getStudentClassGrades(id, classId).size() == 1;
-         * */
-        return true;
+        GradesService gradesService = new GradesService();
+        return gradesService.getStudentClassGrades(id, classId).size() == 0;
     }
 
     private boolean viewTeacherInvalidClass() {
-        String id = "5874";
         String classId = "-1";
-        /*
-         * GradesService gradesService = new GradesService();
-         *
-         * return gradesService.getTeacherClassGrades(id, classId).size() == 3;
-         * */
-        return true;
+        GradesService gradesService = new GradesService();
+        return gradesService.getTeacherGradesForClass(classId).size() == 0;
     }
 
     private boolean viewNanStudentValidClass() {
         String id = "potato";
-        String classId = "2050";
-        /*
-         * GradesService gradesService = new GradesService();
-         *
-         * return gradesService.getStudentClassGrades(id, classId) == null;
-         * */
-        return true;
+        String classId = "5253";
+        GradesService gradesService = new GradesService();
+        return gradesService.getStudentClassGrades(id, classId).size() == 0;
     }
 
     private boolean viewNanTeacherAllGrades () {
@@ -346,48 +310,24 @@ public class GradesTest {
         return gradesService.teacherGrades(id).size() == 0;
     }
 
-    private boolean viewNanTeacherValidClass() {
-        String id = "potato";
-        String classId = "2050";
-        /*
-         * GradesService gradesService = new GradesService();
-         *
-         * return gradesService.getTeacherClassGrades(id, classId) == null;
-         * */
-        return true;
-    }
-
     private boolean viewStudentNanClass() {
-        String id = "4567";
+        String id = "123";
         String classId = "potato";
-        /*
-         * GradesService gradesService = new GradesService();
-         *
-         * return gradesService.getStudentClassGrades(id, classId).size() == 1;
-         * */
-        return true;
+        GradesService gradesService = new GradesService();
+        return gradesService.getStudentClassGrades(id, classId).size() == 0;
     }
 
     private boolean viewTeacherNanClass() {
-        String id = "5874";
         String classId = "potato";
-        /*
-         * GradesService gradesService = new GradesService();
-         *
-         * return gradesService.getTeacherClassGrades(id, classId).size() == 3;
-         * */
-        return true;
+        GradesService gradesService = new GradesService();
+        return gradesService.getTeacherGradesForClass(classId).size() == 0;
     }
     //cont
-    private boolean viewNullStudentValidClass() {
+    private boolean viewStudentClassNullStudentValidClass() {
         String id = null;
-        String classId = "2050";
-        /*
-         * GradesService gradesService = new GradesService();
-         *
-         * return gradesService.getStudentClassGrades(id, classId) == null;
-         * */
-        return true;
+        String classId = "5253";
+        GradesService gradesService = new GradesService();
+        return gradesService.getStudentClassGrades(id, classId).size() == 0;
     }
 
     private boolean viewNullTeacherAllGrades () {
@@ -397,38 +337,19 @@ public class GradesTest {
 
         return gradesService.teacherGrades(id).size() == 0;
     }
-
-    private boolean viewNullTeacherValidClass() {
-        String id = null;
-        String classId = "2050";
-        /*
-         * GradesService gradesService = new GradesService();
-         *
-         * return gradesService.getTeacherClassGrades(id, classId) == null;
-         * */
-        return true;
-    }
+    
 
     private boolean viewStudentNullClass() {
-        String id = "4567";
+        String id = "123";
         String classId = null;
-        /*
-         * GradesService gradesService = new GradesService();
-         *
-         * return gradesService.getStudentClassGrades(id, classId).size() == 1;
-         * */
-        return true;
+        GradesService gradesService = new GradesService();
+        return gradesService.getStudentClassGrades(id, classId).size() == 0;
     }
 
     private boolean viewTeacherNullClass() {
-        String id = "5874";
         String classId = null;
-        /*
-         * GradesService gradesService = new GradesService();
-         *
-         * return gradesService.getTeacherClassGrades(id, classId).size() == 3;
-         * */
-        return true;
+        GradesService gradesService = new GradesService();
+        return gradesService.getTeacherGradesForClass(classId).size() == 0;
     }
 
     private boolean viewValidParentAllowed() {
@@ -460,11 +381,7 @@ public class GradesTest {
 
         return gradesService.parentGrades (id).size() == 0;
     }
-
-
-    //Note, as stated previously, some test had been written prematurely and require the use of other features to be
-    //implemented, such as class grades requiring a class feature to be first implemented for it to be accessible
-    //As such, these tests are not run.
+    
     public String runTests() {
         return "<br/><br/>Grades Test:"
                 +"<br/>roleCheckTeacher: " + (roleCheckTeacher() ? "Passed" : "Failed")
@@ -495,24 +412,21 @@ public class GradesTest {
                 +"<br/>updateValidAssignValidStudentNegativeGrade: " + (updateValidAssignValidStudentNegativeGrade() ? "Passed" : "Failed")
                 +"<br/>viewStudentValidAllGrades: " + (viewStudentValidAllGrades() ? "Passed" : "Failed")
                 +"<br/>viewTeacherValidAllGrades: " + (viewTeacherValidAllGrades() ? "Passed" : "Failed")
-//                +"<br/>viewStudentValidClass: " + (viewStudentValidClass() ? "Passed" : "Failed")
-//                +"<br/>viewTeacherValidClass: " + (viewTeacherValidClass() ? "Passed" : "Failed")
+                +"<br/>viewStudentValidClass: " + (viewStudentValidClass() ? "Passed" : "Failed")
+                +"<br/>viewTeacherValidClass: " + (viewTeacherValidClass() ? "Passed" : "Failed")
                 +"<br/>viewInvalidStudentAllGrades: " + (viewInvalidStudentAllGrades() ? "Passed" : "Failed")
-//                +"<br/>viewInvalidStudentValidClass: " + (viewInvalidStudentValidClass() ? "Passed" : "Failed")
+                +"<br/>viewInvalidStudentValidClass: " + (viewInvalidStudentValidClass() ? "Passed" : "Failed")
                 +"<br/>viewInvalidTeacherAllGrades: " + (viewInvalidTeacherAllGrades() ? "Passed" : "Failed")
-//                +"<br/>viewInvalidTeacherValidClass: " + (viewInvalidTeacherValidClass() ? "Passed" : "Failed")
-//                +"<br/>viewStudentInvalidClass: " + (viewStudentInvalidClass() ? "Passed" : "Failed")
-//                +"<br/>viewTeacherInvalidClass: " + (viewTeacherInvalidClass() ? "Passed" : "Failed")
-//                +"<br/>viewNanStudentValidClass: " + (viewNanStudentValidClass() ? "Passed" : "Failed")
+                +"<br/>viewStudentInvalidClass: " + (viewStudentInvalidClass() ? "Passed" : "Failed")
+                +"<br/>viewTeacherInvalidClass: " + (viewTeacherInvalidClass() ? "Passed" : "Failed")
+                +"<br/>viewNanStudentValidClass: " + (viewNanStudentValidClass() ? "Passed" : "Failed")
                 +"<br/>viewNanTeacherAllGrades: " + (viewNanTeacherAllGrades() ? "Passed" : "Failed")
-//                +"<br/>viewNanTeacherValidClass: " + (viewNanTeacherValidClass() ? "Passed" : "Failed")
-//                +"<br/>viewStudentNanClass: " + (viewStudentNanClass() ? "Passed" : "Failed")
-//                +"<br/>viewTeacherNanClass: " + (viewTeacherNanClass() ? "Passed" : "Failed")
-//                +"<br/>viewNullStudentValidClass: " + (viewNullStudentValidClass() ? "Passed" : "Failed")
+                +"<br/>viewStudentNanClass: " + (viewStudentNanClass() ? "Passed" : "Failed")
+                +"<br/>viewTeacherNanClass: " + (viewTeacherNanClass() ? "Passed" : "Failed")
+                +"<br/>viewStudentClassNullStudentValidClass: " + (viewStudentClassNullStudentValidClass() ? "Passed" : "Failed")
                 +"<br/>viewNullTeacherAllGrades: " + (viewNullTeacherAllGrades() ? "Passed" : "Failed")
-//                +"<br/>viewNullTeacherValidClass: " + (viewNullTeacherValidClass() ? "Passed" : "Failed")
-//                +"<br/>viewStudentNullClass: " + (viewStudentNullClass() ? "Passed" : "Failed")
-//                +"<br/>viewTeacherNullClass: " + (viewTeacherNullClass() ? "Passed" : "Failed")
+                +"<br/>viewStudentNullClass: " + (viewStudentNullClass() ? "Passed" : "Failed")
+                +"<br/>viewTeacherNullClass: " + (viewTeacherNullClass() ? "Passed" : "Failed")
                 +"<br/>viewValidParentAllowed: " + (viewValidParentAllowed() ? "Passed" : "Failed")
                 +"<br/>viewValidParentNotAllowed: " + (viewValidParentNotAllowed() ? "Passed" : "Failed")
                 +"<br/>viewNanParent: " + (viewNanParent() ? "Passed" : "Failed")
