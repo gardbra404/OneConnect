@@ -24,6 +24,7 @@ public class GradesController {
     public ModelAndView grades (@RequestParam(defaultValue = "f") String id, @RequestParam String role) {
         ModelAndView modelAndView = new ModelAndView();
         LoginService loginService = new LoginService();
+        GradesService gradesService = new GradesService();
         List<String> userRoles = loginService.retrieveRole(id);
         if(role.equals("default") && userRoles.size() > 0) {
             role = userRoles.get(0);
@@ -33,6 +34,9 @@ public class GradesController {
         } else {
             modelAndView.addObject("userId", id);
             modelAndView.addObject("role", role);
+            modelAndView.addObject("name", gradesService.findName(id));
+            //For right now, the school name is hard coded
+            modelAndView.addObject("school", "Kettering University");
             if (role.equals("teacher")) {
                 modelAndView.setViewName("gradesTeacher");
             } else if (role.equals("student")) {

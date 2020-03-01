@@ -19,6 +19,8 @@ body {
     display: none;
 }
 #disclaimer {
+    margin-left: auto;
+    margin-right: auto;
     position:fixed;
     bottom: 0;
 }

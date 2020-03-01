@@ -191,7 +191,7 @@ public class GradesService {
         return exists;
     }
 
-    private String findName (String id) {
+    public String findName (String id) {
         Utility utility = new Utility();
         JSONArray users = utility.jsonArrayGenerator("Users.json");
         String name = "Not Found";
