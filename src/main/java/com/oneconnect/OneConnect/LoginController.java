@@ -23,7 +23,7 @@ public class LoginController {
     @RequestMapping("/")
     @ResponseBody
     public ModelAndView welcome() {
-        File direct = new File("C:\\temp");
+        File direct = new File("C:/temp");
         if (!direct.exists()){
             direct.mkdir();
         }

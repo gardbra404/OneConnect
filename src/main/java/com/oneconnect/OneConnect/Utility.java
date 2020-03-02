@@ -13,8 +13,8 @@ public class Utility {
         File file = null;
         JSONArray jsonArray;
         JSONParser jsonParser = new JSONParser();
-        String databaseFileName = "Database\\"+fileName;
-        String longStore = "C:\\temp\\"+fileName;
+        String databaseFileName = "Database/"+fileName;
+        String longStore = "C:/temp/"+fileName;
         try {
             File longTermFile = new File(longStore);
             if(!longTermFile.exists()){
@@ -54,7 +54,7 @@ public class Utility {
     public boolean jsonWriter(String jsonString, String fileName) {
         //We save to the temp because that allows for permanent data storage...storing to resources does not
         boolean successfulSave;
-        try(FileWriter fileWriter = new FileWriter("C:\\temp\\"+fileName)){
+        try(FileWriter fileWriter = new FileWriter("C:/temp/"+fileName)){
             fileWriter.write(jsonString);
             fileWriter.flush();
             successfulSave = true;
@@ -67,8 +67,8 @@ public class Utility {
 
     public String newIdGenerator() {
         File file;
-        String dbFile = "Database\\lastId.txt";
-        String longStore = "C:\\temp\\lastId.txt";
+        String dbFile = "Database/lastId.txt";
+        String longStore = "C:/temp/lastId.txt";
         String number = "NaN";
         try {
             File longTermStore = new File (longStore);

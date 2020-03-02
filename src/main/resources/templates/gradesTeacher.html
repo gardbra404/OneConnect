@@ -77,7 +77,7 @@
             $("#assignmentsLabel").remove();
             $("#grade").remove();
             $("#gradeLabel").remove();
-            $("#submitButton").remove();
+            $("#submitChange").remove();
         }
         function submitChange() {
             $.ajax({
@@ -130,7 +130,7 @@
 
 
     <div class=classheader>
-        <a href="../landings/landing.html">Home</a>
+        <a href="#" onclick="$('#form').submit()">Home</a>
         <i class="fa fa-chevron-right header-chevron"></i>
         <a>My Grades Overview</a>
     </div>
