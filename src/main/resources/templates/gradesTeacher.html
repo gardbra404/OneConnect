@@ -1,0 +1,189 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head >
+
+    <link rel="stylesheet" th:href="@{/CSS/exam.css}" />
+    <link rel="stylesheet" th:href="@{/CSS/common.css}" />
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Roboto|Source+Sans+Pro&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <script>
+        $(function(){
+            retrieveGrades();
+            $.ajax({
+                url:"/getCourses",
+                data:{user:$("#id").val()},
+                success: updateCourses
+            })
+        });
+        function updateCourses(courses){
+            $("#courses").empty();
+            var courseTable = "<option value = \"-1\">Default</option>";
+            for(var i = 0; i < courses.length; i++){
+                courseTable += "<option value = '"+courses[i].courseId+"'>" + courses[i].courseName + "</option>";
+            }
+            $("#courses").append(courseTable);
+        }
+        function updateTable(grades){
+            $("#gradesRows").empty();
+            var gradesTable = "";
+            for(var i = 0; i < grades.length; i++){
+               gradesTable += "<tr><td>"+grades[i].className+"</td><td>"+grades[i].assignment+"</td><td>" + grades[i].score + "/"+grades[i].assignmentTotal+"</td></tr>"
+            }
+            $("#gradesRows").append(gradesTable);
+        }
+        function prepAdd() {
+            var classId = $("#courses").val();
+            if (classId !== "-1") {
+                $.ajax({
+                    url:"/getCourseInfo",
+                    data:{course:classId},
+                    success:fillAdd
+                })
+            } else {
+                emptyAdd();
+            }
+        }
+
+        function fillAdd(info) {
+            emptyAdd();
+            var updateDrops = "<label for = 'students' class=\"gradeLabel\" id ='studentsLabel'>Student: </label>" +
+                "<select id ='students'>";
+            var students = info.students;
+            var assignments = info.assignments;
+            for (var i = 0; i < students.length; i++) {
+                updateDrops+="<option value='"+students[i].id+"'>"+students[i].name+"</option>"
+            }
+            updateDrops +="</select><label for = 'assignments' class=\"gradeLabel\" id ='assignmentsLabel'>Assignment: </label>" +
+                "<select id ='assignments'>";
+            for (var i = 0; i < assignments.length; i++) {
+                updateDrops+="<option value='"+assignments[i].id+"'>"+assignments[i].name+"</option>"
+            }
+            updateDrops+="</select><label for='grade' class=\"gradeLabel\" id='gradeLabel'>Score: </label><input type='text' id='grade'/>" +
+                "<button id ='submitChange' class=\"gradeLabel\" onclick='submitChange()'>Submit</button>"
+            $("#changeInfo").append(updateDrops);
+
+        }
+        function emptyAdd() {
+            $("#students").remove();
+            $("#studentsLabel").remove();
+            $("#assignments").remove();
+            $("#assignmentsLabel").remove();
+            $("#grade").remove();
+            $("#gradeLabel").remove();
+            $("#submitChange").remove();
+        }
+        function submitChange() {
+            $.ajax({
+                url:"/updateGrades",
+                data:{
+                    classId: $("#courses").val(),
+                    studentId: $("#students").val(),
+                    assignmentId: $("#assignments").val(),
+                    grade: $("#grade").val(),
+                    user: $("#id").val(),
+                    role: $("#role").val()
+                },
+                success: updateResponse
+            });
+        }
+        function updateResponse(response) {
+            console.log(response)
+            if(!response) {
+                alert("Failed to Perform Update, Check Your Values")
+            } else {
+                retrieveGrades();
+            }
+        }
+        function retrieveGrades() {
+            $.ajax({
+                url:"/teacherGradeView",
+                data: {user: $("#id").val(), role:$("#role").val()},
+                success: buildGrades
+            })
+        }
+        function buildGrades(grades) {
+            $("#gradesRows").empty();
+            var gradesList = "";
+            for (var i = 0; i < grades.length; i++) {
+                gradesList +="<tr><td>"+grades[i].className+"</td><td>"+grades[i].studentName+"</td>" +
+                    "<td>"+grades[i].assignment+"</td><td>"+grades[i].score+"/"+grades[i].assignmentTotal+"</td></tr>";
+            }
+            $("#gradesRows").append(gradesList);
+        }
+    </script>
+</head>
+
+<body>
+    <div id='top'>
+        <span id="title" class="logo"><strong>One Connect</strong></span>
+        <span><button class='fa fa-gear settings-button' onclick="window.location.href='../site-settings.html'"></button></span>
+        <span id='info'><span th:text="${name}"></span><br/><span th:text="${school}"></span></span>
+    </div>
+
+
+
+    <div class=classheader>
+        <a href="#" onclick="$('#form').submit()">Home</a>
+        <i class="fa fa-chevron-right header-chevron"></i>
+        <a>My Grades Overview</a>
+    </div>
+
+
+
+
+    <div class='columns'>
+
+        <div class='box'>
+            <div>
+                <h2>My Grades Overview</h2>
+
+
+                <div class="exams-table">
+
+                    <table id = "gradesTable">
+                        <thead>
+                            <tr>
+                                <th align=left>Class</th>
+                                <th align=left>Name</th>
+                                <th align=left>Assignment</th>
+                                <th aligh=left>Grade</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="gradesRows">
+
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+
+
+        </div>
+        <div class ="box">
+            <br/>
+            <h2>Add/Update Grades</h2>
+            <div id="changeInfo">
+                <label for = "courses" class="gradeLabel">Select Course</label>
+                <select id="courses" onchange="prepAdd()"></select>
+            </div>
+        </div>
+        <form action="/viewGrades" method="POST" id="form">
+            <input type='hidden' id='id' name='id' th:value='${userId}'/>
+            <input type='hidden' id='role' name='role' th:value='${role}'/>
+        </form>
+    </div>
+</body>
+
+</html>

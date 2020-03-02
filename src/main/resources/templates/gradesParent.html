@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head >
+
+    <link rel="stylesheet" th:href="@{/CSS/exam.css}" />
+    <link rel="stylesheet" th:href="@{/CSS/common.css}" />
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Roboto|Source+Sans+Pro&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <script>
+        $(function(){
+            $.ajax({
+                url:"/parentGradeView",
+                data:{user:$("#id").val(), role:$("#role").val()},
+                success: updateTable
+            })
+        });
+        function updateTable(grades){
+
+
+            $("#gradesRows").empty();
+            var gradesTable = "";
+            for(var i = 0; i < grades.length; i++){
+                var student = grades[i];
+                for(var j = 0; j < student.length; j++){
+                    gradesTable += "<tr><td>"+student[j].studentName+"</td><td>"+student[j].className+"</td><td>"+student[j].assignment+"</td><td>" + student[j].score
+                        + "/"+student[j].assignmentTotal+"</td></tr>"
+                }
+
+            }
+            $("#gradesRows").append(gradesTable);
+        }
+    </script>
+</head>
+
+<body>
+    <div id='top'>
+        <span id="title" class="logo"><strong>One Connect</strong></span>
+        <span><button class='fa fa-gear settings-button' onclick="window.location.href='../site-settings.html'"></button></span>
+        <span id='info'><span th:text="${name}"></span><br/><span th:text="${school}"></span></span>
+    </div>
+
+
+
+    <div class=classheader>
+        <a href="#" onclick="$('#form').submit()">Home</a>
+        <i class="fa fa-chevron-right header-chevron"></i>
+        <a>My Grades Overview</a>
+    </div>
+
+
+
+
+    <div class='columns'>
+
+        <div class='box'>
+            <div>
+                <h2>My Grades Overview</h2>
+
+
+                <div class="exams-table">
+
+                    <table id = "gradesTable">
+                        <thead>
+                            <tr>
+                                <th align=left>Child</th>
+                                <th align=left>Class</th>
+                                <th align=left>Assignment</th>
+                                <th aligh=left>Grade</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="gradesRows">
+
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+
+
+        </div>
+        <form action="/viewGrades" method="POST" id="form">
+            <input type='hidden' id='id' name='id' th:value='${userId}'/>
+            <input type='hidden' id='role' name='role' th:value='${role}'/>
+        </form>
+    </div>
+</body>
+
+</html>

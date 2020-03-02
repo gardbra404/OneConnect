@@ -1,0 +1,77 @@
+.true-false-text {
+    width: 75%;
+    float:left;
+}
+.true-false-buttons {
+    width:20%;
+    float:right;
+}
+
+.multiple-choice-text {
+    width: 100%;
+}
+.multiple-choice-buttons {
+    margin-top: 10px;
+}
+
+.editor {
+    width:100%;
+    padding:10px 0 10px 0;
+}
+
+.submit {
+    float: right;
+    margin: 30px
+}
+
+.exam-info {
+    margin-left: 20px
+}
+
+.question-label {
+    display:inline-block;
+    padding-right: 5px;
+}
+
+
+.exams-table {
+    margin: 10px;
+    padding: 10px;
+}
+
+/* Basic table styling */
+
+tbody tr:nth-child(odd) {
+    background-color: rgb(235, 235, 235);
+}
+
+tbody tr:nth-child(even) {
+    background-color: rgb(235, 235, 235);
+}
+
+tbody td {
+    padding: 10px
+}
+
+table {
+    width: 100%
+}
+
+.late {
+    color:rgb(179, 0, 0);
+    padding-left: 5px;
+}
+
+.complete {
+    color:rgb(0, 160, 21);
+    padding-left: 5px;
+}
+
+.small-input {
+    width: 24;
+    margin-right: 5px;
+}
+
+.new-question {
+    margin: 30px;
+}

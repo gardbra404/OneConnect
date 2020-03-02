@@ -1,16 +1,16 @@
 [
   {
       "id": "5252",
-      "teacher" : "126",
+      "teacher" : "127",
       "name" : "Software Engineering M Th - 1:20-2:55",
       "students" : ["123", "124"],
-      "assignments" : ["10052"]
+      "assignments" : ["10052", "10054"]
 
   },
 
   {
       "id": "5253",
-      "teacher" : "126",
+      "teacher" : "127",
       "name" : "Ways of Seeing Film T F - 10:15-12:20",
       "students" : ["123", "124"],
       "assignments" : ["10053"]

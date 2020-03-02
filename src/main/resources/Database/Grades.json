@@ -1,16 +1,17 @@
 [
   {
       "class": "5252",
+      "className" : "Software Engineering",
       "students": [
         {
           "student" : "123",
           "assignment" : "10052",
-          "score" : "50"
+          "score" : "100"
         },
         {
           "student" : "124",
           "assignment" : "10052",
-          "score" : "50"
+          "score" : "100"
         }
       ]
 
@@ -18,16 +19,17 @@
 
   {
       "class": "5253",
+      "className" : "Ways of Seeing Film",
       "students": [
         {
           "student" : "123",
           "assignment" : "10053",
-          "score" : "50"
+          "score" : "75"
         },
         {
           "student" : "124",
           "assignment" : "10053",
-          "score" : "50"
+          "score" : "100"
         }
       ]
   }

@@ -11,10 +11,10 @@ import java.io.*;
 public class Utility {
     public JSONArray jsonArrayGenerator(String fileName) {
         File file = null;
-        JSONArray jsonArray = null;
+        JSONArray jsonArray;
         JSONParser jsonParser = new JSONParser();
-        String databaseFileName = "Database\\"+fileName;
-        String longStore = "C:\\temp\\"+fileName;
+        String databaseFileName = "Database/"+fileName;
+        String longStore = "C:/temp/"+fileName;
         try {
             File longTermFile = new File(longStore);
             if(!longTermFile.exists()){
@@ -27,13 +27,13 @@ public class Utility {
             jsonArray = (JSONArray) obj;
         } catch(FileNotFoundException e) {
             System.out.println(e);
-            jsonArray = null;
+            jsonArray = new JSONArray();
         }catch (IOException e) {
             e.printStackTrace();
-            jsonArray = null;
+            jsonArray = new JSONArray();
         } catch (ParseException e) {
             e.printStackTrace();
-            jsonArray = null;
+            jsonArray = new JSONArray();
         }
         return jsonArray;
     }
@@ -54,7 +54,7 @@ public class Utility {
     public boolean jsonWriter(String jsonString, String fileName) {
         //We save to the temp because that allows for permanent data storage...storing to resources does not
         boolean successfulSave;
-        try(FileWriter fileWriter = new FileWriter("C:\\temp\\"+fileName)){
+        try(FileWriter fileWriter = new FileWriter("C:/temp/"+fileName)){
             fileWriter.write(jsonString);
             fileWriter.flush();
             successfulSave = true;
@@ -67,9 +67,9 @@ public class Utility {
 
     public String newIdGenerator() {
         File file;
-        String dbFile = "Database\\lastId.txt";
-        String longStore = "C:\\temp\\lastId.txt";
-        String number = null;
+        String dbFile = "Database/lastId.txt";
+        String longStore = "C:/temp/lastId.txt";
+        String number = "NaN";
         try {
             File longTermStore = new File (longStore);
             if (!longTermStore.exists()) {
