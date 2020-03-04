@@ -1,9 +1,11 @@
 package com.oneconnect.OneConnect;
 
-import com.oneconnect.OneConnect.Grades.Course;
+/*import com.oneconnect.OneConnect.Grades.Course;
 import com.oneconnect.OneConnect.Grades.CourseInfo;
 import com.oneconnect.OneConnect.Grades.Grade;
-import com.oneconnect.OneConnect.Grades.GradesService;
+import com.oneconnect.OneConnect.Grades.GradesService;*/
+
+import com.oneconnect.OneConnect.UserCreation.UserCreationService;
 import com.oneconnect.OneConnect.Login.LoginService;
 import org.json.simple.JSONArray;
 import org.springframework.stereotype.Controller;
@@ -24,7 +26,7 @@ public class UserCreationController {
     public ModelAndView createUser (@RequestParam(defaultValue = "f") String id, @RequestParam String role) {
         ModelAndView modelAndView = new ModelAndView();
         LoginService loginService = new LoginService();
-        GradesService gradesService = new GradesService();
+        UserCreationService userCreationService = new UserCreationService();
         List<String> userRoles = loginService.retrieveRole(id);
         if(role.equals("default") && userRoles.size() > 0) {
             role = userRoles.get(0);
@@ -34,7 +36,7 @@ public class UserCreationController {
         } else {
             modelAndView.addObject("userId", id);
             modelAndView.addObject("role", role);
-            modelAndView.addObject("name", gradesService.findName(id));
+            modelAndView.addObject("name", userCreationService.findName(id));
             //For right now, the school name is hard coded
             modelAndView.addObject("school", "Kettering University");
             if (role.equals("teacher")) {
@@ -55,7 +57,7 @@ public class UserCreationController {
     @ResponseBody
     public List<Grade> getUser(String user, String role) {
         List<Grade> grades = new ArrayList<>();
-        GradesService gradesService = new GradesService();
+        UserCreationService userCreationService = new UserCreationService();
         LoginService loginService = new LoginService();
         List<String> roles = loginService.retrieveRole(user);
         if(role.equals("default")) {
@@ -64,7 +66,7 @@ public class UserCreationController {
         if(!roles.contains(role)) {
             grades = new ArrayList<>();
         } else if(role.equals("student")) {
-            grades = gradesService.studentGrades(user);
+            grades = userCreationService.studentGrades(user);
         } else {
             grades = new ArrayList<>();
         }
@@ -75,7 +77,7 @@ public class UserCreationController {
     @ResponseBody
     public List<List<Grade>> getUserById(String user, String role) {
         List<List<Grade>> grades = new ArrayList<>();
-        GradesService gradesService = new GradesService();
+        UserCreationService userCreationService = new UserCreationService();
         LoginService loginService = new LoginService();
         List<String> roles = loginService.retrieveRole(user);
         if(role.equals("default")) {
@@ -84,7 +86,7 @@ public class UserCreationController {
         if(!roles.contains(role)) {
             grades = new ArrayList<>();
         } else if(role.equals("parent")) {
-            grades = gradesService.parentGrades(user);
+            grades = userCreationService.parentGrades(user);
         } else {
             grades = new ArrayList<>();
         }
@@ -94,21 +96,21 @@ public class UserCreationController {
     @RequestMapping("/getByRole")
     @ResponseBody
     public List<Course> getByRole(String user) {
-        GradesService gradesService = new GradesService();
-        return gradesService.getCourses(user);
+        UserCreationService userCreationService = new UserCreationService();
+        return userCreationService.getCourses(user);
     }
 
     @RequestMapping("/getAllUsers")
     @ResponseBody
-    public CourseInfo getAllUsers(String course) {
-        GradesService gradesService = new GradesService();
-        return gradesService.getCourseInfo(course);
+    public List<User> getAllUsers(String course) {
+        UserCreationService userCreationService = new UserCreationService();
+        return userCreationService.getCourseInfo(course);
     }
 
     @RequestMapping("/updateUser")
     @ResponseBody
     public boolean updateUser (String classId, String studentId, String assignmentId,String grade, String user, String role) {
-        GradesService gradesService = new GradesService();
+        UserCreationService userCreationService = new UserCreationService();
         boolean update = false;
         LoginService loginService = new LoginService();
         List<String> roles = loginService.retrieveRole(user);
@@ -117,11 +119,11 @@ public class UserCreationController {
         }
         if(!roles.contains(role)) {
             update = false;
-        } else if (gradesService.roleCheck(role)) {
-            if(gradesService.doesGradeExist(studentId, assignmentId, classId)) {
-                update = gradesService.updateGrade(studentId, assignmentId, classId, grade);
+        } else if (userCreationService.roleCheck(role)) {
+            if(userCreationService.doesUserExist(studentId, assignmentId, classId)) {
+                update = userCreationService.updateUser(studentId, assignmentId, classId, grade);
             } else {
-                update = gradesService.createGrades(studentId, assignmentId, classId, grade);
+                update = userCreationService.createUser(studentId, assignmentId, classId, grade);
             }
         }
 
