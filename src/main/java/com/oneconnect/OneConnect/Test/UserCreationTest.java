@@ -1,20 +1,23 @@
 package com.oneconnect.OneConnect.Test;
 
-public class UserCreationTest{
-	
-	public boolean ValidAccount(){
-		
+import com.oneconnect.OneConnect.UserCreation.UserCreationService;
+
+public class UserCreationTest {
+
+	public boolean ValidAccount() {
+
 		String userId = "qwertyuiop";
 		String userEmail = "guil9416@kettering.edu";
 		String fullName = "Austin Guilbault";
 		String role = "admin";
+		//List<String> role = (["student"]);
 		String password = "123ABCqwe?!";
-		/*
-		UserService userService = new userService();
+
+		UserCreationService userCreationService = new UserCreationService();
 		
-		if (userService.createUser(userId, userEmail, fullName, role, password) != null)
-			return true;
-		*/
+		/* if (userCreationService.createUser(userId, userEmail, fullName, role, password) != null)
+			return true; */
+		
 		return false;
 	}
 	
@@ -25,12 +28,12 @@ public class UserCreationTest{
 		String fullName = "Austin Guilbault";
 		String role = "admin";
 		String password = "bob";
-		/*
-		UserService userService = new userService();
 		
-		if (userService.createUser(userId, userEmail, fullName, role, password) == null)
-			return true;
-		*/
+		UserCreationService userCreationService = new UserCreationService();
+		
+		/* if (userCreationService.createUser(userId, userEmail, fullName, role, password) == null)
+			return true; */
+		
 		return false;
 	}
 	
@@ -40,15 +43,15 @@ public class UserCreationTest{
 		String fullName = "Austin Guilbault";
 		String role = "admin";
 		String password = "123ABCqwe?!";
-		/*
-		UserService userService = new userService();
 		
-		userService.createUser(userId, userEmail, fullName, role, password) //create the user
+		UserCreationService userCreationService = new UserCreationService();
+		
+		/*userCreationService.createUser(userId, userEmail, fullName, role, password); //create the user
 
 		//try to create the user again
-		if (userService.createUser(userId, userEmail, fullName, role, password) == null)
-			return true;
-		*/
+		 if (userCreationService.createUser(userId, userEmail, fullName, role, password) == null)
+			return true; */
+		
 		return false;		
 	}
 	
@@ -58,12 +61,12 @@ public class UserCreationTest{
 		String fullName = "Austin Guilbault";
 		String role = ":^)";
 		String password = "123ABCqwe?!";
-		/*
-		UserService userService = new userService();
 		
-		if (userService.createUser(userId, userEmail, fullName, role, password) == null)
-			return true;
-		*/
+		UserCreationService userCreationService = new UserCreationService();
+		
+		/* if (userCreationService.createUser(userId, userEmail, fullName, role, password) == null)
+			return true; */
+		
 		return false;
 	}
 	
@@ -73,12 +76,12 @@ public class UserCreationTest{
 		String fullName = "Austin Guilbault";
 		String role = ":^)";
 		String password = "123ABCqwe?!";
-		/*
-		UserService userService = new userService();
 		
-		if (userService.createUser(userId, userEmail, fullName, role, password) == null)
-			return true;
-		*/
+		UserCreationService userCreationService = new UserCreationService();
+		
+		/* if (userCreationService.createUser(userId, userEmail, fullName, role, password) == null)
+			return true; */
+		
 		return false;
 		
 	}
@@ -89,12 +92,12 @@ public class UserCreationTest{
 		String fullName = "Austin Guilbault";
 		String role = "student";
 		String password = "123ABCqwe?!";
-		/*
-		UserService userService = new userService();
 		
-		if (userService.createUser(userId, userEmail, fullName, role, password) == null)
-			return true;
-		*/
+		UserCreationService userCreationService = new UserCreationService();
+		
+		/* if (userCreationService.createUser(userId, userEmail, fullName, role, password) == null)
+			return true; */
+		
 		return false;
 		
 	}
@@ -106,12 +109,12 @@ public class UserCreationTest{
 		String fullName = "onlyoneword";
 		String role = "admin";
 		String password = "123ABCqwe?!";
-		/*
-		UserService userService = new userService();
 		
-		if (userService.createUser(userId, userEmail, fullName, role, password) == null)
-			return true;
-		*/
+		UserCreationService userCreationService = new UserCreationService();
+		
+		/* if (userCreationService.createUser(userId, userEmail, fullName, role, password) == null)
+			return true; */
+		
 		return false;
 	}
 	
