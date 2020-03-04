@@ -51,8 +51,7 @@ public class UserCreationController {
 
     @RequestMapping("/getUser")
     @ResponseBody
-    public List<Grade> getUser(String user, String role) {
-        List<Grade> grades = new ArrayList<>();
+    public String getUser(String user, String role) {
         UserCreationService userCreationService = new UserCreationService();
         LoginService loginService = new LoginService();
         List<String> roles = loginService.retrieveRole(user);
@@ -60,19 +59,19 @@ public class UserCreationController {
             role = roles.get(0);
         }
         if(!roles.contains(role)) {
-            grades = new ArrayList<>();
+            user = new String();
         } else if(role.equals("student")) {
-            grades = userCreationService.studentGrades(user);
+            user = userCreationService.getUser(user);
         } else {
-            grades = new ArrayList<>();
+            user = new String();
         }
-        return grades;
+        return user;
     }
 
     @RequestMapping("/getUserById")
     @ResponseBody
-    public List<List<Grade>> getUserById(String user, String role) {
-        List<List<Grade>> grades = new ArrayList<>();
+    public List<List<User>> getUserById(String user, String role) {
+        List<List<User>> grades = new ArrayList<>();
         UserCreationService userCreationService = new UserCreationService();
         LoginService loginService = new LoginService();
         List<String> roles = loginService.retrieveRole(user);

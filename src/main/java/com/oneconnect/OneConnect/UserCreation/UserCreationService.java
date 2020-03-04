@@ -83,7 +83,7 @@ public class UserCreationService {
 */
     //for testing purposes
     public boolean createUser (String name, List<String> role, String userId, List<String> classes, List<Child> children){
-        return createUser(name, role, userId, children, false);
+        return createUser(name, role, userId, classes, children, false);
     }
 
     @SuppressWarnings("unchecked")
@@ -94,7 +94,7 @@ public class UserCreationService {
         boolean childrenValid = false;
         boolean classesValid = false;
         for(int classCount = 0; classCount < classes.size(); classCount++){
-            if(!utility.numberChecker(children.get(classCount))){
+            if(!utility.numberChecker(classes.get(classCount))){
                 classesValid = false;
                 break;
             }

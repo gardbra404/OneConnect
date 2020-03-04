@@ -1,20 +1,25 @@
 package com.oneconnect.OneConnect.Test;
 
-public class UserCreationTest{
-	
-	public boolean ValidAccount(){
-		
+import java.util.List;
+
+import com.oneconnect.OneConnect.UserCreation.UserCreationService;
+
+public class UserCreationTest {
+
+	public boolean ValidAccount() {
+
 		String userId = "qwertyuiop";
-		String userEmail = "guil9416@kettering.edu";
+		//String userEmail = "guil9416@kettering.edu";
 		String fullName = "Austin Guilbault";
-		String role = "admin";
+		//String role = "admin";
+		//List<String> role = (["student"]);
 		String password = "123ABCqwe?!";
-		/*
-		UserService userService = new userService();
+
+		UserCreationService userCreationService = new UserCreationService();
 		
-		if (userService.createUser(userId, userEmail, fullName, role, password) != null)
+		if (userCreationService.createUser(userId, userEmail, fullName, role, password) != null)
 			return true;
-		*/
+		
 		return false;
 	}
 	
