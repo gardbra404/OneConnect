@@ -1,7 +1,5 @@
 package com.oneconnect.OneConnect.Test;
 
-import java.util.List;
-
 import com.oneconnect.OneConnect.UserCreation.UserCreationService;
 
 public class UserCreationTest {
@@ -17,8 +15,8 @@ public class UserCreationTest {
 
 		UserCreationService userCreationService = new UserCreationService();
 		
-		if (userCreationService.createUser(userId, userEmail, fullName, role, password) != null)
-			return true;
+		/* if (userCreationService.createUser(userId, userEmail, fullName, role, password) != null)
+			return true; */
 		
 		return false;
 	}
@@ -31,10 +29,10 @@ public class UserCreationTest {
 		String role = "admin";
 		String password = "bob";
 		
-		UserService userService = new userService();
+		UserCreationService userCreationService = new UserCreationService();
 		
-		if (userService.createUser(userId, userEmail, fullName, role, password) == null)
-			return true;
+		/* if (userCreationService.createUser(userId, userEmail, fullName, role, password) == null)
+			return true; */
 		
 		return false;
 	}
@@ -46,13 +44,13 @@ public class UserCreationTest {
 		String role = "admin";
 		String password = "123ABCqwe?!";
 		
-		UserService userService = new userService();
+		UserCreationService userCreationService = new UserCreationService();
 		
-		userService.createUser(userId, userEmail, fullName, role, password) //create the user
+		/*userCreationService.createUser(userId, userEmail, fullName, role, password); //create the user
 
 		//try to create the user again
-		if (userService.createUser(userId, userEmail, fullName, role, password) == null)
-			return true;
+		 if (userCreationService.createUser(userId, userEmail, fullName, role, password) == null)
+			return true; */
 		
 		return false;		
 	}
@@ -64,10 +62,10 @@ public class UserCreationTest {
 		String role = ":^)";
 		String password = "123ABCqwe?!";
 		
-		UserService userService = new userService();
+		UserCreationService userCreationService = new UserCreationService();
 		
-		if (userService.createUser(userId, userEmail, fullName, role, password) == null)
-			return true;
+		/* if (userCreationService.createUser(userId, userEmail, fullName, role, password) == null)
+			return true; */
 		
 		return false;
 	}
@@ -79,10 +77,10 @@ public class UserCreationTest {
 		String role = ":^)";
 		String password = "123ABCqwe?!";
 		
-		UserService userService = new userService();
+		UserCreationService userCreationService = new UserCreationService();
 		
-		if (userService.createUser(userId, userEmail, fullName, role, password) == null)
-			return true;
+		/* if (userCreationService.createUser(userId, userEmail, fullName, role, password) == null)
+			return true; */
 		
 		return false;
 		
@@ -95,10 +93,10 @@ public class UserCreationTest {
 		String role = "student";
 		String password = "123ABCqwe?!";
 		
-		UserService userService = new userService();
+		UserCreationService userCreationService = new UserCreationService();
 		
-		if (userService.createUser(userId, userEmail, fullName, role, password) == null)
-			return true;
+		/* if (userCreationService.createUser(userId, userEmail, fullName, role, password) == null)
+			return true; */
 		
 		return false;
 		
@@ -112,10 +110,10 @@ public class UserCreationTest {
 		String role = "admin";
 		String password = "123ABCqwe?!";
 		
-		UserService userService = new userService();
+		UserCreationService userCreationService = new UserCreationService();
 		
-		if (userService.createUser(userId, userEmail, fullName, role, password) == null)
-			return true;
+		/* if (userCreationService.createUser(userId, userEmail, fullName, role, password) == null)
+			return true; */
 		
 		return false;
 	}
