@@ -10,11 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserCreationService {
-/*
-    public boolean roleCheck (String role) {
-        return role.equals("teacher");
-    }
 
+    public boolean roleCheck (String role) {
+        return role.equals("admin");
+    }
+/*
     public List<List<Grade>> parentGrades(String id) {
         List<List<Grade>> grades = new ArrayList<>();
         Utility utility = new Utility();
@@ -185,7 +185,6 @@ public class UserCreationService {
         return userUpdated;
     }
 
-    //MAY NOT NEED THIS ONE, PLEASE ADVISE
     public boolean doesUserExist (String name, String userId) {
         Utility utility = new Utility();
         boolean exists = false;

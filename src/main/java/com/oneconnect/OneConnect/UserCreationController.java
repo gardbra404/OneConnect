@@ -109,7 +109,7 @@ public class UserCreationController {
 
     @RequestMapping("/updateUser")
     @ResponseBody
-    public boolean updateUser (String classId, String studentId, String assignmentId,String grade, String user, String role) {
+    public boolean updateUser (String name, List<String> role, String userId, List<String> classes, List<Child> children) {
         UserCreationService userCreationService = new UserCreationService();
         boolean update = false;
         LoginService loginService = new LoginService();
@@ -120,10 +120,10 @@ public class UserCreationController {
         if(!roles.contains(role)) {
             update = false;
         } else if (userCreationService.roleCheck(role)) {
-            if(userCreationService.doesUserExist(studentId, assignmentId, classId)) {
-                update = userCreationService.updateUser(studentId, assignmentId, classId, grade);
+            if(userCreationService.doesUserExist(name, userId)) {
+                update = userCreationService.updateUser(name, role, userId, classes, children);
             } else {
-                update = userCreationService.createUser(studentId, assignmentId, classId, grade);
+                update = userCreationService.createUser(name, role, userId, classes, children);
             }
         }
 
