@@ -1,7 +1,6 @@
 package com.oneconnect.OneConnect;
 
 import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.util.ResourceUtils;
@@ -83,6 +82,7 @@ public class Utility {
             temp++;
             number = temp+"";
             jsonWriter(number, "lastId.txt");
+            reader.close();
         } catch(FileNotFoundException e) {
             System.out.println(e);
         } catch (IOException e) {
