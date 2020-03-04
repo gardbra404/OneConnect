@@ -16,4 +16,10 @@ Option 2: intelliJ
 Notes regarding the use of this application:
 	Because this utilizes HTTPS, on boot up the browser will most likely warn you that this site may not be safe due to an unrecognized security key, simply tell it you wish to continue.
 	Due to how security is handled in this application, the use of the back and forward buttons in the browser is not advised, instead use the in app links for navigation.
-	For user information to access the application, please consult login.json
+	
+	Login info for an account with student and admin roles:  username: "gard6748", password: "Hello123"
+	Login info for an account with teacher and parent roles: username: "asdf2222", password: "test"
+	
+	All user information to access the application is contained in /src/main/resources/Database/Login.json
+	
+	
