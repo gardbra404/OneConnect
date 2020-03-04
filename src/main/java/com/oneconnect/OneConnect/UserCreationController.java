@@ -1,10 +1,5 @@
 package com.oneconnect.OneConnect;
 
-/*import com.oneconnect.OneConnect.Grades.Course;
-import com.oneconnect.OneConnect.Grades.CourseInfo;
-import com.oneconnect.OneConnect.Grades.Grade;
-import com.oneconnect.OneConnect.Grades.GradesService;*/
-
 import com.oneconnect.OneConnect.UserCreation.UserCreationService;
 import com.oneconnect.OneConnect.Login.LoginService;
 import org.json.simple.JSONArray;
@@ -95,16 +90,16 @@ public class UserCreationController {
 
     @RequestMapping("/getByRole")
     @ResponseBody
-    public List<Course> getByRole(String user) {
+    public List<User> getByRole(String role) {
         UserCreationService userCreationService = new UserCreationService();
-        return userCreationService.getCourses(user);
+        return userCreationService.getByRole(role);
     }
 
     @RequestMapping("/getAllUsers")
     @ResponseBody
     public List<User> getAllUsers(String course) {
         UserCreationService userCreationService = new UserCreationService();
-        return userCreationService.getCourseInfo(course);
+        return userCreationService.getAllUsers();
     }
 
     @RequestMapping("/updateUser")
@@ -113,13 +108,13 @@ public class UserCreationController {
         UserCreationService userCreationService = new UserCreationService();
         boolean update = false;
         LoginService loginService = new LoginService();
-        List<String> roles = loginService.retrieveRole(user);
+        List<String> roles = loginService.retrieveRole(userId);
         if(role.equals("default")) {
             role = roles.get(0);
         }
         if(!roles.contains(role)) {
             update = false;
-        } else if (userCreationService.roleCheck(role)) {
+        } else if (userCreationService.roleCheck(roles.get(0))) {
             if(userCreationService.doesUserExist(name, userId)) {
                 update = userCreationService.updateUser(name, role, userId, classes, children);
             } else {
