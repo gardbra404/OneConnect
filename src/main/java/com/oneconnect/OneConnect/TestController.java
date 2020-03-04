@@ -1,7 +1,6 @@
 package com.oneconnect.OneConnect;
 
-import com.oneconnect.OneConnect.Test.GradesTest;
-import com.oneconnect.OneConnect.Test.LoginTest;
+import com.oneconnect.OneConnect.Test.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -14,6 +13,8 @@ public class TestController {
     public String test() {
         LoginTest loginTest = new LoginTest();
         GradesTest gradesTest = new GradesTest();
-        return "TestResults:" + loginTest.runTests() + gradesTest.runTests();
+        LandingTest landingTest = new LandingTest();
+        UserCreationTest userCreationTest = new UserCreationTest();
+        return "TestResults:" + loginTest.runTests() + gradesTest.runTests() + landingTest.runTests() + userCreationTest.runTests();
     }
 }

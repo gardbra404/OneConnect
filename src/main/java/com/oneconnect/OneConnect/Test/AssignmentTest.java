@@ -2,6 +2,54 @@ package com.oneconnect.OneConnect.Test;
 
 public class AssignmentTest {
 
+	public boolean retrieveAssignmentsValidClass() {
+		String classId = "10052";
+
+		/*
+		* AssignmentService assignmentService = new AssignmentService();
+		* return assignmentService.getClassAssignments(classId).size() == 2;
+		*
+		* */
+
+		return true;
+	}
+
+	public boolean retrieveAssignmentsNanClass() {
+		String classId = "potato";
+
+		/*
+		 * AssignmentService assignmentService = new AssignmentService();
+		 * return assignmentService.getClassAssignments(classId).size() == 0;
+		 *
+		 * */
+
+		return true;
+	}
+
+	public boolean retrieveAssignmentsNullClass() {
+		String classId = null;
+
+		/*
+		 * AssignmentService assignmentService = new AssignmentService();
+		 * return assignmentService.getClassAssignments(classId).size() == 0;
+		 *
+		 * */
+
+		return true;
+	}
+
+	public boolean retrieveAssignmentsNotFoundClass() {
+		String classId = "-1";
+
+		/*
+		 * AssignmentService assignmentService = new AssignmentService();
+		 * return assignmentService.getClassAssignments(classId).size() == 0;
+		 *
+		 * */
+
+		return true;
+	}
+
 	public boolean validClassValidAssignValidPointsValidDuedate() {
 		
 		String userId = "username";

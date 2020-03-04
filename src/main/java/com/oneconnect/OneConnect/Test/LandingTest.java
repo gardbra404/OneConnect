@@ -1,174 +1,177 @@
 package com.oneconnect.OneConnect.Test;
 
+import org.springframework.web.servlet.ModelAndView;
+
+import com.oneconnect.OneConnect.Landing.LandingService;
+
 public class LandingTest {
 
 	public boolean validAdmin() {
 		
-		String adminId = "23";
+		String adminId = "123";
+		String role = "admin";
 		
-//		LandingService landingService = newLandingService();
-//		LandingPageDto landingPageDto = landingService.retrieveLandingPageData(adminId);
-//		
-//		if(landingPageDto.type = PageType.ADMIN) {
-//			return true;
-//		} else {
-//			return false;
-//		}
-//		
-		
-		return false;
+		LandingService landingService = new LandingService();
+		ModelAndView modelAndView = landingService.getModelAndViewByRoleAndUserId(role, adminId);
+
+		if(modelAndView.getViewName().equals("ADMIN_LANDING")) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	public boolean invalidAdmin() {
 		
-		String adminId = "thisadmindoesntexist";
+		String adminId = "999999";
+		String role = "admin";
 		
-//		LandingService landingService = newLandingService();
-//		LandingPageDto landingPageDto = landingService.retrieveLandingPageData(adminId);
-//		
-//		if(landingPageDto == null) {
-//			return true;
-//		} else {
-//			return false;
-//		}
-//		
-		
-		return false;
+		LandingService landingService = new LandingService();
+		ModelAndView modelAndView = landingService.getModelAndViewByRoleAndUserId(role, adminId);
+
+		if(modelAndView.getViewName().equals("forbidden")) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	public boolean validTeacher() {
 		
-		String teacherId = "115";
+		String adminId = "128";
+		String role = "teacher";
 		
-//		LandingService landingService = newLandingService();
-//		LandingPageDto landingPageDto = landingService.retrieveLandingPageData(teacherId);
-//		
-//		if(landingPageDto.type = PageType.TEACHER) {
-//			return true;
-//		} else {
-//			return false;
-//		}
-		
-		return false;
+		LandingService landingService = new LandingService();
+		ModelAndView modelAndView = landingService.getModelAndViewByRoleAndUserId(role, adminId);
+
+		if(modelAndView.getViewName().equals("TEACHER_LANDING")) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	public boolean invalidTeacher() {
 		
-		String teacherId = "thisteacherdoesnotexist";
+		String teacherId = "999999";
+		String role = "teacher";
 		
-//		LandingService landingService = newLandingService();
-//		LandingPageDto landingPageDto = landingService.retrieveLandingPageData(teacherId);
-//		
-//		if(landingPageDto == null) {
-//			return true;
-//		} else {
-//			return false;
-//		}
-//		
-		
-		return false;
+		LandingService landingService = new LandingService();
+		ModelAndView modelAndView = landingService.getModelAndViewByRoleAndUserId(role, teacherId);
+
+		if(modelAndView.getViewName().equals("forbidden")) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	public boolean validStudent() {
 		
-		String studentId = "882";
+		String studentId = "123";
+		String role = "student";
 		
-//		LandingService landingService = newLandingService();
-//		LandingPageDto landingPageDto = landingService.retrieveLandingPageData(studentId);
-//		
-//		if(landingPageDto.type = PageType.STUDENT) {
-//			return true;
-//		} else {
-//			return false;
-//		}
-		
-		return false;
+		LandingService landingService = new LandingService();
+		ModelAndView modelAndView = landingService.getModelAndViewByRoleAndUserId(role, studentId);
+
+		if(modelAndView.getViewName().equals("STUDENT_LANDING")) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	public boolean invalidStudent() {
 		
-		String studentId = "thisstudentdoesnotexist";
+		String studentId = "999999";
+		String role = "student";
+
+		LandingService landingService = new LandingService();
+		ModelAndView modelAndView = landingService.getModelAndViewByRoleAndUserId(role, studentId);
+
+		if(modelAndView.getViewName().equals("forbidden")) {
+			return true;
+		} else {
+			return false;
+		}
 		
-//		LandingService landingService = newLandingService();
-//		LandingPageDto landingPageDto = landingService.retrieveLandingPageData(studedntId);
-//		
-//		if(landingPageDto == null) {
-//			return true;
-//		} else {
-//			return false;
-//		}
-//		
-		
-		return false;
 	}
 	
 	public boolean validParent() {
 		
-		String parentId = "23";
+		String parentId = "128";
+		String role = "parent";
 		
-//		LandingService landingService = newLandingService();
-//		LandingPageDto landingPageDto = landingService.retrieveLandingPageData(parentId);
-//		
-//		if(landingPageDto.type = PageType.PARENT) {
-//			return true;
-//		} else {
-//			return false;
-//		}
-		
-		return false;
+		LandingService landingService = new LandingService();
+		ModelAndView modelAndView = landingService.getModelAndViewByRoleAndUserId(role, parentId);
+
+		if(modelAndView.getViewName().equals("PARENT_LANDING")) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	public boolean invalidParent() {
 		
-		String parentId = "thisparentdoesnotexist";
+		String parentId = "999999";
+		String role = "parent";
+
+		LandingService landingService = new LandingService();
 		
-//		LandingService landingService = newLandingService();
-//		LandingPageDto landingPageDto = landingService.retrieveLandingPageData(parentId);
-//		
-//		if(landingPageDto == null) {
-//			return true;
-//		} else {
-//			return false;
-//		}
-//		
-		
-		return false;
+		ModelAndView modelAndView = landingService.getModelAndViewByRoleAndUserId(role, parentId);
+
+		if(modelAndView.getViewName().equals("forbidden")) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	public boolean nullUserId() {
 		
-	String userId = null;
-		
-//		LandingService landingService = newLandingService();
-//		LandingPageDto landingPageDto = landingService.retrieveLandingPageData(userId);
-//		
-//		if(landingPageDto == null) {
-//			return true;
-//		} else {
-//			return false;
-//		}
-//		
-		
-		return false;
+		String userId = null;
+		String role = "student";
+	
+		LandingService landingService = new LandingService();
+		ModelAndView modelAndView = landingService.getModelAndViewByRoleAndUserId(role, userId);
+	
+		if(modelAndView.getViewName().equals("forbidden")) {
+			return true;
+		} else {
+			return false;
+		}
+	
 	}
 	
 	public boolean emptyUserId() {
 		
-	String userId = "";
+		String userId = "";
+		String role = "student";
 		
-//		LandingService landingService = newLandingService();
-//		LandingPageDto landingPageDto = landingService.retrieveLandingPageData(userId);
-//		
-//		if(landingPageDto == null) {
-//			return true;
-//		} else {
-//			return false;
-//		}
-//		
-		
-		return false;
-	}
+		LandingService landingService = new LandingService();
+		ModelAndView modelAndView = landingService.getModelAndViewByRoleAndUserId(role, userId);
 	
+		if(modelAndView.getViewName().equals("forbidden")) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	public boolean nonNumericUserId() {
+		
+		String userId = "thisisnotanumber";
+		String role = "student";
+		
+		LandingService landingService = new LandingService();
+		ModelAndView modelAndView = landingService.getModelAndViewByRoleAndUserId(role, userId);
+	
+		if(modelAndView.getViewName().equals("forbidden")) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 	 public String runTests() {
 	        return "<br/><br/>Landing Test:"
@@ -181,7 +184,9 @@ public class LandingTest {
 	                +"<br/>validParent: " + (validParent() ? "Passed" : "Failed")
 	                +"<br/>invalidParent: " + (invalidParent() ? "Passed" : "Failed")
 	                +"<br/>nullUserId: " + (nullUserId() ? "Passed" : "Failed")
-	                +"<br/>emptyUserId: " + (emptyUserId() ? "Passed" : "Failed");
+	                +"<br/>emptyUserId: " + (emptyUserId() ? "Passed" : "Failed")
+	                +"<br/>nonNumericUserId: " + (nonNumericUserId() ? "Passed" : "Failed");
+
 	    }
 	
 }
