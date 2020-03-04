@@ -14,7 +14,6 @@
       "userId": "124",
       "classes" : ["5252", "5253"],
       "children" : []
-
   },
   {
     "name" : "Jane Gardner",
@@ -54,7 +53,14 @@
     "userId": "127",
     "classes" : [],
     "children" : []
-
+  },
+  
+   {
+      "name" : "Joe Schmoe",
+      "role": ["teacher", "parent"],
+      "id": "128",
+      "classes" : ["5252", "5253"],
+      "children" : []
   }
 
 ]
