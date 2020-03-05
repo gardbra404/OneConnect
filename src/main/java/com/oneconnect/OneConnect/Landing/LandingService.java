@@ -19,7 +19,7 @@ public class LandingService {
         Utility utility  = new Utility();
         try {
 	        if (role.equals("default")) {
-	        	role = loginService.retrieveRole(userId).get(1);
+	        	role = loginService.retrieveRole(userId).get(0);
 		    }
 		        
 	        System.out.println("Role: " + role + " userId: " + userId);
