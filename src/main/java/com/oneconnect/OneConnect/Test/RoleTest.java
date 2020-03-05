@@ -15,6 +15,20 @@ public class RoleTest {
 //        return roleService.removeRole(user, role);
         return true;
     }
+    public boolean addRoleDuplicateRole() {
+        String role = "admin";
+        String user = "123";
+//        RoleService roleService = new RoleService();
+//        return !roleService.addRole(user, role);
+        return true;
+    }
+    public boolean removeRoleNotHeld() {
+        String role = "teacher";
+        String user = "123";
+//        RoleService roleService = new RoleService();
+//        return roleService.removeRole(user, role);
+        return true;
+    }
     public boolean addRoleInvalidRole() {
         String role = "frog";
         String user = "123";
