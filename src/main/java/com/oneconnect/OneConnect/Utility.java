@@ -7,6 +7,8 @@ import org.json.simple.parser.ParseException;
 import org.springframework.util.ResourceUtils;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Utility {
     public JSONArray jsonArrayGenerator(String fileName) {
@@ -89,5 +91,13 @@ public class Utility {
             System.out.println(e);
         }
         return number;
+    }
+
+    public List<String> convertJsonArray(JSONArray jsonArray) {
+        List<String> stringList = new ArrayList<>();
+        for (int i = 0; i < jsonArray.size(); i++) {
+            stringList.add((String) jsonArray.get(i));
+        }
+        return stringList;
     }
 }
