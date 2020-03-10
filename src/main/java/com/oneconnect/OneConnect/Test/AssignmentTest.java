@@ -175,8 +175,67 @@ public class AssignmentTest {
 		
 		return false;
 	}
-	
-	
+
+	private boolean getAssignmentInfoValid() {
+		String id = "10054";
+//		AssignmentService assignmentService = new AssignmentService();
+//		return assignmentService.getAssignment(id).getName().equals("Implement Features and Panic");
+
+		return false;
+	}
+
+	private boolean getAssignmentInfoNan() {
+		String id = "potato";
+//		AssignmentService assignmentService = new AssignmentService();
+//		return assignmentService.getAssignment(id) == null;
+
+		return false;
+	}
+	private boolean getAssignmentInfoNull() {
+		String id = null;
+//		AssignmentService assignmentService = new AssignmentService();
+//		return assignmentService.getAssignment(id) == null;
+
+		return false;
+	}
+	private boolean getAssignmentInfoNotFound() {
+		String id = "2457";
+//		AssignmentService assignmentService = new AssignmentService();
+//		return assignmentService.getAssignment(id) == null;
+
+		return false;
+	}
+
+	private boolean getAssignmentsForClassValid() {
+		String classId = "5252";
+//		AssignmentService assignmentService = new AssignmentService();
+//		return assignmentService.getClassAssignments(classId).size() == 2;
+
+		return false;
+	}
+
+	private boolean getAssignmentsForClassNan() {
+		String classId = "potato";
+//		AssignmentService assignmentService = new AssignmentService();
+//		return assignmentService.getClassAssignments(classId).size() == 0;
+
+		return false;
+	}
+	private boolean getAssignmentsForClassNull() {
+		String classId = null;
+//		AssignmentService assignmentService = new AssignmentService();
+//		return assignmentService.getClassAssignments(classId).size() == 0;
+
+		return false;
+	}
+	private boolean getAssignmentsForClassNotFound() {
+		String classId = "888888888";
+//		AssignmentService assignmentService = new AssignmentService();
+//		return assignmentService.getClassAssignments(classId).size() == 0;
+
+		return false;
+	}
+
 	 public String runTests() {
 	        return "<br/><br/>Assignment Test:"
 	                +"<br/>validClassValidAssignValidPointsValidDuedate: " + (validClassValidAssignValidPointsValidDuedate() ? "Passed" : "Failed")
@@ -186,7 +245,15 @@ public class AssignmentTest {
 	                +"<br/>negativePoints: " + (negativePoints() ? "Passed" : "Failed")
 	                +"<br/>nullPoints: " + (nullPoints() ? "Passed" : "Failed")
 	                +"<br/>nullDuedate: " + (nullDuedate() ? "Passed" : "Failed")
-	                +"<br/>nonNumericDuedate: " + (nonNumericDuedate() ? "Passed" : "Failed");
+	                +"<br/>nonNumericDuedate: " + (nonNumericDuedate() ? "Passed" : "Failed")
+					+"<br/>getAssignmentInfoValid: " + (getAssignmentInfoValid() ? "Passed" : "Failed")
+					+"<br/>getAssignmentInfoNan: " + (getAssignmentInfoNan() ? "Passed" : "Failed")
+					+"<br/>getAssignmentInfoNull: " + (getAssignmentInfoNull() ? "Passed" : "Failed")
+					+"<br/>getAssignmentInfoNotFound: " + (getAssignmentInfoNotFound() ? "Passed" : "Failed")
+					+"<br/>getAssignmentsForClassValid: " + (getAssignmentsForClassValid() ? "Passed" : "Failed")
+					+"<br/>getAssignmentsForClassNan: " + (getAssignmentsForClassNan() ? "Passed" : "Failed")
+					+"<br/>getAssignmentsForClassNull: " + (getAssignmentsForClassNull() ? "Passed" : "Failed")
+					+"<br/>getAssignmentsForClassNotFound: " + (getAssignmentsForClassNotFound() ? "Passed" : "Failed");
 	    }
 	
 	
