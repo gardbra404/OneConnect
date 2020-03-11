@@ -15,6 +15,7 @@ public class TestController {
         GradesTest gradesTest = new GradesTest();
         LandingTest landingTest = new LandingTest();
         UserCreationTest userCreationTest = new UserCreationTest();
-        return "TestResults:" + loginTest.runTests() + gradesTest.runTests() + landingTest.runTests() + userCreationTest.runTests();
+        RoleTest roleTest = new RoleTest();
+        return "TestResults:" + loginTest.runTests() + gradesTest.runTests() + landingTest.runTests() + roleTest.runTests();
     }
 }

@@ -24,17 +24,19 @@ public class RoleService {
         boolean contains = false;
         Utility utility = new Utility();
         JSONArray users = utility.jsonArrayGenerator("Users.json");
-        for (int i = 0; i < users.size(); i++) {
-            JSONObject user = (JSONObject) users.get(i);
-            if(((String)user.get("id")).equals(id)) {
-                JSONArray userRoles = (JSONArray) user.get("role");
-                for (int j = 0; j < userRoles.size(); j++) {
-                    if (role.equals(userRoles.get(j))) {
-                        contains = true;
-                        break;
+        if (role != null && utility.numberChecker(id)) {
+            for (int i = 0; i < users.size(); i++) {
+                JSONObject user = (JSONObject) users.get(i);
+                if (((String) user.get("id")).equals(id)) {
+                    JSONArray userRoles = (JSONArray) user.get("role");
+                    for (int j = 0; j < userRoles.size(); j++) {
+                        if (role.equals(userRoles.get(j))) {
+                            contains = true;
+                            break;
+                        }
                     }
+                    break;
                 }
-                break;
             }
         }
         return contains;
@@ -43,6 +45,7 @@ public class RoleService {
     public boolean addUserRole(String id, String role) {
         Utility utility = new Utility();
         boolean changed = false;
+        System.out.println(utility.numberChecker(id) +" "+  doesRoleExist(role) +" "+ !userHasRole(id, role));
         if (utility.numberChecker(id) && doesRoleExist(role) && !userHasRole(id, role)) {
             JSONArray users = utility.jsonArrayGenerator("Users.json");
             JSONArray dupUsers = new JSONArray();
@@ -116,5 +119,21 @@ public class RoleService {
             }
         }
         return roles;
+    }
+
+    public List<String> getOtherRoles(String id) {
+        Utility utility = new Utility();
+        List<String> dupRoles = new ArrayList<>();
+        if (utility.numberChecker(id)) {
+            List<String> userRoles = getUserRoles(id);
+            List<String> roles = utility.convertJsonArray(utility.jsonArrayGenerator("Roles.json"));
+            for (String role: roles) {
+                if (!userRoles.contains(role)) {
+                    dupRoles.add(role);
+                }
+            }
+
+        }
+        return dupRoles;
     }
 }
