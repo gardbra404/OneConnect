@@ -1,11 +1,9 @@
 package com.oneconnect.OneConnect.UserCreation;
 
 import com.oneconnect.OneConnect.Utility;
-import com.sun.codemodel.internal.JForEach;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import javax.rmi.CORBA.Util;
 import java.util.ArrayList;
 import java.util.List;
 

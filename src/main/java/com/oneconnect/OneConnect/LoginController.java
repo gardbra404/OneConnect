@@ -2,13 +2,7 @@ package com.oneconnect.OneConnect;
 
 import com.oneconnect.OneConnect.Login.LoginService;
 import com.oneconnect.OneConnect.Login.UserLogin;
-import org.apache.catalina.User;
-import org.json.simple.JSONArray;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
