@@ -1,9 +1,11 @@
 package com.oneconnect.OneConnect;
 
-import com.oneconnect.OneConnect.UserCreation.User;
+
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import com.oneconnect.OneConnect.UserCreation.UserCreationService;
 import com.oneconnect.OneConnect.Login.LoginService;
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,7 +34,7 @@ public class UserCreationController {
         } else {
             modelAndView.addObject("userId", id);
             modelAndView.addObject("role", role);
-            modelAndView.addObject("name", userCreationService.findName(id));
+            modelAndView.addObject("name", userCreationService.getByUserId(id));
             //For right now, the school name is hard coded
             modelAndView.addObject("school", "Kettering University");
             if (role.equals("teacher")) {
@@ -61,7 +63,7 @@ public class UserCreationController {
         if(!roles.contains(role)) {
             user = new String();
         } else if(role.equals("student")) {
-            user = userCreationService.getUser(user);
+            user = userCreationService.getUser(user).get(0).toString();
         } else {
             user = new String();
         }
@@ -81,7 +83,7 @@ public class UserCreationController {
         if(!roles.contains(role)) {
             grades = new ArrayList<>();
         } else if(role.equals("parent")) {
-            grades = userCreationService.parentGrades(user);
+            grades = userCreationService.getUser(user).get(0).toString();
         } else {
             grades = new ArrayList<>();
         }
