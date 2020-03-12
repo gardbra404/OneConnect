@@ -40,8 +40,9 @@
                 <div>
                     <h2>Classes</h2>
                     <hr>
-                    <ul id="courseTable">
-                    	<li th:each="course: ${courseNames}"><a href="" th:text="${course}"></a></li>
+                    <ul id="courseTable"> 
+						<!--  NEED TO GET THE COURSE IDS TOO. WILL NEED TO BUILD A DTO OR COURSE OBJECTS.  -->
+                    	<li th:each="course: ${courseNames}"><a href="@{'/course?id' + ${courseId} + '&role' + ${role} '&id' + ${userId}}" th:text="${course}"></a></li>
                     </ul>
                 </div>
             </div>
