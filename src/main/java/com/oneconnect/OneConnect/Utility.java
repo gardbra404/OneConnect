@@ -53,6 +53,10 @@ public class Utility {
         return valid;
     }
 
+    public boolean stringChecker(String string) {
+        return string != null && string.length() > 0;
+    }
+
     public boolean jsonWriter(String jsonString, String fileName) {
         //We save to the temp because that allows for permanent data storage...storing to resources does not
         boolean successfulSave;

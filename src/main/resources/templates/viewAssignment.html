@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/CSS/assignment.css}" />
+    <link rel="stylesheet" th:href="@{/CSS/common.css}" />
+    <link rel="stylesheet" th:href="@{/CSS/exam.css}" />
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Roboto|Source+Sans+Pro&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id='top'>
+    <span id="title" class="logo"><strong>One Connect</strong></span>
+    <span><button class='fa fa-gear settings-button' onclick="window.location.href='#'"></button></span>
+    <span id='info'><span th:text="${name}"></span><br/><span th:text="${school}"></span></span>
+</div>
+
+<div class=classheader>
+    <a href="#" onclick="$('#form').submit()">Home</a>
+    <i class="fa fa-chevron-right header-chevron"></i>
+    <a href="#" onclick="$('#assignmentForm').submit()">Assignments</a>
+    <i class="fa fa-chevron-right header-chevron"></i>
+    <a>View Assignment</a>
+</div>
+<div class='columns'>
+
+    <div class='box'>
+        <div>
+            <h2 th:text="${title}"></h2>
+            <h3>Assignment Details</h3>
+            <div class="subbox">
+                <div class='gradeLabel'> Points Possible: <strong th:text="${points}">200</strong></div>
+                <hr>
+                <p class='gradeLabel' th:text="${description}"></p>
+            </div>
+
+        </div>
+
+
+    </div>
+    <form action="/landing" method="POST" id="form">
+        <input type='hidden' id='id' name='id' th:value='${userId}'/>
+        <input type='hidden' id='role' name='role' th:value='${role}'/>
+    </form>
+    <form action="/assignments" method="POST" id="assignmentForm">
+        <input type="hidden" id="assId" name="id" th:value="${userId}">
+        <input type="hidden" id="assRole" name="role" th:value="${role}">
+        <input type="hidden" id="classId" name="classId" th:value="${classId}">
+    </form>
+</div>
+</body>
+</html>
