@@ -54,12 +54,17 @@ public class LandingService {
 	                {
 	                    modelAndView.setViewName("TEACHER_LANDING");
 	                    List<String> courseIds = retrieveCourses(userId);
-	                    List<String> courseNames = new ArrayList<String>();
+	                    List<CourseDTO> courseDTOs = new ArrayList<>();
+
 	                    for(String courseId : courseIds) {
-	                    	courseNames.add(retrieveCourseName(courseId));
+	                    	CourseDTO dto = new CourseDTO();
+	                    	dto.setCourseId(courseId);
+	                    	dto.setName(retrieveCourseName(courseId));
+	                    	courseDTOs.add(dto);
+	                    	
 	                    }
 	                    
-	                    modelAndView.addObject("courseNames", courseNames);
+	                    modelAndView.addObject("courses", courseDTOs);
 	                    modelAndView.addObject("userId", userId);
 	                    modelAndView.addObject("userName", userName);
 	                    modelAndView.addObject("role", "teacher");

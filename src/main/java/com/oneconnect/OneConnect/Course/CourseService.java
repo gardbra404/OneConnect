@@ -8,6 +8,8 @@ import org.json.simple.JSONObject;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.oneconnect.OneConnect.Utility;
+import com.oneconnect.OneConnect.Grades.Grade;
+import com.oneconnect.OneConnect.Grades.GradesService;
 import com.oneconnect.OneConnect.Login.LoginService;
 
 public class CourseService {
@@ -16,6 +18,7 @@ public class CourseService {
 		
 		ModelAndView modelAndView = new ModelAndView();
 		LoginService loginService = new LoginService();
+		GradesService gradesService = new GradesService();
 		Utility utility = new Utility();
 		
         try {
@@ -63,6 +66,29 @@ public class CourseService {
 	                    modelAndView.addObject("assignmentNames", assignmentNames);
 
 	                    //Grades
+	                    List<Grade> grades = gradesService.getStudentClassGrades(userId, courseId);
+	                    
+	                    int gradeTotal = 0;
+	                    int studentTotal = 0;
+	                    for(Grade grade : grades) {
+	                    	gradeTotal += Integer.parseInt(grade.getAssignmentTotal());
+	                    	studentTotal += Integer.parseInt(grade.getScore());
+	                    }
+	                    
+	                    double percent = ((double)studentTotal / gradeTotal) * 100;
+	                    percent = Math.round(percent * 100.0) / 100.0;
+	                    
+	                    modelAndView.addObject("courseTotal", gradeTotal);
+	                    modelAndView.addObject("studentTotal", studentTotal);
+	                    modelAndView.addObject("percent", percent);
+
+	                    
+	                    modelAndView.addObject("grades", grades);
+	                    modelAndView.addObject("role", "student");
+	                    modelAndView.addObject("isStudent", 1);
+	                    
+	                    
+
 	                    
 	                    break;
 	                }
