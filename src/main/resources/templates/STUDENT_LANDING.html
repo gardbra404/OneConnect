@@ -40,8 +40,10 @@
                 <div>
                     <h2>Classes</h2>
                     <hr>
-                    <ul id="courseTable">
-                    	<li th:each="course: ${courseNames}"><a href="" th:text="${course}"></a></li>
+                    <ul id="courseTable"> 
+                    	<li th:each="course : ${courses}">
+                            <a th:href="${'/course?courseId=' + {course.courseId} + '&role=' + {role} + '&id=' + {userId} }" th:text="${course.name}" ></a>
+                    	</li>
                     </ul>
                 </div>
             </div>
