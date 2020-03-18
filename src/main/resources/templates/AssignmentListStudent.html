@@ -45,6 +45,8 @@
 <div class=classheader>
     <a href="#" onclick="$('#form').submit()">Home</a>
     <i class="fa fa-chevron-right header-chevron"></i>
+    <a href="#" onclick="$('#courseForm').submit()">Course</a>
+    <i class="fa fa-chevron-right header-chevron"></i>
     <a>Assignments</a>
 </div>
 
@@ -70,6 +72,11 @@
         <input type="hidden" id="assignmentId" name ="assignmentId" value="-1"/>
         <input type='hidden' id='infoId' name='id' th:value='${userId}'/>
         <input type='hidden' id='infoRole' name='role' th:value='${role}'/>
+    </form>
+    <form action="/course" method = "GET" id="courseForm">
+        <input type="hidden" id="courseId" name ="courseId" th:value="${classId}" />
+        <input type='hidden' id='courseUserId' name='id' th:value='${userId}'/>
+        <input type='hidden' id='courseRole' name='role' th:value='${role}'/>
     </form>
 </div>
 </body>

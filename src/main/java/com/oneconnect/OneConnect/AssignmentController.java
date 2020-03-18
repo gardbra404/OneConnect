@@ -18,6 +18,7 @@ public class AssignmentController {
     @PostMapping("/assignments")
     @ResponseBody
     public ModelAndView assignmentView (@RequestParam(defaultValue = "f") String id, @RequestParam String role, @RequestParam String classId) {
+        System.out.println(id + " " + role + " " + classId);
         ModelAndView modelAndView = new ModelAndView();
         LoginService loginService = new LoginService();
         GradesService gradesService = new GradesService();

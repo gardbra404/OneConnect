@@ -37,7 +37,7 @@
                 <hr>
                 <ul>
                     <li><a href="#">Exams</a></li>
-                    <li><a href="#">Assignments</a></li>
+                    <li><a href="#" onclick="$('#assignForm').submit()">Assignments</a></li>
                     <li><a href="#">Disscussion Board</a></li>
                     <li><a href="#">File Repository</a></li>
                 </ul>
@@ -68,6 +68,11 @@
             <input type='hidden' id='role' name='role' th:value='${role}'/>
         </form>
 
+        <form action="/assignments" method="POST" id="assignForm">
+            <input type='hidden' id='assignId' name='id' th:value='${userId}'/>
+            <input type='hidden' id='assignRole' name='role' th:value='${role}'/>
+            <input type="hidden" id="assignClass" name="classId" th:value="${courseId}" />
+        </form>
     </div>
     <script>
         function redirectSettings() {
