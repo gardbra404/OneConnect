@@ -1,6 +1,5 @@
 package com.oneconnect.OneConnect.Landing;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +8,7 @@ import org.json.simple.JSONObject;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.oneconnect.OneConnect.Utility;
+import com.oneconnect.OneConnect.Course.CourseDTO;
 import com.oneconnect.OneConnect.Login.LoginService;
 
 public class LandingService {
@@ -71,12 +71,17 @@ public class LandingService {
 	                    modelAndView.setViewName("STUDENT_LANDING");
 	                    
 	                    List<String> courseIds = retrieveCourses(userId);
-	                    List<String> courseNames = new ArrayList<String>();
+	                    List<CourseDTO> courseDTOs = new ArrayList<>();
+	                    
 	                    for(String courseId : courseIds) {
-	                    	courseNames.add(retrieveCourseName(courseId));
+	                    	CourseDTO dto = new CourseDTO();
+	                    	dto.setCourseId(courseId);
+	                    	dto.setName(retrieveCourseName(courseId));
+	                    	courseDTOs.add(dto);
+	                    	
 	                    }
 	                    
-	                    modelAndView.addObject("courseNames", courseNames);
+	                    modelAndView.addObject("courses", courseDTOs);
 	                    modelAndView.addObject("userId", userId);
 	                    modelAndView.addObject("userName", userName);
 	                    modelAndView.addObject("role", "student");

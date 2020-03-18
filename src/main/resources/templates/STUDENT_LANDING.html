@@ -42,7 +42,13 @@
                     <hr>
                     <ul id="courseTable"> 
 						<!--  NEED TO GET THE COURSE IDS TOO. WILL NEED TO BUILD A DTO OR COURSE OBJECTS.  -->
-                    	<li th:each="course: ${courseNames}"><a href="@{'/course?id' + ${courseId} + '&role' + ${role} '&id' + ${userId}}" th:text="${course}"></a></li>
+                    	<li th:each="course : ${courses}">
+                    	
+                            <a th:href="${'/course?courseId=' + {course.courseId} + '&role=' + {role} + '&id=' + {userId} }" th:text="${course.name}" ></a>
+
+                    		<!-- <a href="@{'/course?id' + ${course.id} + '&role' + ${role} + '&id' + ${userId}}" th:text="${course.name}"></a> -->
+                    		<!-- <a href="@{/course?courseId={courseId}&role={role}&id={userId}(courseId=${course.id},role=${role},id=${userId})' + ${course.id} + '&role' + ${role} + '&id' + ${userId}}" th:text="${course.name}"></a> -->
+                    	</li>
                     </ul>
                 </div>
             </div>
