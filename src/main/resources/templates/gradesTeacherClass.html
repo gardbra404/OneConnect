@@ -22,7 +22,7 @@
 
                 $.ajax({
                     url:"/getCourseInfo",
-                    data:{course:$("#classId").val()},
+                    data:{course:$("#courseId").val()},
                     success:fillAdd
                 })
 
@@ -48,7 +48,7 @@
             $.ajax({
                 url:"/updateGrades",
                 data:{
-                    classId: $("#classId").val(),
+                    classId: $("#courseId").val(),
                     studentId: $("#students").val(),
                     assignmentId: $("#assignments").val(),
                     grade: $("#grade").val(),

@@ -17,7 +17,7 @@
         $(function(){
             $.ajax({
                 url:"/getStudentClassGrades",
-                data:{studentId:$("#id").val(), classId:$("#classId").val()},
+                data:{studentId:$("#id").val(), classId:$("#courseId").val()},
                 success: updateTable
             })
         });
