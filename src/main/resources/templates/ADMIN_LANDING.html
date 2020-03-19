@@ -9,52 +9,38 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
     </head>
     <body>
         <div id = 'top'>
             <span id = "title" class="logo"><strong>One Connect</strong></span>
-            <span><button class = 'fa fa-gear settings-button' onclick="window.location.href='../site-settings.html'"></button></span>
+            <span><button class = 'fa fa-gear settings-button' onclick="window.location.href='#'"></button></span>
              <span id='info' th:text="${userName}"></span>
             <br/><span style="float:right;">Kettering University</span>
         </div>
         
         <div class ='columns'>
 
-            <div class = 'column'>
+            <div class = 'adminColumn'>
                 <div>
                     <h2>Quick Links</h2>
                     <hr>
                     <ul>
-                        <li><a href="#">Grades</a></li>
-                        <li><a href="#">Notifications</a></li>
-                        <li><a href="#">Chat Rooms</a></li>
-                        <li><a href="#">File Repository</a></li>
                         <li><a href="#">Admin Settings</a></li>
                         <li><a href="#">User Management</a></li>
+                        <li><a href="#" onclick="$('#roleForm').submit()">Role Management</a></li>
                     </ul>
                 </div>
                 
 
             </div>
 
-            <div class = 'column'>
-                <div>
-                </div>
-            </div>
-            <div class = 'column'>
-                <div id = 'eventCalendar'>
-                    <h2>Announcements</h2>
-                    <hr>
-                    <a id ="cal" href='../calendar.html' target="_blank">View Full Calendar</a>
-                </div>
-                <ul id ='announce'>
-                    <li>New assignment due in some class</li>
-                    <li>New assignment due in some class</li>
-                    <li>New assignment due in some class</li>
-                    <li>New assignment due in some class</li>
-                </ul>
-            </div>
+
         </div>
+        <form action="/roleManagement" method="POST" id="roleForm">
+            <input type='hidden' id='id' name='id' th:value='${userId}'/>
+            <input type='hidden' id='role' name='role' th:value='${role}'/>
+        </form>
         <script>
             function redirectSettings() {
 

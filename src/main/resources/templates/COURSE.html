@@ -37,7 +37,7 @@
                 <hr>
                 <ul>
                     <li><a href="#">Exams</a></li>
-                    <li><a href="#">Assignments</a></li>
+                    <li><a href="#" onclick="$('#assignForm').submit()">Assignments</a></li>
                     <li><a href="#">Disscussion Board</a></li>
                     <li><a href="#">File Repository</a></li>
                 </ul>
@@ -50,13 +50,13 @@
                 <hr>
                 <ul>
                     <li th:if="${isStudent}" th:text="${'Current Total - ' + {studentTotal} + ' / ' + {courseTotal} + ' (' + {percent} + '%)'}"></li>
-                    <li><a href="../grades/detailedgradeview.html">Detailed View</a></li>
+                    <li><a href="#" onclick="$('#gradesForm').submit()">Detailed View</a></li>
                 </ul>
                 <h2>Upcoming Assingments</h2>
                 <hr>
                 <ul>
                 	<li th:each="assignmentName : ${assignmentNames}">
-                    	<a href="" th:text="${assignmentName}" ></a>
+                    	<span th:text="${assignmentName}" ></span>
                     </li>
                 </ul>
 
@@ -68,6 +68,16 @@
             <input type='hidden' id='role' name='role' th:value='${role}'/>
         </form>
 
+        <form action="/assignments" method="POST" id="assignForm">
+            <input type='hidden' id='assignId' name='id' th:value='${userId}'/>
+            <input type='hidden' id='assignRole' name='role' th:value='${role}'/>
+            <input type="hidden" id="assignClass" name="classId" th:value="${courseId}" />
+        </form>
+        <form action="/viewClassGrades" method="POST" id="gradesForm">
+            <input type='hidden' id='gradesId' name='id' th:value='${userId}'/>
+            <input type='hidden' id='gradesRole' name='role' th:value='${role}'/>
+            <input type="hidden" id="gradesClass" name="classId" th:value="${courseId}" />
+        </form>
     </div>
     <script>
         function redirectSettings() {

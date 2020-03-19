@@ -1,0 +1,43 @@
+
+.submit {
+    float: right;
+    margin: 30px
+}
+
+.edit {
+    float: right;
+}
+
+.file-form {
+    padding-bottom: 10px
+}
+
+.note-box {
+    margin-top: 20px
+}
+
+.submissions-table {
+    border: 1px;
+}
+
+.assignment-form-item{
+    padding-bottom:10px
+}
+
+
+/* Basic table styling */
+tbody tr:nth-child(odd) {
+    background-color: #e6e6e6;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+tbody td {
+    text-align: center;
+}
+
+table {
+    width: 100%
+}

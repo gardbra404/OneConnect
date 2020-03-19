@@ -25,7 +25,7 @@ public class CourseService {
 	        if (role.equals("default")) {
 	        	role = loginService.retrieveRole(userId).get(0);
 		    }
-		        
+		    modelAndView.addObject("courseId", courseId);
 	        System.out.println("Role: " + role + " userId: " + userId);
 	        
 	        if(userId.equals("f") || !utility.numberChecker(userId)) {

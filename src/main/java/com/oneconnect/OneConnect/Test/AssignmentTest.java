@@ -1,242 +1,175 @@
 package com.oneconnect.OneConnect.Test;
 
+import com.oneconnect.OneConnect.Assignment.AssignmentService;
+
 public class AssignmentTest {
 
-	public boolean retrieveAssignmentsValidClass() {
-		String classId = "10052";
+	public boolean addAssignmentValidClassValidAssignValidPoints() {
 
-		/*
-		* AssignmentService assignmentService = new AssignmentService();
-		* return assignmentService.getClassAssignments(classId).size() == 2;
-		*
-		* */
-
-		return true;
-	}
-
-	public boolean retrieveAssignmentsNanClass() {
-		String classId = "potato";
-
-		/*
-		 * AssignmentService assignmentService = new AssignmentService();
-		 * return assignmentService.getClassAssignments(classId).size() == 0;
-		 *
-		 * */
-
-		return true;
-	}
-
-	public boolean retrieveAssignmentsNullClass() {
-		String classId = null;
-
-		/*
-		 * AssignmentService assignmentService = new AssignmentService();
-		 * return assignmentService.getClassAssignments(classId).size() == 0;
-		 *
-		 * */
-
-		return true;
-	}
-
-	public boolean retrieveAssignmentsNotFoundClass() {
-		String classId = "-1";
-
-		/*
-		 * AssignmentService assignmentService = new AssignmentService();
-		 * return assignmentService.getClassAssignments(classId).size() == 0;
-		 *
-		 * */
-
-		return true;
-	}
-
-	public boolean validClassValidAssignValidPointsValidDuedate() {
-		
-		String userId = "username";
-		String teacherId = "teacher";
+		String title ="Test Assignment";
 		String points = "100";
-		String description = "asdfasf";
-		String courseId = "class";
-		String duedate = "02242020";
+		String description = "I am just a test, I mean nothing";
+		String courseId = "5253";
+
+		return new AssignmentService().addAssignment(courseId, title, points, description);
 		
-//		AssignmentService assignmnentService = new AssignmentService();
-//		On failure, the assignmentService returns a null assignment
-//		if(assignmentService.createNewAssignment(userId, teacherId, courseId, points, description, duedate) == null) {
-//			return false;
-//		} else {
-//			return true; 
-//		}
-		
-		return false;
-				
+
 	}
-	
-	public boolean nullClass() {
-		
-		String userId = "username";
-		String teacherId = "teacher";
+
+	public boolean addAssignentNullClass() {
+
+		String title ="Test Assignment";
 		String points = "100";
-		String description = "asdfasf";
+		String description = "I am just a test, I mean nothing";
 		String courseId = null;
-		String duedate = "02242020";
-		
-//		AssignmentService assignmnentService = new AssignmentService();
-//		On failure, the assignmentService returns a null assignment
-//		if(assignmentService.createNewAssignment(userId, teacherId, courseId, points, description, duedate) == null) {
-//			return true;
-//		} else {
-//			return false; 
-//		}
-		
-		return false;
-		
+
+		return ! new AssignmentService().addAssignment(courseId, title, points, description);
+
 	}
-	
-	public boolean nonNumericClass() {
-		
-		String userId = "username";
-		String teacherId = "teacher";
+
+	public boolean addAssignentNonNumericClass() {
+
+		String title ="Test Assignment";
 		String points = "100";
-		String description = "asdfasf";
-		String courseId = "notanumber";
-		String duedate = "02242020";
-		
-//		AssignmentService assignmnentService = new AssignmentService();
-//		On failure, the assignmentService returns a null assignment
-//		if(assignmentService.createNewAssignment(userId, teacherId, courseId, points, description, duedate) == null) {
-//			return true;
-//		} else {
-//			return false; 
-//		}
-		
-		
-		return false;
+		String description = "I am just a test, I mean nothing";
+		String courseId = "potato";
+
+		return! new AssignmentService().addAssignment(courseId, title, points, description);
 	}
-	
-	public boolean nonNumericPoints() {
-		
-		String userId = "username";
-		String teacherId = "teacher";
-		String point = "asdfadsf";
-		String description = "asdfasf";
-		String courseId = "23";
-		String duedate = "02242020";
-		
-//		AssignmentService assignmnentService = new AssignmentService();
-//		
-//		On failure, the assignmentService returns a null assignment
-//		if(assignmentService.createNewAssignment(userId, teacherId, courseId, points, description, duedate) == null) {
-//			return true;
-//		} else {
-//			return false; 
-//		}
-		
-		return false;
+
+	public boolean addAssignentNonNumericPoints() {
+
+		String title ="Test Assignment";
+		String points = "100";
+		String description = "I am just a test, I mean nothing";
+		String courseId = "potato";
+
+		return! new AssignmentService().addAssignment(courseId, title, points, description);
+
+	}
+
+	public boolean addAssignmentNegativePoints() {
+
+		String title ="Test Assignment";
+		String points = "-1";
+		String description = "I am just a test, I mean nothing";
+		String courseId = "5253";
+
+		return! new AssignmentService().addAssignment(courseId, title, points, description);
+
+
 		
 	}
-	
-	public boolean negativePoints() {
-		
-		String userId = "username";
-		String teacherId = "teacher";
-		String points = "-5";
-		String description = "asdfasf";
-		String courseId = null;
-		String duedate = "02242020";
-		
-//		AssignmentService assignmnentService = new AssignmentService();
-//		
-//		On failure, the assignmentService returns a null assignment
-//		if(assignmentService.createNewAssignment(userId, teacherId, courseId, points, description, duedate) == null) {
-//			return true;
-//		} else {
-//			return false; 
-//		}
-		
-		
-		return false;
-	}
-	
-	public boolean nullPoints() {
-		
-		String userId = "username";
-		String teacherId = "teacher";
+
+	public boolean addAssignmentNullPoints() {
+
+		String title ="Test Assignment";
 		String points = null;
-		String description = "asdfasf";
-		String courseId = "2";
-		String duedate = "02242020";
-		
-//		AssignmentService assignmnentService = new AssignmentService();
-//		
-//		On failure, the assignmentService returns a null assignment
-//		if(assignmentService.createNewAssignment(userId, teacherId, courseId, points, description, duedate) == null) {
-//			return true;
-//		} else {
-//			return false; 
-//		}
-		
-		
-		return false;
-	}
-	
-	public boolean nullDuedate() {
-		
-		String userId = "username";
-		String teacherId = "teacher";
-		String points = "100";
-		String description = "asdfasf";
-		String courseId = "2";
-		String duedate = null;
-		
-//		AssignmentService assignmnentService = new AssignmentService();
-//		
-//		On failure, the assignmentService returns a null assignment
-//		if(assignmentService.createNewAssignment(userId, teacherId, courseId, points, description, duedate) == null) {
-//			return true;
-//		} else {
-//			return false; 
-//		}
-		
-		
-		return false;
-	}
-	
-	
-	public boolean nonNumericDuedate() {
-		
-		String userId = "username";
-		String teacherId = "teacher";
-		String points = "100";
-		String description = "asdfasf";
-		String courseId = "2";
-		String duedate = "asdfadf";
-		
-//		AssignmentService assignmnentService = new AssignmentService();
-//		
-//		On failure, the assignmentService returns a null assignment
-//		if(assignmentService.createNewAssignment(userId, teacherId, courseId, points, description, duedate) == null) {
-//			return true;
-//		} else {
-//			return false; 
-//		}
-		
-		
-		return false;
-	}
-	
-	
-	 public String runTests() {
-	        return "<br/><br/>Assignment Test:"
-	                +"<br/>validClassValidAssignValidPointsValidDuedate: " + (validClassValidAssignValidPointsValidDuedate() ? "Passed" : "Failed")
-	                +"<br/>nullClass: " + (nullClass() ? "Passed" : "Failed")
-	                +"<br/>nonNumericClass: " + (nonNumericClass() ? "Passed" : "Failed")
-	                +"<br/>nonNumericPoints: " + (nonNumericPoints() ? "Passed" : "Failed")
-	                +"<br/>negativePoints: " + (negativePoints() ? "Passed" : "Failed")
-	                +"<br/>nullPoints: " + (nullPoints() ? "Passed" : "Failed")
-	                +"<br/>nullDuedate: " + (nullDuedate() ? "Passed" : "Failed")
-	                +"<br/>nonNumericDuedate: " + (nonNumericDuedate() ? "Passed" : "Failed");
-	    }
-	
-	
-}
+		String description = "I am just a test, I mean nothing";
+		String courseId = "5253";
 
+		return! new AssignmentService().addAssignment(courseId, title, points, description);
+	}
+	
+	public boolean addAssignmentNullTitle() {
+
+		String title = null;
+		String points = "100";
+		String description = "I am just a test, I mean nothing";
+		String courseId = "5253";
+
+		return! new AssignmentService().addAssignment(courseId, title, points, description);
+	}
+	
+	public boolean addAssignmentNullDescription() {
+
+		String title ="Test Assignment";
+		String points = "100";
+		String description = null;
+		String courseId = "5253";
+
+		return! new AssignmentService().addAssignment(courseId, title, points, description);
+	}
+
+
+
+	private boolean getAssignmentInfoValid() {
+		String id = "10054";
+		AssignmentService assignmentService = new AssignmentService();
+		return assignmentService.getAssignment(id).getName().equals("Implement Features and Panic");
+	}
+
+	private boolean getAssignmentInfoNan() {
+		String id = "potato";
+		AssignmentService assignmentService = new AssignmentService();
+		return assignmentService.getAssignment(id) == null;
+
+		
+	}
+	private boolean getAssignmentInfoNull() {
+		String id = null;
+		AssignmentService assignmentService = new AssignmentService();
+		return assignmentService.getAssignment(id) == null;
+
+		
+	}
+	private boolean getAssignmentInfoNotFound() {
+		String id = "2457";
+		AssignmentService assignmentService = new AssignmentService();
+		return assignmentService.getAssignment(id) == null;
+
+		
+	}
+
+	private boolean getAssignmentsForClassValid() {
+		String classId = "5252";
+		AssignmentService assignmentService = new AssignmentService();
+		return assignmentService.getAssignments(classId).size() == 2;
+
+		
+	}
+
+	private boolean getAssignmentsForClassNan() {
+		String classId = "potato";
+		AssignmentService assignmentService = new AssignmentService();
+		return assignmentService.getAssignments(classId).size() == 0;
+
+		
+	}
+	private boolean getAssignmentsForClassNull() {
+		String classId = null;
+		AssignmentService assignmentService = new AssignmentService();
+		return assignmentService.getAssignments(classId).size() == 0;
+
+		
+	}
+	private boolean getAssignmentsForClassNotFound() {
+		String classId = "888888888";
+		AssignmentService assignmentService = new AssignmentService();
+		return assignmentService.getAssignments(classId).size() == 0;
+
+		
+	}
+
+	public String runTests() {
+		return "<br/><br/>Assignment Test:"
+				+"<br/>addAssignmentValidClassValidAssignValidPoints: " + (addAssignmentValidClassValidAssignValidPoints() ? "Passed" : "Failed")
+				+"<br/>addAssignentNullClass: " + (addAssignentNullClass() ? "Passed" : "Failed")
+				+"<br/>addAssignentNonNumericClass: " + (addAssignentNonNumericClass() ? "Passed" : "Failed")
+				+"<br/>addAssignentNonNumericPoints: " + (addAssignentNonNumericPoints() ? "Passed" : "Failed")
+				+"<br/>addAssignmentNegativePoints: " + (addAssignmentNegativePoints() ? "Passed" : "Failed")
+				+"<br/>addAssignmentNullPoints: " + (addAssignmentNullPoints() ? "Passed" : "Failed")
+				+"<br/>addAssignmentNullTitle: " + (addAssignmentNullTitle() ? "Passed" : "Failed")
+				+"<br/>addAssignmentNullDescription: " + (addAssignmentNullDescription() ? "Passed" : "Failed")
+				+"<br/>getAssignmentInfoValid: " + (getAssignmentInfoValid() ? "Passed" : "Failed")
+				+"<br/>getAssignmentInfoNan: " + (getAssignmentInfoNan() ? "Passed" : "Failed")
+				+"<br/>getAssignmentInfoNull: " + (getAssignmentInfoNull() ? "Passed" : "Failed")
+				+"<br/>getAssignmentInfoNotFound: " + (getAssignmentInfoNotFound() ? "Passed" : "Failed")
+				+"<br/>getAssignmentsForClassValid: " + (getAssignmentsForClassValid() ? "Passed" : "Failed")
+				+"<br/>getAssignmentsForClassNan: " + (getAssignmentsForClassNan() ? "Passed" : "Failed")
+				+"<br/>getAssignmentsForClassNull: " + (getAssignmentsForClassNull() ? "Passed" : "Failed")
+				+"<br/>getAssignmentsForClassNotFound: " + (getAssignmentsForClassNotFound() ? "Passed" : "Failed");
+	}
+
+
+}
