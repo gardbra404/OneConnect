@@ -15,7 +15,6 @@
         <div id = 'top'>
             <span id = "title" class="logo"><strong>One Connect</strong></span>
             <span><button class = 'fa fa-gear settings-button' onclick="window.location.href='#'"></button></span>
-            <span><button class='fa fa-question-circle' onclick='window.location.href="/help?role=parent"'></button></span>
 			<span id='info' th:text="${userName}"></span>
             <br/><span style="float:right;">Kettering University</span>       
          </div>
@@ -36,15 +35,7 @@
             </div>
             
         </div>
-        <script>
-            function openHelp() {
-                console.log("frick!");
-                window.open(
-                    '/help?role=parent',
-                    '_blank'
-                )
-            }
-        </script>
+
     </body>
     
         <footer>
