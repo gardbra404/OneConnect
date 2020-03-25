@@ -1,0 +1,46 @@
+<html>
+    <head>
+        
+        <link rel="stylesheet" href="../../css/common.css" />
+        <link rel="stylesheet" href="../../css/helpPages.css" />
+        <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Roboto|Source+Sans+Pro&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    </head>
+
+    <body>
+        <div id = 'top'>
+            <span id = "title" class="logo"><strong>One Connect</strong></span>
+            <!--<span><button class = 'fa fa-bell notifications-button' onclick="window.location.href='../notifications.html'"></button></span>-->
+            <span id='info' th:text="${userName}"></span>
+            <br/><span style="float:right;">Kettering University</span>
+        </div>
+
+        <div class = 'box'>
+            <div class = 'hTitle'>Student Help</div>
+            <hSection>View grades<br></hSection>
+            <hBody>From the homepage, click "Grades."
+                 Then, you can view the percentage grade and letter grade for each assignment from each class.<br><br>
+            </hBody>
+            
+            <hSection>View notifications<br></hSection>
+            <hBody>From the homepage, click "Notifications."<br><br></hBody>
+            
+            <hSection>Chats<br></hSection>
+            <hBody>From the homepage, click "Chat rooms."<br><br></hBody>
+            
+            <hSection>File repository<br></hSection>
+            <hBody>From the homepage, click "File repository." From here, you can
+                see the files that you have access to. Use the search bar to find your desired file.
+                <br>From the "Actions" column, you can Download a file or Delete it from your personal repo.
+                <br>Store your personal files with the "Upload File" button
+                or use "Shared With Me" to view files from other students.<br><br>
+            </hBody>
+            
+            <hSection>Calendar<br></hSection>
+            <hBody>You can see upcoming assignments directly from the homepage. For full-screen, click "View Full Calendar"<br><br>
+            </hBody>
+        </div>

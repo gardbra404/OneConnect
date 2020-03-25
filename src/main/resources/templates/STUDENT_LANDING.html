@@ -13,7 +13,7 @@
         <div id = 'top'>
             <span id = "title" class="logo"><strong>One Connect</strong></span>
             <!--<span><button class = 'fa fa-bell notifications-button' onclick="window.location.href='../notifications.html'"></button></span>-->
-            <span><button class = 'fa fa-gear settings-button' onclick="window.location.href='../site-settings.html'"></button></span>
+            <span><button class = 'fa fa-question-circle settings-button' onclick="$('#helpForm').submit()"></button></span>
             <span id='info' th:text="${userName}"></span>
             <br/><span style="float:right;">Kettering University</span>
         </div>
@@ -61,21 +61,17 @@
                 </ul>
             </div>
         </div>
-        <script>
-            function redirectSettings() {
-
-            }
-        </script>
         
     </body>
     
     <footer>
-        <input type='hidden' id='id' name='id' th:value='${userId}'/>
-                
         <!-- POSTs for site navigation makes me sad :( -->
         <form action="/viewGrades" method="POST" id="gradesform">
             <input type='hidden' id='id' name='id' th:value='${userId}'/>
             <input type='hidden' id='role' name='role' th:value='${role}'/>
+        </form>
+        <form action="/help" method="GET" id="helpForm" target="_blank">
+            <input type="hidden" id="helpRole" name="role" th:value="${role}" />
         </form>
         
     </footer>

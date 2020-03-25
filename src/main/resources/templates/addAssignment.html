@@ -40,7 +40,7 @@
 <body>
 <div id='top'>
     <span id="title" class="logo"><strong>One Connect</strong></span>
-    <span><button class='fa fa-gear settings-button' onclick="window.location.href='#'"></button></span>
+    <span><button class='fa fa-question-circle settings-button' onclick="$('#helpForm').submit()"></button></span>
     <span id='info'><span th:text="${name}"></span><br/><span th:text="${school}"></span></span>
 </div>
 
@@ -84,6 +84,9 @@
         <input type="hidden" id="courseId" name ="courseId" th:value="${classId}" />
         <input type='hidden' id='courseUserId' name='id' th:value='${userId}'/>
         <input type='hidden' id='courseRole' name='role' th:value='${role}'/>
+    </form>
+    <form action="/help" method="GET" id="helpForm" target="_blank">
+        <input type="hidden" id="helpRole" name="role" th:value="${role}" />
     </form>
 </div>
 </body>
