@@ -13,9 +13,6 @@ public class HelpController {
     @RequestMapping(value = "/help", method = RequestMethod.GET)
     @ResponseBody
     public ModelAndView getHelp(@RequestParam String role) {
-
-        System.out.println("sending a help page");
-
         ModelAndView modelAndView = new ModelAndView();
         switch (role) {
             case ("parent"):
