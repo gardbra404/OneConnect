@@ -15,6 +15,7 @@
         <div id = 'top'>
             <span id = "title" class="logo"><strong>One Connect</strong></span>
             <span><button class = 'fa fa-gear settings-button' onclick="window.location.href='#'"></button></span>
+            <span><button class='fa fa-question-circle' onclick='window.location.href="/help?role=admin"'></button></span>
              <span id='info' th:text="${userName}"></span>
             <br/><span style="float:right;">Kettering University</span>
         </div>
@@ -29,6 +30,7 @@
                         <li><a href="#">Admin Settings</a></li>
                         <li><a href="#">User Management</a></li>
                         <li><a href="#" onclick="$('#roleForm').submit()">Role Management</a></li>
+                        <li><a href = "/help?role=admin" target="_blank">Help Page <i class='fa fa-question-circle'></i></a></li>
                     </ul>
                 </div>
                 
@@ -42,8 +44,12 @@
             <input type='hidden' id='role' name='role' th:value='${role}'/>
         </form>
         <script>
-            function redirectSettings() {
-
+            function openHelp() {
+                console.log("frick!");
+                window.open(
+                    '/help?role=admin',
+                    '_blank'
+                )
             }
         </script>
     </body>
