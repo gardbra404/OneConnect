@@ -17,7 +17,7 @@
         $(function(){
             $.ajax({
                 url:"/getStudentClassGrades",
-                data:{studentId:$("#id").val(), classId:$("#classId").val()},
+                data:{studentId:$("#id").val(), classId:$("#courseId").val()},
                 success: updateTable
             })
         });
@@ -43,6 +43,8 @@
 
 <div class=classheader>
     <a href="#" onclick="$('#form').submit()">Home</a>
+    <i class="fa fa-chevron-right header-chevron"></i>
+    <a href="#" onclick="$('#courseForm').submit()">Course</a>
     <i class="fa fa-chevron-right header-chevron"></i>
     <a>My Grades Overview</a>
 </div>
@@ -85,10 +87,10 @@
         <input type='hidden' id='id' name='id' th:value='${userId}'/>
         <input type='hidden' id='role' name='role' th:value='${role}'/>
     </form>
-    <form action="/coursePage" method="POST" id ="courseForm">
-        <input type='hidden' id='courseId' name='id' th:value='${userId}'/>
+    <form action="/course" method = "GET" id="courseForm">
+        <input type="hidden" id="courseId" name ="courseId" th:value="${classId}" />
+        <input type='hidden' id='courseUserId' name='id' th:value='${userId}'/>
         <input type='hidden' id='courseRole' name='role' th:value='${role}'/>
-        <input type="hidden" id="classId" name="classId" th:value="${classId}" />
     </form>
 </div>
 </body>

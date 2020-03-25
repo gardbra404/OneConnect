@@ -1,0 +1,18 @@
+.hTitle{
+    margin: 40px;
+    padding-top: 15px;
+    font-size: 30px;
+}
+
+hSection{
+    font-size: 20px;
+    padding-left: 20px;
+    
+}
+
+hBody{
+    font-size: 15px;
+    text-indent: 40px;
+    position: relative;
+    left: 40px;
+}

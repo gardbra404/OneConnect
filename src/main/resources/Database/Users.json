@@ -51,7 +51,7 @@
     "name" : "Jane Gardner 3.0",
     "role": ["teacher"],
     "id": "127",
-    "classes" : [],
+    "classes" : ["5252", "5253"],
     "children" : []
   },
   

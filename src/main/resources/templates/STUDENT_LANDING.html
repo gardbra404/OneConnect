@@ -13,7 +13,7 @@
         <div id = 'top'>
             <span id = "title" class="logo"><strong>One Connect</strong></span>
             <!--<span><button class = 'fa fa-bell notifications-button' onclick="window.location.href='../notifications.html'"></button></span>-->
-            <span><button class = 'fa fa-gear settings-button' onclick="window.location.href='../site-settings.html'"></button></span>
+            <span><button class = 'fa fa-gear settings-button' onclick="window.location.href='#'"></button></span>
             <span id='info' th:text="${userName}"></span>
             <br/><span style="float:right;">Kettering University</span>
         </div>
@@ -31,6 +31,7 @@
                         <li><a href="#">Notifications</a></li>
                         <li><a href="#">Chat Rooms</a></li>
                         <li><a href="#">File Repository</a></li>
+                        <li><a href = "/help?role=student" target="_blank">Help Page <i class='fa fa-question-circle'></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -40,8 +41,10 @@
                 <div>
                     <h2>Classes</h2>
                     <hr>
-                    <ul id="courseTable">
-                    	<li th:each="course: ${courseNames}"><a href="" th:text="${course}"></a></li>
+                    <ul id="courseTable"> 
+                    	<li th:each="course : ${courses}">
+                            <a th:href="${'/course?courseId=' + {course.courseId} + '&role=' + {role} + '&id=' + {userId} }" th:text="${course.name}" ></a>
+                    	</li>
                     </ul>
                 </div>
             </div>
@@ -59,11 +62,6 @@
                 </ul>
             </div>
         </div>
-        <script>
-            function redirectSettings() {
-
-            }
-        </script>
         
     </body>
     

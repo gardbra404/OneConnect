@@ -10,6 +10,17 @@
     display: block;
     
 }
+.adminColumn {
+    border-radius: 25px;
+    float: left;
+    width: 30vw;
+    margin: 5px 35vw 30px 35vw;
+    height: 100vh;
+    background-color: rgb(207, 207, 207);
+    font-family: 'Roboto', sans-serif;
+    box-shadow: 5px 10px;
+    display: block;
+}
 .column h2{
     text-align: center;
 }
@@ -51,7 +62,7 @@ li {
     font-family: 'Roboto', sans-serif;
 
 }
-.fa {
+.settings-button {
     color: white !important;
     background-color: transparent !important;
     border: none !important;

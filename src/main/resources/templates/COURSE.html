@@ -1,0 +1,89 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="../../css/common.css" />
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Roboto|Source+Sans+Pro&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</head>
+
+<body>
+    <div id='top'>
+        <span id="title" class="logo"><strong>One Connect</strong></span>
+        <span><button class='fa fa-gear settings-button'
+                onclick="window.location.href='../site-settings.html'"></button></span>
+        <span id='info' th:text="${userName}"></span>
+        <br/><span style="float:right;">Kettering University</span>
+    </div>
+
+
+
+    <div class=classheader>
+        <a href="#" onclick="$('#form').submit()">Home</a>
+        <i class="fa fa-chevron-right header-chevron"></i>
+        <a th:text="${courseName}"></a>
+    </div>
+
+
+
+
+    <div class="columns">
+        <div class='column'>
+            <div>
+                <h2 th:text="${courseName}"></h2>
+                <hr>
+                <ul>
+                    <li><a href="#">Exams</a></li>
+                    <li><a href="#" onclick="$('#assignForm').submit()">Assignments</a></li>
+                    <li><a href="#">Disscussion Board</a></li>
+                    <li><a href="#">File Repository</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class='column'>
+            <div>
+                <h2>Course Grade</h2>
+                <hr>
+                <ul>
+                    <li th:if="${isStudent}" th:text="${'Current Total - ' + {studentTotal} + ' / ' + {courseTotal} + ' (' + {percent} + '%)'}"></li>
+                    <li><a href="#" onclick="$('#gradesForm').submit()">Detailed View</a></li>
+                </ul>
+                <h2>Upcoming Assingments</h2>
+                <hr>
+                <ul>
+                	<li th:each="assignmentName : ${assignmentNames}">
+                    	<span th:text="${assignmentName}" ></span>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+        
+        <form action="/landing" method="POST" id="form">
+            <input type='hidden' id='id' name='id' th:value='${userId}'/>
+            <input type='hidden' id='role' name='role' th:value='${role}'/>
+        </form>
+
+        <form action="/assignments" method="POST" id="assignForm">
+            <input type='hidden' id='assignId' name='id' th:value='${userId}'/>
+            <input type='hidden' id='assignRole' name='role' th:value='${role}'/>
+            <input type="hidden" id="assignClass" name="classId" th:value="${courseId}" />
+        </form>
+        <form action="/viewClassGrades" method="POST" id="gradesForm">
+            <input type='hidden' id='gradesId' name='id' th:value='${userId}'/>
+            <input type='hidden' id='gradesRole' name='role' th:value='${role}'/>
+            <input type="hidden" id="gradesClass" name="classId" th:value="${courseId}" />
+        </form>
+    </div>
+    <script>
+        function redirectSettings() {
+
+        }
+    </script>
+</body>
+
+</html>

@@ -187,7 +187,6 @@ public class GradesController {
     @RequestMapping("/getTeacherClassGrades")
     @ResponseBody
     public List<Grade> getTeacherClassGrades(String classId) {
-        System.out.println(classId);
         return  new GradesService().getTeacherGradesForClass(classId);
     }
 }

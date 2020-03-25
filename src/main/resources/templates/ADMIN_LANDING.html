@@ -21,50 +21,27 @@
         
         <div class ='columns'>
 
-            <div class = 'column'>
+            <div class = 'adminColumn'>
                 <div>
                     <h2>Quick Links</h2>
                     <hr>
                     <ul>
-                        <li><a href="#">Grades</a></li>
-                        <li><a href="#">Notifications</a></li>
-                        <li><a href="#">Chat Rooms</a></li>
-                        <li><a href="#">File Repository</a></li>
                         <li><a href="#">Admin Settings</a></li>
                         <li><a href="#">User Management</a></li>
                         <li><a href="#" onclick="$('#roleForm').submit()">Role Management</a></li>
+                        <li><a href = "/help?role=admin" target="_blank">Help Page <i class='fa fa-question-circle'></i></a></li>
                     </ul>
                 </div>
                 
 
             </div>
 
-            <div class = 'column'>
-                <div>
-                </div>
-            </div>
-            <div class = 'column'>
-                <div id = 'eventCalendar'>
-                    <h2>Announcements</h2>
-                    <hr>
-                    <a id ="cal" href='../calendar.html' target="_blank">View Full Calendar</a>
-                </div>
-                <ul id ='announce'>
-                    <li>New assignment due in some class</li>
-                    <li>New assignment due in some class</li>
-                    <li>New assignment due in some class</li>
-                    <li>New assignment due in some class</li>
-                </ul>
-            </div>
+
         </div>
         <form action="/roleManagement" method="POST" id="roleForm">
             <input type='hidden' id='id' name='id' th:value='${userId}'/>
             <input type='hidden' id='role' name='role' th:value='${role}'/>
         </form>
-        <script>
-            function redirectSettings() {
 
-            }
-        </script>
     </body>
 </html>

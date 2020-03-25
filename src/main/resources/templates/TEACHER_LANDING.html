@@ -30,6 +30,7 @@
                         <li><a href="#" onclick="$('#gradesform').submit()">Grades</a></li>
                         <li><a href="#">Chat Rooms</a></li>
                         <li><a href="#">File Repository</a></li>
+                        <li><a href = "/help?role=teacher" target="_blank">Help Page <i class='fa fa-question-circle'></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -40,7 +41,9 @@
                     <h2>Classes</h2>
                     <hr>
                     <ul id="courseTable">
-                    	<li th:each="course: ${courseNames}"><a href="" th:text="${course}"></a></li>
+                    	<li th:each="course : ${courses}">
+                            <a th:href="${'/course?courseId=' + {course.courseId} + '&role=' + {role} + '&id=' + {userId} }" th:text="${course.name}" ></a>
+                    	</li>                    
                     </ul>
                 </div>
             </div>
@@ -58,11 +61,7 @@
                 </ul>
             </div>
         </div>
-        <script>
-            function redirectSettings() {
 
-            }
-        </script>
     </body>
         
     <footer>
