@@ -1,6 +1,5 @@
 package com.oneconnect.OneConnect;
 
-import com.oneconnect.OneConnect.UserCreation.User;
 import com.oneconnect.OneConnect.UserCreation.UserCreationService;
 import com.oneconnect.OneConnect.Login.LoginService;
 import org.json.simple.JSONArray;
@@ -32,7 +31,7 @@ public class UserCreationController {
         } else {
             modelAndView.addObject("userId", id);
             modelAndView.addObject("role", role);
-            modelAndView.addObject("name", userCreationService.findName(id));
+            modelAndView.addObject("name", userCreationService.getByUserId(id));
             //For right now, the school name is hard coded
             modelAndView.addObject("school", "Kettering University");
             if (role.equals("teacher")) {
@@ -60,9 +59,9 @@ public class UserCreationController {
         }
         if(!roles.contains(role)) {
             user = new String();
-        } else if(role.equals("student")) {
-            user = userCreationService.getUser(user);
-        } else {
+        }  /* else if(role.equals("student")) {
+            user = userCreationService.getByUserId();
+        }*/else {
             user = new String();
         }
         return user;
@@ -70,8 +69,8 @@ public class UserCreationController {
 
     @RequestMapping("/getUserById")
     @ResponseBody
-    public List<List<User>> getUserById(String user, String role) {
-        List<List<User>> grades = new ArrayList<>();
+    public JSONArray getUserById(String user, String role) {
+        JSONArray users = new JSONArray();
         UserCreationService userCreationService = new UserCreationService();
         LoginService loginService = new LoginService();
         List<String> roles = loginService.retrieveRole(user);
@@ -79,47 +78,39 @@ public class UserCreationController {
             role = roles.get(0);
         }
         if(!roles.contains(role)) {
-            grades = new ArrayList<>();
+            users = new JSONArray();
         } else if(role.equals("parent")) {
-            grades = userCreationService.parentGrades(user);
+            users = userCreationService.getByRole(role);
         } else {
-            grades = new ArrayList<>();
+            users = new JSONArray();
         }
-        return grades;
+        return users;
     }
 
     @RequestMapping("/getByRole")
     @ResponseBody
-    public List<User> getByRole(String role) {
+    public JSONArray getByRole(String role) {
         UserCreationService userCreationService = new UserCreationService();
         return userCreationService.getByRole(role);
     }
 
     @RequestMapping("/getAllUsers")
     @ResponseBody
-    public List<User> getAllUsers(String course) {
+    public JSONArray getAllUsers(String course) {
         UserCreationService userCreationService = new UserCreationService();
         return userCreationService.getAllUsers();
     }
 
     @RequestMapping("/updateUser")
     @ResponseBody
-    public boolean updateUser (String name, List<String> role, String userId, List<String> classes, List<Child> children) {
+    public boolean updateUser (String name, List<String> role, String userId, List<String> classes, JSONArray children) {
         UserCreationService userCreationService = new UserCreationService();
         boolean update = false;
         LoginService loginService = new LoginService();
         List<String> roles = loginService.retrieveRole(userId);
         if(role.equals("default")) {
-            role = roles.get(0);
-        }
-        if(!roles.contains(role)) {
-            update = false;
-        } else if (userCreationService.roleCheck(roles.get(0))) {
-            if(userCreationService.doesUserExist(name, userId)) {
-                update = userCreationService.updateUser(name, role, userId, classes, children);
-            } else {
-                update = userCreationService.createUser(name, role, userId, classes, children);
-            }
+            //role = roles.get(0);
+            update = true;
         }
 
         return update;

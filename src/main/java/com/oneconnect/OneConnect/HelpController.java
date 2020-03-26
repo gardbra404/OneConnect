@@ -1,6 +1,5 @@
 package com.oneconnect.OneConnect;
 
-import com.oneconnect.OneConnect.Course.CourseService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

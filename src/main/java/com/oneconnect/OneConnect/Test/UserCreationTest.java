@@ -1,6 +1,10 @@
 package com.oneconnect.OneConnect.Test;
 
 import com.oneconnect.OneConnect.UserCreation.UserCreationService;
+import com.oneconnect.OneConnect.UserCreation.Child;
+import org.json.simple.JSONArray;
+
+import java.util.*;
 
 public class UserCreationTest {
 
@@ -13,8 +17,8 @@ public class UserCreationTest {
 		List<Child> children = new ArrayList<Child>();
 
 		UserCreationService userCreationService = new UserCreationService();
-		
-		 if (userCreationService.createUser(name, role, userId, classes, children) != null)
+
+		 if (userCreationService.createUser(name, role, userId, classes, children))
 			return true; 
 		
 		return false;
@@ -29,8 +33,8 @@ public class UserCreationTest {
 		List<Child> children = new ArrayList<Child>();
 		
 		UserCreationService userCreationService = new UserCreationService();
-		
-		 if (userCreationService.createUser(name, role, userId, classes, children) == null)
+
+		if (userCreationService.createUser(name, role, userId, classes, children))
 			return true; 
 		
 		return false;
@@ -48,7 +52,7 @@ public class UserCreationTest {
 		userCreationService.createUser(name, role, userId, classes, children); //create the user
 
 		//try to create the user again
-		 if (userCreationService.createUser(name, role, userId, classes, children) == null)
+		if (userCreationService.createUser(name, role, userId, classes, children))
 			return true; 
 		
 		return false;		
@@ -62,8 +66,8 @@ public class UserCreationTest {
 		List<Child> children = new ArrayList<Child>();
 		
 		UserCreationService userCreationService = new UserCreationService();
-		
-		 if (userCreationService.createUser(name, role, userId, classes, children) == null)
+
+		if (userCreationService.createUser(name, role, userId, classes, children))
 			return true; 
 		
 		return false;
@@ -77,8 +81,8 @@ public class UserCreationTest {
 		List<Child> children = new ArrayList<Child>();
 		
 		UserCreationService userCreationService = new UserCreationService();
-		
-		 if (userCreationService.createUser(name, role, userId, classes, children) == null)
+
+		if (userCreationService.createUser(name, role, userId, classes, children))
 			return true; 
 		
 		return false;
@@ -94,8 +98,8 @@ public class UserCreationTest {
 		List<Child> children = new ArrayList<Child>();
 		
 		UserCreationService userCreationService = new UserCreationService();
-		
-		 if (userCreationService.createUser(name, role, userId, classes, children) == null)
+
+		if (userCreationService.createUser(name, role, userId, classes, children))
 			return true; 
 		
 		return false;
