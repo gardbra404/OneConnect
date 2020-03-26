@@ -14,7 +14,12 @@
     <body>
         <div id = 'top'>
             <span id = "title" class="logo"><strong>One Connect</strong></span>
+<<<<<<< HEAD
+            <span><button class = 'fa fa-gear settings-button' onclick="window.location.href='../site-settings.html'"></button></span>
+            <span><button class='fa fa-question-circle' onclick='window.location.href="/help?role=teacher"'></button></span>
+=======
             <span><button class = 'fa fa-question-circle settings-button' onclick="$('#helpForm').submit()"></button></span>
+>>>>>>> 4e83656bd26f6ba62a1633e772987386b405f2ca
            	<span id='info' th:text="${userName}"></span>
             <br/><span style="float:right;">Kettering University</span>
         </div>
@@ -30,6 +35,7 @@
                         <li><a href="#" onclick="$('#gradesform').submit()">Grades</a></li>
                         <li><a href="#">Chat Rooms</a></li>
                         <li><a href="#">File Repository</a></li>
+                        <li><a href = "/help?role=teacher" target="_blank">Help Page <i class='fa fa-question-circle'></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -60,7 +66,19 @@
                 </ul>
             </div>
         </div>
+<<<<<<< HEAD
+        <script>
+            function openHelp() {
+                console.log("frick!");
+                window.open(
+                    '/help?role=teacher',
+                    '_blank'
+                )
+            }
+        </script>
+=======
 
+>>>>>>> 4e83656bd26f6ba62a1633e772987386b405f2ca
     </body>
         
     <footer>

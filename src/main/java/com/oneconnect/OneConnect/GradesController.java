@@ -5,7 +5,6 @@ import com.oneconnect.OneConnect.Grades.CourseInfo;
 import com.oneconnect.OneConnect.Grades.Grade;
 import com.oneconnect.OneConnect.Grades.GradesService;
 import com.oneconnect.OneConnect.Login.LoginService;
-import org.json.simple.JSONArray;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,0 +1,67 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="../../css/assignment.css" />
+    <link rel="stylesheet" href="../../css/common.css" />
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Roboto|Source+Sans+Pro&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</head>
+
+<body>
+    <div id='top'>
+        <span id="title" class="logo"><strong>One Connect</strong></span>
+        <span><button class='fa fa-gear settings-button'
+                onclick="window.location.href='../site-settings.html'"></button></span>
+        <span id='info'>Mr Admin<br />Kettering University</span>
+    </div>
+
+
+    <div class=classheader>
+        <a href="../landings/landingAdmin.html">Home</a>
+        <i class="fa fa-chevron-right header-chevron"></i>
+        <a href="usermanagement.html"> User Management</a>
+        <i class="fa fa-chevron-right header-chevron"></i>
+        <a>Edit User</a>
+    </div>
+
+
+    <div class='columns'>
+
+        <div class='box'>
+            <div>
+                <h2>Edit Existing User</h2>
+                <div class="subbox">
+
+                    <form><!--need to prefill form in edit somehow-->
+                        <div class="assignment-form-item">
+                            <label for="firstname">First Name:</label>
+                            <input type="text" name="firstname">
+                        </div>
+                        <div class="assignment-form-item">
+                            <label for="lastname">Last Name:</label>
+                            <input type="text" name="lastname">
+                        </div>
+                        <div class="assignment-form-item">
+                            <label for="usertype">User Type:</label>
+                            <input type="text" name="usertype"><!--should maybe be a dropdown somehow-->
+                        </div>
+
+
+                    </form>
+                    <hr>
+                    <div><b>User Notes</b></div>
+
+                    <textarea class="note-box" placeholder="Enter notes" cols="50" rows="4"></textarea>
+                </div>
+                <form action="usermanagement.html">
+		    <button class="secondary-button cancel" type="cancel">Cancel</button>
+                    <button class="primary-button submit" type="submit">Edit User</button>
+                </form>
+
+            </div>
+</body>
+</html>

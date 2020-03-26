@@ -3,7 +3,7 @@
 
       "name" : "Brad Gardner",
       "role": ["student", "admin"],
-      "id": "123",
+      "userId": "123",
       "classes" : ["5252", "5253"],
       "children" : []
 
@@ -11,22 +11,22 @@
   {
       "name" : "Jorge Gardner",
       "role": ["student"],
-      "id": "124",
+      "userId": "124",
       "classes" : ["5252", "5253"],
       "children" : []
   },
   {
     "name" : "Jane Gardner",
     "role": ["parent"],
-    "id": "125",
+    "userId": "125",
     "classes" : [],
     "children" : [
       {
-        "id": "123",
+        "userId": "123",
         "allowed": "false"
       },
       {
-        "id": "124",
+        "userId": "124",
         "allowed": "true"
       }
     ]
@@ -36,11 +36,11 @@
   {
     "name" : "Jane Gardner 2.0",
     "role": ["parent"],
-    "id": "126",
+    "userId": "126",
     "classes" : [],
     "children" : [
       {
-        "id": "124",
+        "userId": "124",
         "allowed": "true"
       }
     ]
@@ -50,7 +50,7 @@
   {
     "name" : "Jane Gardner 3.0",
     "role": ["teacher"],
-    "id": "127",
+    "userId": "127",
     "classes" : ["5252", "5253"],
     "children" : []
   },

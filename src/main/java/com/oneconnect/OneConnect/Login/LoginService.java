@@ -5,7 +5,6 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 
-import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,7 +37,6 @@ public class LoginService {
     public List<String> retrieveRole(String id) {
         Utility utility = new Utility();
         List<String> roles = null;
-        File file = null;
         JSONArray jsonArray = utility.jsonArrayGenerator("Users.json");
         if(utility.numberChecker(id) && jsonArray != null) {
             roles = new ArrayList<>();
