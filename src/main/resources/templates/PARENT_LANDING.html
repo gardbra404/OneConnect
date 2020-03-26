@@ -14,7 +14,8 @@
     <body>
         <div id = 'top'>
             <span id = "title" class="logo"><strong>One Connect</strong></span>
-            <span><button class = 'fa fa-gear settings-button' onclick="window.location.href='../site-settings.html'"></button></span>
+            <span><button class = 'fa fa-gear settings-button' onclick="window.location.href='#'"></button></span>
+            <span><button class='fa fa-question-circle' onclick='window.location.href="/help?role=parent"'></button></span>
 			<span id='info' th:text="${userName}"></span>
             <br/><span style="float:right;">Kettering University</span>       
          </div>
@@ -29,14 +30,19 @@
                     <ul>
                     
                        	<li><a href="#" onclick="$('#gradesform').submit()">My Student's Grades</a></li>
+                        <li><a href = "/help?role=parent" target="_blank">Help Page <i class='fa fa-question-circle'></i></a></li>
                     </ul>
                 </div>
             </div>
             
         </div>
         <script>
-            function redirectSettings() {
-
+            function openHelp() {
+                console.log("frick!");
+                window.open(
+                    '/help?role=parent',
+                    '_blank'
+                )
             }
         </script>
     </body>
