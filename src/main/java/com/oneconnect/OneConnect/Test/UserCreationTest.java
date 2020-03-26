@@ -6,97 +6,80 @@ public class UserCreationTest {
 
 	public boolean ValidAccount() {
 
+		String name = "Noah Dabrowski";
+		List<String> role = Arrays.asList("admin");
 		String userId = "qwertyuiop";
-		String userEmail = "guil9416@kettering.edu";
-		String fullName = "Austin Guilbault";
-		String role = "admin";
-		//List<String> role = (["student"]);
-		String password = "123ABCqwe?!";
+		List<String> classes = new ArrayList<String>();
+		List<Child> children = new ArrayList<Child>();
 
 		UserCreationService userCreationService = new UserCreationService();
 		
-		/* if (userCreationService.createUser(userId, userEmail, fullName, role, password) != null)
-			return true; */
+		 if (userCreationService.createUser(name, role, userId, classes, children) != null)
+			return true; 
 		
 		return false;
 	}
 	
 	public boolean InvalidPassword(){
 		
+		String name = "Noah";
+		List<String> role = Arrays.asList("admin");
 		String userId = "qwertyuiop";
-		String userEmail = "guil9416@kettering.edu";
-		String fullName = "Austin Guilbault";
-		String role = "admin";
-		String password = "bob";
+		List<String> classes = new ArrayList<String>();
+		List<Child> children = new ArrayList<Child>();
 		
 		UserCreationService userCreationService = new UserCreationService();
 		
-		/* if (userCreationService.createUser(userId, userEmail, fullName, role, password) == null)
-			return true; */
+		 if (userCreationService.createUser(name, role, userId, classes, children) == null)
+			return true; 
 		
 		return false;
 	}
 	
 	public boolean UserExists(){
+		String name = "Noah";
+		List<String> role = Arrays.asList("admin");
 		String userId = "qwertyuiop";
-		String userEmail = "guil9416@kettering.edu";
-		String fullName = "Austin Guilbault";
-		String role = "admin";
-		String password = "123ABCqwe?!";
+		List<String> classes = new ArrayList<String>();
+		List<Child> children = new ArrayList<Child>();
 		
 		UserCreationService userCreationService = new UserCreationService();
 		
-		/*userCreationService.createUser(userId, userEmail, fullName, role, password); //create the user
+		userCreationService.createUser(name, role, userId, classes, children); //create the user
 
 		//try to create the user again
-		 if (userCreationService.createUser(userId, userEmail, fullName, role, password) == null)
-			return true; */
+		 if (userCreationService.createUser(name, role, userId, classes, children) == null)
+			return true; 
 		
 		return false;		
 	}
 	
 	public boolean InvalidRole(){
+		String name = "Noah";
+		List<String> role = Arrays.asList("guh");
 		String userId = "qwertyuiop";
-		String userEmail = "guil9416@kettering.edu";
-		String fullName = "Austin Guilbault";
-		String role = ":^)";
-		String password = "123ABCqwe?!";
+		List<String> classes = new ArrayList<String>();
+		List<Child> children = new ArrayList<Child>();
 		
 		UserCreationService userCreationService = new UserCreationService();
 		
-		/* if (userCreationService.createUser(userId, userEmail, fullName, role, password) == null)
-			return true; */
+		 if (userCreationService.createUser(name, role, userId, classes, children) == null)
+			return true; 
 		
 		return false;
 	}
 	
 	public boolean nullUserId(){
+		String name = "Noah";
+		List<String> role = Arrays.asList("admin");
 		String userId = null;
-		String userEmail = "guil9416@kettering.edu";
-		String fullName = "Austin Guilbault";
-		String role = ":^)";
-		String password = "123ABCqwe?!";
+		List<String> classes = new ArrayList<String>();
+		List<Child> children = new ArrayList<Child>();
 		
 		UserCreationService userCreationService = new UserCreationService();
 		
-		/* if (userCreationService.createUser(userId, userEmail, fullName, role, password) == null)
-			return true; */
-		
-		return false;
-		
-	}
-	
-	public boolean InvalidEmail(){
-		String userId = "blahblah";
-		String userEmail = "noatsign";
-		String fullName = "Austin Guilbault";
-		String role = "student";
-		String password = "123ABCqwe?!";
-		
-		UserCreationService userCreationService = new UserCreationService();
-		
-		/* if (userCreationService.createUser(userId, userEmail, fullName, role, password) == null)
-			return true; */
+		 if (userCreationService.createUser(name, role, userId, classes, children) == null)
+			return true; 
 		
 		return false;
 		
@@ -104,16 +87,16 @@ public class UserCreationTest {
 	
 	public boolean InvalidFullName(){
 		
+		String name = "Noah";
+		List<String> role = Arrays.asList("admin");
 		String userId = "qwertyuiop";
-		String userEmail = "guil9416@kettering.edu";
-		String fullName = "onlyoneword";
-		String role = "admin";
-		String password = "123ABCqwe?!";
+		List<String> classes = new ArrayList<String>();
+		List<Child> children = new ArrayList<Child>();
 		
 		UserCreationService userCreationService = new UserCreationService();
 		
-		/* if (userCreationService.createUser(userId, userEmail, fullName, role, password) == null)
-			return true; */
+		 if (userCreationService.createUser(name, role, userId, classes, children) == null)
+			return true; 
 		
 		return false;
 	}
@@ -125,7 +108,6 @@ public class UserCreationTest {
 	                +"<br/>UserExists: " + (UserExists() ? "Passed" : "Failed")
 	                +"<br/>InvalidRole: " + (InvalidRole() ? "Passed" : "Failed")
 					+"<br/>nullUserId: " + (nullUserId() ? "Passed" : "Failed")
-					+"<br/>InvalidEmail: " + (InvalidEmail() ? "Passed" : "Failed")
 					+"<br/>InvalidFullName: " + (InvalidFullName() ? "Passed" : "Failed");
 
 	}
