@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/CSS/exam.css}" />
+    <link rel="stylesheet" th:href="@{/CSS/common.css}" />
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Roboto|Source+Sans+Pro&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <meta charset="UTF-8">
+    <title>Assignments</title>
+    <script>
+        $(function() {
+            $.ajax({
+                url:"/getAssignments",
+                type:"POST",
+                data:{classId:$("#classId").val()},
+                success: fillAssignments
+            })
+        });
+
+        function fillAssignments(assignments) {
+            var assignmentString = "";
+            for (var i = 0; i < assignments.length; i++) {
+                assignmentString+="<li><a href='#' onclick='retrieveAssignment("+assignments[i].id+")'>"+assignments[i].name+"</a></li>";
+            }
+            $("#assignmentList").append(assignmentString);
+        }
+
+        function retrieveAssignment(assignmentId) {
+            $("#assignmentId").val(assignmentId);
+            $("#assignmentForm").submit();
+        }
+    </script>
+</head>
+<body>
+<div id='top'>
+    <span id="title" class="logo"><strong>One Connect</strong></span>
+    <span><button class='fa fa-question-circle settings-button' onclick="$('#helpForm').submit()"></button></span>
+    <span id='info'><span th:text="${name}"></span><br/><span th:text="${school}"></span></span>
+
+</div>
+
+<div class=classheader>
+    <a href="#" onclick="$('#form').submit()">Home</a>
+    <i class="fa fa-chevron-right header-chevron"></i>
+    <a href="#" onclick="$('#courseForm').submit()">Course</a>
+    <i class="fa fa-chevron-right header-chevron"></i>
+    <a>Assignment</a>
+</div>
+
+<div class='columns'>
+
+    <div class='box'>
+        <div>
+            <h2>Assignments</h2>
+            <div>
+                <ul id="assignmentList">
+
+                </ul>
+            </div>
+            <br/>
+            <a class='gradeLabel' href="#" onclick="$('#addAssignmentForm').submit()">Add New Assignment</a>
+        </div>
+    </div>
+
+    <form action="/landing" method="POST" id="form">
+        <input type='hidden' id='id' name='id' th:value='${userId}'/>
+        <input type='hidden' id='role' name='role' th:value='${role}'/>
+    </form>
+    <form action="/retrieveAssignmentInfo" method = "POST" id="assignmentForm">
+        <input type="hidden" id="classId" name ="classId" th:value="${classId}" />
+        <input type="hidden" id="assignmentId" name ="assignmentId" value="-1"/>
+        <input type='hidden' id='infoId' name='id' th:value='${userId}'/>
+        <input type='hidden' id='infoRole' name='role' th:value='${role}'/>
+    </form>
+    <form action="/addAssignment" method="POST" id="addAssignmentForm">
+        <input type='hidden' id='teacherId' name='id' th:value='${userId}'/>
+        <input type='hidden' id='teacherRole' name='role' th:value='${role}'/>
+        <input type="hidden" id="addClassId" name ="classId" th:value="${classId}" />
+    </form>
+    <form action="/course" method = "GET" id="courseForm">
+        <input type="hidden" id="courseId" name ="courseId" th:value="${classId}" />
+        <input type='hidden' id='courseUserId' name='id' th:value='${userId}'/>
+        <input type='hidden' id='courseRole' name='role' th:value='${role}'/>
+    </form>
+    <form action="/help" method="GET" id="helpForm" target="_blank">
+        <input type="hidden" id="helpRole" name="role" th:value="${role}" />
+    </form>
+</div>
+</body>
+</html>

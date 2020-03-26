@@ -14,8 +14,12 @@
     <body>
         <div id = 'top'>
             <span id = "title" class="logo"><strong>One Connect</strong></span>
+<<<<<<< HEAD
             <span><button class = 'fa fa-gear settings-button' onclick="window.location.href='../site-settings.html'"></button></span>
             <span><button class='fa fa-question-circle' onclick='window.location.href="/help?role=teacher"'></button></span>
+=======
+            <span><button class = 'fa fa-question-circle settings-button' onclick="$('#helpForm').submit()"></button></span>
+>>>>>>> 4e83656bd26f6ba62a1633e772987386b405f2ca
            	<span id='info' th:text="${userName}"></span>
             <br/><span style="float:right;">Kettering University</span>
         </div>
@@ -62,6 +66,7 @@
                 </ul>
             </div>
         </div>
+<<<<<<< HEAD
         <script>
             function openHelp() {
                 console.log("frick!");
@@ -71,6 +76,9 @@
                 )
             }
         </script>
+=======
+
+>>>>>>> 4e83656bd26f6ba62a1633e772987386b405f2ca
     </body>
         
     <footer>
@@ -79,6 +87,9 @@
          <form action="/viewGrades" method="POST" id="gradesform">
             <input type='hidden' id='id' name='id' th:value='${userId}'/>
             <input type='hidden' id='role' name='role' th:value='${role}'/>
+        </form>
+        <form action="/help" method="GET" id="helpForm" target="_blank">
+            <input type="hidden" id="helpRole" name="role" th:value="${role}" />
         </form>
     </footer>
 </html>

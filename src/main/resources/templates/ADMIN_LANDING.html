@@ -14,8 +14,12 @@
     <body>
         <div id = 'top'>
             <span id = "title" class="logo"><strong>One Connect</strong></span>
+<<<<<<< HEAD
             <span><button class = 'fa fa-gear settings-button' onclick="window.location.href='#'"></button></span>
             <span><button class='fa fa-question-circle' onclick='window.location.href="/help?role=admin"'></button></span>
+=======
+            <span><button class = 'fa fa-question-circle settings-button' onclick="$('#helpForm').submit()"></button></span>
+>>>>>>> 4e83656bd26f6ba62a1633e772987386b405f2ca
              <span id='info' th:text="${userName}"></span>
             <br/><span style="float:right;">Kettering University</span>
         </div>
@@ -27,10 +31,16 @@
                     <h2>Quick Links</h2>
                     <hr>
                     <ul>
+<<<<<<< HEAD
                         <li><a href="admincontrolpanel.html">Admin Settings</a></li>
                         <li><a href="usermanagement.html">User Management</a></li>
                         <li><a href="#" onclick="$('#roleForm').submit()">Role Management</a></li>
                         <li><a href = "/help?role=admin" target="_blank">Help Page <i class='fa fa-question-circle'></i></a></li>
+=======
+                        <li><a href="#">Admin Settings</a></li>
+                        <li><a href="#">User Management</a></li>
+                        <li><a href="#" onclick="$('#roleForm').submit()">Role Management</a></li>
+>>>>>>> 4e83656bd26f6ba62a1633e772987386b405f2ca
                     </ul>
                 </div>
                 
@@ -43,6 +53,7 @@
             <input type='hidden' id='id' name='id' th:value='${userId}'/>
             <input type='hidden' id='role' name='role' th:value='${role}'/>
         </form>
+<<<<<<< HEAD
         <script>
             function openHelp() {
                 console.log("frick!");
@@ -52,5 +63,11 @@
                 )
             }
         </script>
+=======
+        <form action="/help" method="GET" id="helpForm" target="_blank">
+            <input type="hidden" id="helpRole" name="role" th:value="${role}" />
+        </form>
+
+>>>>>>> 4e83656bd26f6ba62a1633e772987386b405f2ca
     </body>
 </html>

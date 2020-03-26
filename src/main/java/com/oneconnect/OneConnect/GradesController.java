@@ -147,4 +147,45 @@ public class GradesController {
         }
         return grades;
     }
+
+    @PostMapping("/viewClassGrades")
+    @ResponseBody
+    public ModelAndView viewClassGrades(@RequestParam(defaultValue = "f") String id, @RequestParam String role, @RequestParam String classId) {
+        ModelAndView modelAndView = new ModelAndView();
+        GradesService gradesService = new GradesService();
+        LoginService loginService = new LoginService();
+        List<String> userRoles = loginService.retrieveRole(id);
+        if (role.equals("default") && userRoles.size() > 0) {
+            role = userRoles.get(0);
+        }
+        if (userRoles.contains(role)) {
+            modelAndView.addObject("userId", id);
+            modelAndView.addObject("role", role);
+            modelAndView.addObject("name", gradesService.findName(id));
+            modelAndView.addObject("school", "Kettering University");
+            modelAndView.addObject("classId", classId);
+            if (role.equals("teacher")) {
+                modelAndView.setViewName("gradesTeacherClass");
+            } else if (role.equals("student")) {
+                modelAndView.setViewName("gradesStudentClass");
+            } else {
+                modelAndView.setViewName("forbidden");
+            }
+        } else {
+            modelAndView.setViewName("forbidden");
+        }
+        return modelAndView;
+    }
+
+    @RequestMapping("/getStudentClassGrades")
+    @ResponseBody
+    public List<Grade> getStudentClassGrades(String studentId, String classId) {
+        return new GradesService().getStudentClassGrades(studentId, classId);
+    }
+
+    @RequestMapping("/getTeacherClassGrades")
+    @ResponseBody
+    public List<Grade> getTeacherClassGrades(String classId) {
+        return  new GradesService().getTeacherGradesForClass(classId);
+    }
 }

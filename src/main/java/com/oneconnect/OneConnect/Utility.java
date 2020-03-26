@@ -6,6 +6,8 @@ import org.json.simple.parser.ParseException;
 import org.springframework.util.ResourceUtils;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Utility {
     public JSONArray jsonArrayGenerator(String fileName) {
@@ -50,6 +52,10 @@ public class Utility {
         return valid;
     }
 
+    public boolean stringChecker(String string) {
+        return string != null && string.length() > 0;
+    }
+
     public boolean jsonWriter(String jsonString, String fileName) {
         //We save to the temp because that allows for permanent data storage...storing to resources does not
         boolean successfulSave;
@@ -89,5 +95,13 @@ public class Utility {
             System.out.println(e);
         }
         return number;
+    }
+
+    public List<String> convertJsonArray(JSONArray jsonArray) {
+        List<String> stringList = new ArrayList<>();
+        for (int i = 0; i < jsonArray.size(); i++) {
+            stringList.add((String) jsonArray.get(i));
+        }
+        return stringList;
     }
 }

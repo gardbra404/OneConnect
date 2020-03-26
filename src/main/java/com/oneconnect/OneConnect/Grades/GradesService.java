@@ -360,6 +360,16 @@ public class GradesService {
                 }
             }
         }
-        return teacherGrades;
+        return filterClassGrades(teacherGrades);
+    }
+
+    private List<Grade> filterClassGrades(List<Grade> classGrades) {
+        List<Grade> dupGrades = new ArrayList<>();
+        for (Grade grade : classGrades) {
+            if (existsIn(dupGrades, grade)) {
+                dupGrades.add(grade);
+            }
+        }
+        return dupGrades;
     }
 }
